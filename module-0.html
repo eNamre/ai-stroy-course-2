@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
 <title>Модуль 0. Знакомство с ИИ — Высшая инженерная школа</title>
 <style>
   /* === Палитра под бренд Актион Строительство === */
@@ -13,6 +14,7 @@
     --font:'Proxima Nova','Helvetica Neue','Segoe UI',Arial,system-ui,sans-serif;
   }
   *{box-sizing:border-box}
+  html,body{overflow-x:hidden}
   body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1.55;-webkit-font-smoothing:antialiased}
   .wrap{max-width:1080px;margin:0 auto;padding:0 18px 70px}
   a{color:var(--blue);text-decoration:none}
@@ -57,6 +59,13 @@
   .out .ot{font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--green);font-weight:800;margin-bottom:6px}
   .out ul{margin:0;padding-left:18px}.out li{margin:5px 0;font-size:14.5px}
   .asst-note{font-size:13.5px;color:#7a5b16;background:#fdf6e3;border:1px solid #f3e3b3;border-radius:12px;padding:12px 14px;margin-top:16px}
+  .transfer-note{font-size:12.5px;color:var(--muted);background:#fff;border:1.5px dashed var(--muted);border-radius:12px;padding:10px 14px;margin:14px 0}
+  .transfer-note b{color:var(--ink)}
+  .progress-hint{font-size:11.5px;color:var(--muted);margin:0 0 10px;font-weight:600}
+  .materials-card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px 22px;margin-top:24px;display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap}
+  .materials-card .mt{font-weight:800;font-size:15px;margin-bottom:4px}
+  .materials-card .ms{font-size:13px;color:var(--muted)}
+  .materials-card .btn{white-space:nowrap}
   .btn{appearance:none;border:none;cursor:pointer;font-weight:700;border-radius:var(--rs);padding:12px 20px;font-size:14.5px;
     background:var(--blue);color:#fff;transition:.15s}
   .btn:hover{filter:brightness(.95)}.btn:disabled{opacity:.45;cursor:not-allowed}
@@ -139,11 +148,13 @@
     <span class="lvl"><span class="dotx"></span> Ассистент · Уровень 0</span>
   </div>
 
+  <p class="progress-hint">Прогресс сохраняется в рамках одного захода (без выхода из страницы)</p>
   <div class="tabs" id="tabs">
     <div class="tab on" data-l="0"><span class="n">1</span> Как ИИ думает</div>
     <div class="tab" data-l="1"><span class="n">2</span> Где ИИ врёт</div>
     <div class="tab" data-l="2"><span class="n">3</span> Что нельзя загружать</div>
   </div>
+  <div class="transfer-note">⚙ Для переноса в платформу Актион: здесь платформа хранит прогресс учащегося (П-6)</div>
 
   <div class="grid">
     <div>
@@ -152,7 +163,7 @@
       <section class="lesson on card" data-l="0">
         <p class="kicker">Урок 0.1 · 5 минут <span class="rule" style="background:var(--blue)"></span></p>
         <h2>Как ИИ «думает»: он угадывает следующее слово</h2>
-        <p class="muted">Прораб спрашивает ИИ: «какой бетон лить?» — и получает уверенный ответ. Откуда ИИ его «берёт»? Не из справочника. Сейчас увидите сами.</p>
+        <p class="muted">Прораб Иванов И.И. (участок секции 2, ЖК «Уютный дом на Матвеева») спрашивает ИИ: «каким бетоном лить плиту?» — и получает уверенный ответ. Откуда ИИ его «берёт»? Не из справочника проекта. Сейчас увидите сами.</p>
 
         <div class="why">ИИ-чат (LLM) не ищет факт в базе. Он на каждом шаге выбирает <b>самое вероятное следующее слово</b> — как очень начитанный человек, продолжающий фразу. Нажимайте на варианты и стройте предложение.</div>
 
@@ -181,18 +192,18 @@
         <h2>Где ИИ врёт: галлюцинации</h2>
         <p class="muted">Раз ИИ «угадывает» гладкое продолжение, он легко придумывает то, чего нет: несуществующий пункт СП, выдуманный приказ, слишком точную цифру. Это называют <b>галлюцинацией</b>.</p>
 
-        <div class="why">Ниже — ответ ИИ на рабочий вопрос. Часть звучит разумно, но кое-что он <b>выдумал</b>. Нажмите на фрагменты, которым <b>нельзя верить на слово</b>, затем проверьте себя.</div>
+        <div class="why">Ниже — ответ ИИ на вопрос по предписанию № 57 (ЖК «Уютный дом на Матвеева», секция 2). Часть звучит разумно, но кое-что он <b>выдумал</b>. Нажмите на фрагменты, которым <b>нельзя верить на слово</b>, затем проверьте себя.</div>
 
         <div class="ans" id="claimAns">
-          Вопрос: какой предел огнестойкости нужен несущим стенам жилого дома?<br><br>
-          Для несущих стен жилого дома обычно требуется
-          <span class="claim" data-s="0">предел огнестойкости не ниже R 90</span>.
-          Это прямо закреплено в
-          <span class="claim" data-s="1">СП 2.13130.2020, пункт 5.4.3</span>
-          и дополнительно
-          <span class="claim" data-s="1">подтверждено приказом МЧС № 412 от 2023 года</span>.
-          Конкретное значение
-          <span class="claim" data-s="0">зависит от этажности и класса конструктивной пожарной опасности здания</span>.
+          Вопрос: каким СП регулируется требование к защитному слою бетона в плите перекрытия, указанное в предписании № 57?<br><br>
+          Для плиты перекрытия секции 2 (отм. +12,000, захватка 2-Б) толщина защитного слоя действительно нормируется
+          <span class="claim" data-s="0">СП 70.13330.2012 «Несущие и ограждающие конструкции»</span>.
+          Точное значение —
+          <span class="claim" data-s="1">пункт 5.4.3 этого СП, где указан минимум 25 мм именно для перекрытий жилых домов</span>
+          — и дополнительно
+          <span class="claim" data-s="1">подтверждено письмом Минстроя № 18-4521 от 2024 года</span>.
+          Конкретная величина защитного слоя
+          <span class="claim" data-s="0">зависит от условий эксплуатации конструкции и указывается в рабочей документации (КЖ-05)</span>.
         </div>
         <div style="margin-top:14px">
           <button class="btn" id="claimCheck">Проверить</button>
@@ -200,8 +211,8 @@
         </div>
 
         <div class="explain" id="claimExplain">
-          <div class="row">🔴 <div><b>«СП 2.13130.2020, пункт 5.4.3»</b> и <b>«приказ МЧС № 412 от 2023»</b> — классические галлюцинации: точная ссылка, которой может не быть. Чем конкретнее реквизит, тем тщательнее проверяйте.</div></div>
-          <div class="row">🟢 Общие формулировки («не ниже R 90», «зависит от этажности») ближе к правде, но <b>всё равно сверяются</b> с действующей редакцией норматива.</div>
+          <div class="row">🔴 <div><b>«пункт 5.4.3, минимум 25 мм именно для перекрытий жилых домов»</b> и <b>«письмо Минстроя № 18-4521 от 2024 года»</b> — классические галлюцинации: точный номер пункта и точный реквизит письма, которых в СП 70.13330.2012 может не быть. Чем конкретнее номер пункта или ссылка, тем тщательнее проверяйте.</div></div>
+          <div class="row">🟢 Общие формулировки (само название СП, «зависит от условий эксплуатации, указано в РД») ближе к правде, но <b>всё равно сверяются</b> с действующей редакцией норматива и проектом КЖ-05.</div>
           <div class="row">📌 Правило: любую норму, цифру и ссылку из ИИ — проверяем в первоисточнике до того, как поставить в документ.</div>
         </div>
 
@@ -223,7 +234,7 @@
       <section class="lesson card" data-l="2">
         <p class="kicker">Урок 0.3 · 5 минут <span class="rule" style="background:var(--green)"></span></p>
         <h2>Что нельзя загружать в ИИ</h2>
-        <p class="muted">ИИ полезен, когда дать ему документы. Но не любые: персональные данные (ФЗ-152) и коммерческая тайна не должны уходить в публичные сервисы. У вас рядом нет службы безопасности — решение за вами.</p>
+        <p class="muted">ИИ полезен, когда дать ему документы проекта ЖК «Уютный дом на Матвеева». Но не любые: персональные данные (ФЗ-152) и коммерческая тайна ООО «СтройМонолит» и техзаказчика не должны уходить в публичные сервисы. У вас рядом нет службы безопасности — решение за вами.</p>
 
         <div class="why">Рассортируйте документы по трём корзинам. Выберите вариант для каждого, затем нажмите «Проверить».</div>
         <div class="legend">Корзины: <b>Можно</b> — в любой ИИ · <b>Доверенный</b> — только корпоративный/проверенный ИИ · <b>Нельзя</b> — ни в какой внешний сервис.</div>
@@ -246,7 +257,15 @@
 
         <div class="asst-note">🤖 <b>Готово к Модулю 1.</b> Вы понимаете, как ассистент думает, где врёт и что ему нельзя показывать. Дальше — первый апгрейд: роль и системный промпт.</div>
 
-        <div class="lnav"><button class="btn ghost" data-go="1">← Назад</button><button class="btn dark" id="finish">Модуль 0 пройден ✓</button></div>
+        <div class="materials-card">
+          <div>
+            <div class="mt">📦 Материалы урока</div>
+            <div class="ms">для команды переноса: тексты, примеры, интерактив</div>
+          </div>
+          <a class="btn ghost" href="materials/shag-00.zip">⬇ Скачать архив материалов</a>
+        </div>
+
+        <div class="lnav"><button class="btn ghost" data-go="1">← Назад</button><button class="btn dark" id="finish">Модуль 0 пройден ✓ <span style="font-weight:600;opacity:.85;font-size:.85em">(демо: без сохранения)</span></button></div>
       </section>
 
     </div>
@@ -259,8 +278,8 @@
           <div><b>Ваш ИИ-ассистент</b><br><span>Уровень 0 · голый чат</span></div>
         </div>
         <div class="mock">
-          <div class="bub u">какой бетон лить под плиту?</div>
-          <div class="bub a">Обычно B20–B25… но точные значения смотрите в проекте.</div>
+          <div class="bub u">каким бетоном лить плиту секции 2?</div>
+          <div class="bub a">Обычно B25 W6 F150… но точные значения смотрите в проекте КЖ-05.</div>
         </div>
         <ul class="caps">
           <li><span class="s">✅</span><div><b>Чат</b><small>отвечает текстом</small></div></li>
@@ -294,14 +313,16 @@ document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=
 }));
 function markDone(i){ if(i>=0&&!done[i]){done[i]=true; tabs[i].classList.add('done');} }
 document.getElementById('finish').addEventListener('click',()=>{markDone(2);
-  document.getElementById('finish').textContent='Модуль 0 пройден ✓✓';});
+  document.getElementById('finish').innerHTML='Модуль 0 пройден ✓✓ <span style="font-weight:600;opacity:.85;font-size:.85em">(демо: без сохранения)</span>';});
 
 /* 0.1 next-token */
-const NT_SEED="На стройке бетон чаще всего";
+const NT_SEED="Плиту перекрытия секции 2 чаще всего льют бетоном";
 const NT=[
-  [["заливают",58],["используют",26],["заказывают",11],["проверяют",5]],
-  [["в",61],["для",24],["на",15]],
-  [["опалубку",54],["фундамент",31],["перекрытие",15]]
+  [["класса",58],["марки",26],["типа",11],["сорта",5]],
+  [["B25",61],["B20",24],["B30",15]],
+  [["с",54],["для",31],["марки",15]],
+  [["морозостойкостью",58],["водонепроницаемостью",27],["прочностью",15]],
+  [["F150",57],["F100",28],["F200",15]]
 ];
 let ntStep=0, ntAdded=[];
 const ntPhrase=document.getElementById('ntPhrase'), ntCands=document.getElementById('ntCands'), ntDone=document.getElementById('ntDone');
@@ -342,12 +363,12 @@ document.getElementById('claimCheck').addEventListener('click',()=>{
 
 /* 0.3 sorter */
 const DOCS=[
-  {t:"Скан паспорта дольщика",c:"no",r:"Особо чувствительные ПДн — никуда во внешний ИИ."},
-  {t:"Подписанный договор с реквизитами и суммой сделки",c:"no",r:"Юрзначимый документ + ПДн + коммерческая тайна — не выгружаем вовне."},
-  {t:"Резюме кандидата (ФИО, телефон)",c:"trusted",r:"ПДн кандидата — только в доверенный/корпоративный ИИ."},
-  {t:"Смета с ценами поставщиков",c:"trusted",r:"Коммерческая тайна — только доверенный ИИ."},
-  {t:"Текст типового СП (открытый норматив)",c:"free",r:"Публичный документ — можно в любой ИИ."},
-  {t:"Черновик письма подрядчику без ФИО и цифр",c:"free",r:"Обезличенный текст — можно."}
+  {t:"Скан паспорта прораба Иванова И.И. (из ведомости персонала)",c:"no",r:"Особо чувствительные ПДн — никуда во внешний ИИ."},
+  {t:"Подписанный договор подряда с ООО «СтройМонолит» (суммы, реквизиты)",c:"no",r:"Юрзначимый документ + коммерческая тайна — не выгружаем вовне."},
+  {t:"Ведомость персонала секции 2 (ФИО, телефоны)",c:"trusted",r:"ПДн сотрудников — только в доверенный/корпоративный ИИ."},
+  {t:"Смета (ЛСР) с ценами по монолиту секции 2",c:"trusted",r:"Коммерческая тайна — только доверенный ИИ."},
+  {t:"Текст СП 70.13330.2012 (открытый норматив)",c:"free",r:"Публичный документ — можно в любой ИИ."},
+  {t:"Черновик ответа на предписание № 57 без ФИО и сумм",c:"free",r:"Обезличенный текст — можно."}
 ];
 const BIN={free:"Можно",trusted:"Доверенный",no:"Нельзя"};
 const sorter=document.getElementById('sorter');

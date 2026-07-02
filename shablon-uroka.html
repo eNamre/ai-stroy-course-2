@@ -2,7 +2,26 @@
 <!--
   ════════════════════════════════════════════════════════════════════
   ШАБЛОН УРОКА · Курс «ИИ в строительстве» · Актион, Высшая инженерная школа
-  Версия 1. Извлечён из эталонного урока «Шаг 16. Сравнение смет и КП» (v7).
+  Версия 2. ДЕМО-КОМПЛЕКТ для переноса в платформу Актион (не продуктив).
+  Извлечён из эталонного урока «Шаг 16. Сравнение смет и КП» (v7),
+  доработан блоками материалов, шлюзом «живой чат» и аннотациями-плейсхолдерами
+  для команды переноса.
+
+  ЧТО НОВОГО В v2 (относительно v1)
+  • Блок MATERIALS — карточка «Материалы урока» со списком содержимого архива
+    и кнопкой-ссылкой на скачивание архива шага (materials/shag-XX.zip).
+  • Блок LIVE-CHAT — шлюз «Сделай в живом чате»: две кнопки на реальные чат-боты
+    (GigaChat, Алиса/YandexGPT), пустое поле для вставки своего результата и
+    чекбокс подтверждения. Пока поле пустое или чекбокс не отмечен — финальный
+    блок урока (итоги/чек-лист) визуально заблокирован (class .locked + JS-гейт).
+    Это ДЕМО-механика для наглядности логики курса, никуда ничего не отправляет.
+  • Класс .transfer-note — переиспользуемая аннотация-плейсхолдер для команды
+    переноса: пунктирная рамка с меткой «⚙ Для переноса в платформу Актион».
+    Используется у блока CURATOR (вместо mailto — кнопка «Скачать .txt» +
+    пояснение про интеграцию отправки куратору), у виджета ассистента
+    (проброс прогресса, П-6) и в шапке урока (выбор роли, П-4).
+  • <meta name="robots" content="noindex"> — демо-страницы не должны попадать
+    в индексацию поисковиков.
 
   КАК ПОЛЬЗОВАТЬСЯ
   1. Скопируйте файл, переименуйте под свой шаг (Курс-ИИ_Урок-ШагNN_v1.html).
@@ -13,9 +32,26 @@
   4. Виджет «Ваш ИИ-ассистент»: найдите ASSISTANT WIDGET START и задайте
      константу ASSISTANT_LEVEL (0..4) и тексты уровней. Больше ничего
      трогать не нужно, панель отрисуется сама.
-  5. JS каждого интерактива лежит внизу файла в секции с тем же именем,
-     что и блок. Удалили блок из разметки: удалите его JS (или оставьте,
-     он проверяет наличие элементов и молча пропускает отсутствующие).
+  5. Блок MATERIALS: впишите реальный список содержимого архива шага и
+     замените href="materials/shag-XX.zip" на путь своего архива.
+  6. Блок LIVE-CHAT: замените плейсхолдер промпта урока и, если нужно,
+     ссылки на конкретные чат-боты. Логику блокировки итогов не трогайте —
+     она работает через класс .locked и небольшой JS ниже.
+  7. Аннотации .transfer-note — это ПОДСКАЗКИ для команды переноса в Актион,
+     не элемент интерфейса участника. В продуктивной версии на платформе
+     Актион их не будет — платформа сама реализует эту логику (отправка
+     куратору, проброс прогресса, выбор роли). Не удаляйте их из демо-комплекта,
+     переносчик ориентируется по ним.
+  8. МИР ПРИМЕРОВ: все имена, документы, цифры и сценарии в уроках — только
+     из единого кейса «Уютный дом на Матвеева» (документы 01–23 из Библии
+     проекта). Не подмешивайте другие объекты/кейсы — консистентность кейса
+     важна для прохождения курса как единой истории.
+  9. ХРОНОМЕТРАЖ: 10–15 минут на урок — ориентир, а не жёсткий лимит.
+     Ориентируйтесь на него при объёме теории, экранов и вопросов трен��жёра,
+     но не режьте смысл ради секундомера.
+  10. JS каждого интерактива лежит внизу файла в секции с тем же именем,
+      что и блок. Удалили блок из разметки: удалите его JS (или оставьте,
+      он проверяет наличие элементов и молча пропускает отсутствующие).
 
   ЧЕК-ЛИСТ СДАЧИ (обязательный, из требований к разработке)
   [ ] Один самодостаточный HTML-файл: HTML + CSS + JS внутри, без внешних зависимостей.
@@ -25,12 +61,17 @@
   [ ] Нет localStorage / sessionStorage / cookies (в iframe могут быть запрещены).
   [ ] Все плейсхолдеры ЗАМЕНИ заменены, лишние блоки удалены.
   [ ] Уровень ассистента (ASSISTANT_LEVEL) соответствует неделе курса.
+  [ ] Блок MATERIALS: список архива соответствует реальному содержимому, ссылка на .zip рабочая.
+  [ ] Блок LIVE-CHAT: промпт урока вставлен, ссылки на чат-боты корректны, гейт итогов проверен вручную.
+  [ ] Мир примеров — только кейс «Уютный дом на Матвеева» (файлы 01–23), другие кейсы не упоминаются.
+  [ ] <meta name="robots" content="noindex"> на месте.
   ════════════════════════════════════════════════════════════════════
 -->
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
 <!-- ЗАМЕНИ: заголовок вкладки -->
 <title>Шаг NN. Название урока — Высшая инженерная школа</title>
 <style>
@@ -156,6 +197,38 @@
   /* ── Адаптив: одна колонка, сайдбар вниз ── */
   @media(max-width:860px){.grid{grid-template-columns:1fr}.asst{position:static}}
   @media(max-width:420px){h1{font-size:25px}.sec{padding:18px 16px}}
+
+  /* ── НОВОЕ v2: Материалы урока (архив для команды переноса) ── */
+  .materials{display:flex;flex-direction:column;gap:12px}
+  .materials .mlist{list-style:none;padding:0;margin:0}
+  .materials .mlist li{display:flex;align-items:center;gap:9px;padding:7px 0;border-bottom:1px solid var(--line);font-size:14px}
+  .materials .mlist li:last-child{border-bottom:none}
+  .materials .mlist .mico{flex:0 0 auto;width:26px;height:26px;border-radius:7px;background:var(--card2);display:grid;place-items:center;font-size:13px}
+  .materials .mcap{font-size:12.5px;color:var(--muted);margin-top:2px}
+
+  /* ── НОВОЕ v2: Сделай в живом чате (шлюз перед итогами урока) ── */
+  .livechat{display:flex;flex-direction:column;gap:12px}
+  .livechat .lcbtns{display:flex;gap:10px;flex-wrap:wrap}
+  .livechat .lcbtn{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:#fff;border-radius:var(--rs);padding:11px 16px;font-size:14px;font-weight:700;color:var(--ink);transition:.15s}
+  .livechat .lcbtn:hover{border-color:var(--ink)}
+  .livechat .lcbtn .dotc{width:9px;height:9px;border-radius:50%}
+  .livechat .lcinstruction{font-size:14px}
+  .livechat .lcgate{display:flex;align-items:flex-start;gap:10px;font-size:14px;margin-top:2px}
+  .livechat .lcgate input{width:18px;height:18px;flex:0 0 auto;margin:2px 0 0;accent-color:var(--green)}
+  .lcstatus{font-size:13px;font-weight:700;color:var(--muted)}
+  .lcstatus.ready{color:var(--green)}
+
+  /* ── НОВОЕ v2: гейт финального блока — заблокирован пока не выполнены условия LIVE-CHAT ── */
+  .locked{position:relative;opacity:.4;pointer-events:none;user-select:none;filter:grayscale(.3);transition:opacity .2s,filter .2s}
+  .locked .lockbadge{display:none}
+  .lockwrap{position:relative}
+  .lockwrap .lockbadge{display:none;position:absolute;top:14px;right:14px;background:var(--ink);color:#fff;font-size:11.5px;font-weight:800;border-radius:999px;padding:5px 12px;align-items:center;gap:6px;z-index:2}
+  .lockwrap.is-locked .lockbadge{display:inline-flex}
+
+  /* ── НОВОЕ v2: transfer-note — аннотация для команды переноса в Актион ── */
+  .transfer-note{border:1.5px dashed var(--purple);background:#faf6ff;border-radius:12px;padding:12px 14px;font-size:13px;color:#5b3a94;margin-top:12px}
+  .transfer-note .tnlabel{display:flex;align-items:center;gap:7px;font-weight:800;font-size:11.5px;letter-spacing:.02em;text-transform:uppercase;color:var(--purple);margin-bottom:5px}
+  .transfer-note.compact{margin-top:8px;padding:10px 12px}
 </style>
 </head>
 <body>
@@ -188,8 +261,12 @@
   <div class="meta">
     <!-- ЗАМЕНИ: метаданные шага -->
     <span class="lvl"><span class="dotx"></span> Ассистент · Уровень N · название уровня</span>
-    <span class="pill">⏱ 20–30 минут</span>
+    <span class="pill">⏱ 10–15 минут</span>
     <span class="pill">🎓 Базовый уровень</span>
+  </div>
+  <div class="transfer-note compact">
+    <div class="tnlabel">⚙ Для переноса в платформу Актион</div>
+    ЗАМЕНИ: здесь платформа подставляет роль пользователя автоматически из профиля (П-4 «выбор роли» из требований к разработке) — строка «Роль: …» выше должна обновляться без правки HTML урока.
   </div>
   <!-- ═══════════ BLOCK: LESSON HEADER END ═══════════ -->
 
@@ -206,7 +283,9 @@
           <li>3 · <a href="#quiz">Проверь себя: мини-тренажёр</a></li>
           <li>4 · <a href="#goodbad">Хорошо и плохо: два промпта</a></li>
           <li>5 · <a href="#try">Попробуй сам</a></li>
-          <li>6 · <a href="#practice">Практика и проверка</a></li>
+          <li>6 · <a href="#materials">Материалы урока</a></li>
+          <li>7 · <a href="#livechat">Сделай в живом чате</a></li>
+          <li>8 · <a href="#practice">Практика и проверка</a></li>
         </ul>
         <div class="note">📄 ЗАМЕНИ: одна строка о том, какие материалы приложены к уроку (бланки, датасет, промпт-пак).</div>
       </section>
@@ -318,37 +397,95 @@
       </section>
       <!-- ═══════════ BLOCK: TRY END ═══════════ -->
 
-      <!-- ═══════════ BLOCK: SELFCHECK START (чек-лист самопроверки с прогрессом) ═══════════ -->
-      <section class="sec" id="selfcheck">
-        <p class="stp">6 · Самопроверка</p>
-        <h2>Перед сдачей отметьте</h2>
-        <ul class="selfcheck" id="scList">
-          <!-- ЗАМЕНИ: пункты чек-листа под урок -->
-          <li><label><input type="checkbox"> ЗАМЕНИ: критерий 1 — например, «в промпте задана роль».</label></li>
-          <li><label><input type="checkbox"> ЗАМЕНИ: критерий 2 — «описан формат результата».</label></li>
-          <li><label><input type="checkbox"> ЗАМЕНИ: критерий 3 — «данные переданы текстом, не картинкой».</label></li>
-          <li><label><input type="checkbox"> ЗАМЕНИ: критерий 4 — «итоги перепроверил сам».</label></li>
-        </ul>
-        <div class="scbar"><i id="scBar"></i></div>
-        <div class="scmsg" id="scMsg">0 из 4 — пройдитесь по списку</div>
+      <!-- ═══════════ BLOCK: MATERIALS START (материалы урока: список содержимого архива + скачивание; НОВОЕ v2) ═══════════ -->
+      <section class="sec" id="materials">
+        <p class="stp">6 · Материалы урока</p>
+        <h2>Материалы урока</h2>
+        <p class="muted">Всё содержимое этого шага — текстовые материалы, документы кейса, изображения и HTML-интерактив — собрано в один архив.</p>
+        <div class="materials">
+          <ul class="mlist">
+            <!-- ЗАМЕНИ: список содержимого архива под конкретный шаг -->
+            <li><span class="mico">📝</span><span>ЗАМЕНИ: конспект урока (текст теории, .md/.docx)</span></li>
+            <li><span class="mico">📁</span><span>ЗАМЕНИ: документы кейса «Уютный дом на Матвеева» (файлы NN–NN)</span></li>
+            <li><span class="mico">🖼️</span><span>ЗАМЕНИ: изображения / сканы, использованные в уроке</span></li>
+            <li><span class="mico">🌐</span><span>ЗАМЕНИ: HTML-интерактив урока (этот файл)</span></li>
+          </ul>
+          <!-- ЗАМЕНИ: путь к архиву конкретного шага -->
+          <div class="dl">
+            <a class="btn dark" href="materials/shag-XX.zip">⬇ Скачать архив материалов</a>
+          </div>
+          <p class="mcap">Для команды переноса: архив содержит всё содержимое шага.</p>
+        </div>
       </section>
+      <!-- ═══════════ BLOCK: MATERIALS END ═══════════ -->
+
+      <!-- ═══════════ BLOCK: LIVE-CHAT START (шлюз «Сделай в живом чате»: гейт перед итогами урока; НОВОЕ v2) ═══════════ -->
+      <section class="sec" id="livechat">
+        <p class="stp">7 · Сделай в живом чате</p>
+        <h2>Сделай в живом чате</h2>
+        <p class="lcinstruction">Скопируйте промпт урока (из блока «Хорошо и плохо» или «Попробуй сам») и выполните его в реальном чат-боте — например, в одном из ниже. Затем вставьте свой результат в поле под кнопками.</p>
+        <div class="lcbtns">
+          <!-- ЗАМЕНИ: при необходимости — другие/дополнительные чат-боты -->
+          <a class="lcbtn" href="https://giga.chat" target="_blank" rel="noopener"><span class="dotc" style="background:var(--blue)"></span> GigaChat</a>
+          <a class="lcbtn" href="https://alice.yandex.ru" target="_blank" rel="noopener"><span class="dotc" style="background:var(--purple)"></span> Алиса / YandexGPT</a>
+        </div>
+        <div class="review">
+          <label>Вставь сюда свой результат</label>
+          <textarea id="lcResult" rows="5" placeholder="Вставьте сюда ответ, который вернул чат-бот…"></textarea>
+        </div>
+        <div class="lcgate">
+          <input type="checkbox" id="lcConfirm">
+          <label for="lcConfirm">Я получил ответ на свой запрос</label>
+        </div>
+        <p class="lcstatus" id="lcStatus">Итоги урока откроются после того, как вы вставите результат и отметите чекбокс.</p>
+        <div class="transfer-note">
+          <div class="tnlabel">⚙ Для переноса в платформу Актион</div>
+          ЗАМЕНИ: демо-гейт реализован локальным JS (без сохранения данных). На платформе эта блокировка должна опираться на реальное событие взаимодействия участника с чатом (или просто на заполненное поле + чекбокс, как здесь) — ничего никуда не отправляется и в демо-версии.
+        </div>
+      </section>
+      <!-- ═══════════ BLOCK: LIVE-CHAT END ═══════════ -->
+
+      <!-- ═══════════ BLOCK: SELFCHECK START (чек-лист самопроверки с прогрессом) ═══════════ -->
+      <div class="lockwrap" id="selfcheckWrap">
+        <section class="sec locked" id="selfcheck">
+          <span class="lockbadge">🔒 Сначала блок «Сделай в живом чате»</span>
+          <p class="stp">8 · Самопроверка</p>
+          <h2>Перед сдачей отметьте</h2>
+          <ul class="selfcheck" id="scList">
+            <!-- ЗАМЕНИ: пункты чек-листа под урок -->
+            <li><label><input type="checkbox"> ЗАМЕНИ: критерий 1 — например, «в промпте задана роль».</label></li>
+            <li><label><input type="checkbox"> ЗАМЕНИ: критерий 2 — «описан формат результата».</label></li>
+            <li><label><input type="checkbox"> ЗАМЕНИ: критерий 3 — «данные переданы текстом, не картинкой».</label></li>
+            <li><label><input type="checkbox"> ЗАМЕНИ: критерий 4 — «итоги перепроверил сам».</label></li>
+          </ul>
+          <div class="scbar"><i id="scBar"></i></div>
+          <div class="scmsg" id="scMsg">0 из 4 — пройдитесь по списку</div>
+        </section>
+      </div>
       <!-- ═══════════ BLOCK: SELFCHECK END ═══════════ -->
 
-      <!-- ═══════════ BLOCK: CURATOR START (отправка результата куратору; mailto, без бэкенда) ═══════════ -->
-      <section class="sec" id="practice">
-        <p class="stp">7 · Практика и проверка</p>
-        <h2>Сделайте на своей задаче</h2>
-        <p class="muted">ЗАМЕНИ: задание. Напомните про обезличивание: без реальных цен, реквизитов и персональных данных — это коммерческая тайна.</p>
-        <div class="review">
-          <label>Что получилось — вставьте результат от ИИ</label>
-          <textarea id="sRes" rows="4" placeholder="Результат, который выдал ИИ"></textarea>
-          <label>Ваш e-mail для ответа куратора</label>
-          <input id="sEmail" type="email" placeholder="you@example.ru">
-          <div style="margin-top:12px"><button class="btn" id="sendRev">📨 Отправить на проверку</button>
-            <span class="muted" id="revMsg" style="margin-left:10px;font-size:12.5px"></span></div>
-        </div>
-        <div class="note green" style="margin-top:18px">⬆️ <b>Ассистент закрепил навык «ЗАМЕНИ: название навыка».</b> Что забрать: ЗАМЕНИ — три коротких вывода урока через точку с запятой.</div>
-      </section>
+      <!-- ═══════════ BLOCK: CURATOR START (демо: скачивание задания .txt вместо отправки; было mailto) ═══════════ -->
+      <div class="lockwrap" id="practiceWrap">
+        <section class="sec locked" id="practice">
+          <span class="lockbadge">🔒 Сначала блок «Сделай в живом чате»</span>
+          <p class="stp">9 · Практика и проверка</p>
+          <h2>Сделайте на своей задаче</h2>
+          <p class="muted">ЗАМЕНИ: задание. Напомните про обезличивание: без реальных цен, реквизитов и персональных данных — это коммерческая тайна.</p>
+          <div class="review">
+            <label>Что получилось — вставьте результат от ИИ</label>
+            <textarea id="sRes" rows="4" placeholder="Результат, который выдал ИИ"></textarea>
+            <label>Ваш e-mail для ответа куратора</label>
+            <input id="sEmail" type="email" placeholder="you@example.ru">
+            <div style="margin-top:12px"><button class="btn" id="sendRev">⬇ Скачать моё задание .txt</button>
+              <span class="muted" id="revMsg" style="margin-left:10px;font-size:12.5px"></span></div>
+          </div>
+          <div class="transfer-note">
+            <div class="tnlabel">⚙ Для переноса в платформу Актион</div>
+            ЗАМЕНИ: здесь платформа подключает отправку куратору — проверка №N. В демо-комплекте вместо реальной отправки — локальное скачивание .txt с текстом задания, ничего никуда не отправляется.
+          </div>
+          <div class="note green" style="margin-top:18px">⬆️ <b>Ассистент закрепил навык «ЗАМЕНИ: название навыка».</b> Что забрать: ЗАМЕНИ — три коротких вывода урока через точку с запятой.</div>
+        </section>
+      </div>
       <!-- ═══════════ BLOCK: CURATOR END ═══════════ -->
 
       <!-- ═══════════ BLOCK: COURSE NAV START (навигация вперёд/назад по курсу) ═══════════ -->
@@ -374,6 +511,10 @@
         <div class="lvltrack" id="asstTrack"></div>
         <ul class="caps" id="asstCaps"></ul>
         <div class="note" style="margin-top:12px;font-size:12px" id="asstNote"></div>
+        <div class="transfer-note">
+          <div class="tnlabel">⚙ Для переноса в платформу Актион</div>
+          ЗАМЕНИ: сейчас уровень задаётся константой ASSISTANT_LEVEL в JS ниже. На платформе виджет должен принимать текущий прогресс участника извне (проброс прогресса, П-6 из требований к разработке), не хардкодиться в HTML урока.
+        </div>
       </div>
       <script>
       (function(){
@@ -467,6 +608,27 @@
   });
 })();
 
+/* ── BLOCK: LIVE-CHAT — гейт итогов урока: пока поле пустое или чекбокс не отмечен, блоки SELFCHECK/CURATOR заблокированы (НОВОЕ v2) ── */
+(function(){
+  var result=document.getElementById('lcResult'),confirm=document.getElementById('lcConfirm');
+  if(!result||!confirm)return;
+  var status=document.getElementById('lcStatus');
+  var lockTargets=[document.getElementById('selfcheck'),document.getElementById('practice')];
+  var lockWraps=[document.getElementById('selfcheckWrap'),document.getElementById('practiceWrap')];
+  function upd(){
+    var ready=result.value.trim().length>0 && confirm.checked;
+    lockTargets.forEach(function(el){if(el)el.classList.toggle('locked',!ready);});
+    lockWraps.forEach(function(w){if(w)w.classList.toggle('is-locked',!ready);});
+    if(status){
+      status.textContent=ready?'✅ Итоги урока открыты.':'Итоги урока откроются после того, как вы вставите результат и отметите чекбокс.';
+      status.classList.toggle('ready',ready);
+    }
+  }
+  result.addEventListener('input',upd);
+  confirm.addEventListener('change',upd);
+  upd();
+})();
+
 /* ── BLOCK: SELFCHECK — чек-лист самопроверки с прогрессом ── */
 (function(){
   var list=document.getElementById('scList');if(!list)return;
@@ -481,7 +643,7 @@
   upd();
 })();
 
-/* ── BLOCK: CURATOR — отправка куратору через mailto (без бэкенда) ── */
+/* ── BLOCK: CURATOR — демо: скачивание задания .txt локально (без бэкенда, без отправки; было mailto) ── */
 (function(){
   var btn=document.getElementById('sendRev');if(!btn)return;
   btn.addEventListener('click',function(){
@@ -489,11 +651,15 @@
         email=document.getElementById('sEmail').value.trim(),
         m=document.getElementById('revMsg');
     if(!res){m.textContent='Вставьте результат';return;}
-    /* ЗАМЕНИ: номер и название шага в теме письма */
-    var subj='Проверка задания · Шаг NN',
-        raw='Шаг NN (ЗАМЕНИ: название) — задание на проверку\n\nРезультат:\n'+res+'\n\nОтвет на e-mail: '+email;
-    window.location.href='mailto:kurator@action.group?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(raw);
-    m.textContent='Открываю почту…';
+    /* ЗАМЕНИ: номер и название шага в теле файла */
+    var raw='Шаг NN (ЗАМЕНИ: название) — задание на проверку\n\nРезультат:\n'+res+'\n\nОтвет на e-mail: '+email;
+    var blob=new Blob([raw],{type:'text/plain;charset=utf-8'});
+    var url=URL.createObjectURL(blob);
+    var a=document.createElement('a');
+    a.href=url;a.download='zadanie-shag-NN.txt';
+    document.body.appendChild(a);a.click();document.body.removeChild(a);
+    setTimeout(function(){URL.revokeObjectURL(url);},1000);
+    m.textContent='Файл скачан ✓';
   });
 })();
 </script>
