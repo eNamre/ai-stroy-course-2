@@ -95,6 +95,9 @@
 .inl-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:22px 0 10px}
 .inl-close{cursor:pointer;color:#c62828;font-weight:700;white-space:nowrap}
 .inl-frame{width:100%;height:82vh;border:1px solid #e2e5ea;border-radius:12px;background:#fff}
+.btnrow{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.matbtn2{display:inline-block;border:2px solid #111;color:#111;padding:8px 15px;border-radius:10px;font-weight:700;font-size:14px;text-decoration:none;cursor:pointer}
+.matbtn2:hover{background:#111;color:#fff}
 </style>
 </head>
 <body>
@@ -116,6 +119,18 @@
   <div class="foot">Курс «ИИ в строительстве» · Высшая инженерная школа (Актион Строительство)</div>
 </div>
 
+
+<div class="modal" id="modal">
+  <div class="modal-box">
+    <div class="modal-head">
+      <div class="mh-title" id="modalTitle">Урок</div>
+      <div class="mh-actions">
+        <button class="mh-close" id="modalClose">✕ Закрыть</button>
+      </div>
+    </div>
+    <iframe id="modalFrame" title="Интерактивный урок" loading="lazy"></iframe>
+  </div>
+</div>
 
 <script>
 const SECTIONS=[
@@ -310,7 +325,7 @@ function renderLesson(){
   h+=`<h2>Шаг ${st.n}. ${st.t}</h2>`;
   if(st.url)h+=`<span class="badge ready"><span class="d"></span> Прототип готов</span>`;
   h+=`<p class="ldesc">${st.desc}</p>`;
-  if(st.url)h+=`<a class="openbtn" onclick="openLesson('${st.url}','Шаг ${st.n}. ${st.t}')">▶ Открыть интерактивный урок</a>`;
+  if(st.url){h+=`<div class="btnrow"><a class="openbtn" onclick="openLesson('${st.url}','Шаг ${st.n}. ${st.t}')">▶ Открыть интерактивный урок</a>`;const mz=matZip(st.url);if(mz)h+=`<a class="matbtn2" href="${mz}" download>⬇ Материалы урока</a>`;h+=`</div>`;}
   // prev/next within section
   const prev=idx>0?s.steps[idx-1]:null, next=idx<s.steps.length-1?s.steps[idx+1]:null;
   h+=`<div class="navbtns"><a ${prev?`onclick="goStep('${s.id}',${prev.n})"`:'style="visibility:hidden"'}>← Шаг ${prev?prev.n:''}</a>`+
@@ -322,14 +337,16 @@ function renderLesson(){
 window.goStep=(sid,n)=>{expanded=sid;curStep={sid,n};render();};
 window.goSection=(sid)=>{expanded=sid;curStep=null;render();};
 
-// инлайн-урок в основном экране
-window.openLesson=(url,title)=>{
-  let h=document.getElementById('lessonHost');
-  if(!h){h=document.createElement('div');h.id='lessonHost';content.appendChild(h);}
-  h.innerHTML=`<div class="inl-head"><b>${title||'Урок'}</b><a class="inl-close" onclick="closeLesson()">✕ Закрыть урок</a></div><iframe class="inl-frame" src="${url}" title="Интерактивный урок" loading="lazy"></iframe>`;
-  h.scrollIntoView({behavior:'smooth',block:'start'});
-};
-window.closeLesson=()=>{const h=document.getElementById('lessonHost');if(h)h.remove();};
+// modal
+const modal=document.getElementById('modal'), frame=document.getElementById('modalFrame'), mTitle=document.getElementById('modalTitle');
+window.openLesson=(url,title)=>{ mTitle.textContent=title||'Урок'; frame.src=url;
+  modal.classList.add('open'); document.body.style.overflow='hidden'; };
+function closeModal(){ modal.classList.remove('open'); frame.src='about:blank'; document.body.style.overflow=''; }
+document.getElementById('modalClose').addEventListener('click',closeModal);
+modal.addEventListener('click',e=>{if(e.target===modal)closeModal();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('open'))closeModal();});
+window.matZip=(u)=>{const m=u.match(/lesson-shag-(\d+)/); if(m)return 'materials/shag-'+m[1]+'.zip';
+  return {'lesson-1.html':'materials/shag-05.zip','lesson-kp.html':'materials/shag-16.zip','lesson-ozhr.html':'materials/shag-18.zip','lesson-final-pto.html':'materials/shag-final-pto.zip'}[u]||null;};
 
 expanded='about';render();
 </script>
