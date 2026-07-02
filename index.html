@@ -332,8 +332,8 @@ window.goStep=(sid,n)=>{expanded=sid;curStep={sid,n};render();};
 window.goSection=(sid)=>{expanded=sid;curStep=null;render();};
 
 // modal
-const modal=document.getElementById('modal'), frame=document.getElementById('modalFrame'),
-window.openLesson=(url,title)=>{ mTitle.textContent=title||'Урок'; mNewTab.href=url; frame.src=url;
+const modal=document.getElementById('modal'), frame=document.getElementById('modalFrame'), mTitle=document.getElementById('modalTitle');
+window.openLesson=(url,title)=>{ mTitle.textContent=title||'Урок'; frame.src=url;
   modal.classList.add('open'); document.body.style.overflow='hidden'; };
 function closeModal(){ modal.classList.remove('open'); frame.src='about:blank'; document.body.style.overflow=''; }
 document.getElementById('modalClose').addEventListener('click',closeModal);
