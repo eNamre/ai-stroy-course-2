@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Шаг 16. Сравнение смет и КП в таблицу — Высшая инженерная школа</title>
+<style>
+  :root{--bg:#ffffff;--card:#faf8f5;--card2:#f3efe9;--ink:#1a1814;--muted:#6f7280;--line:#e9e4dc;--brand:#e2231a;--blue:#237cf9;--green:#1f9d57;--yellow:#f5b500;--purple:#9b5de5;--r:16px;--rs:10px;--font:'Proxima Nova','Helvetica Neue','Segoe UI',Arial,system-ui,sans-serif}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 18px 80px}
+  a{color:var(--blue);text-decoration:none}
+  .topbar{display:flex;align-items:center;gap:14px;padding:13px 0;border-bottom:1px solid var(--line);flex-wrap:wrap}
+  .logo{font-weight:800;font-size:15px}.logo .red{color:var(--brand)}.logo .sep{color:var(--muted);font-weight:600}
+  .school{font-size:13px;color:var(--muted);font-weight:600}.topbar .sp{flex:1}.navlink a{font-size:13.5px;font-weight:600}
+  .author{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:13px 16px;margin:18px 0 4px}
+  .author .ava{width:58px;height:58px;border-radius:12px;flex:0 0 auto;background:#fff;border:1.5px dashed var(--line);display:grid;place-items:center;color:var(--muted);font-size:10px;text-align:center;overflow:hidden}
+  .author .ava img{width:100%;height:100%;object-fit:cover}
+  .author .who b{font-size:15.5px}.author .who .role{font-size:13px;color:var(--muted)}
+  .author .tag{margin-left:auto;font-size:11px;font-weight:800;color:var(--brand);border:1px solid var(--brand);border-radius:999px;padding:4px 11px;white-space:nowrap}
+  .kicker{font-size:12.5px;letter-spacing:.04em;color:var(--muted);font-weight:700;margin:18px 0 6px;text-transform:uppercase}
+  .rule{display:inline-block;width:46px;height:4px;border-radius:3px;vertical-align:middle}
+  h1{font-size:30px;line-height:1.12;margin:4px 0 6px;font-weight:800;letter-spacing:-.01em}
+  .lead{color:var(--muted);font-size:15.5px;max-width:760px}
+  .lvl{display:inline-flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 13px;font-size:12px;font-weight:700;margin-top:8px}
+  .lvl .dotx{width:8px;height:8px;border-radius:50%;background:var(--green)}
+  .grid{display:grid;grid-template-columns:1fr 280px;gap:24px;align-items:start;margin-top:18px}
+  .sec{background:var(--bg);border:1px solid var(--line);border-radius:var(--r);padding:24px;margin-bottom:18px}
+  .stp{font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);font-weight:800;margin:0 0 6px}
+  h2{font-size:21px;margin:2px 0 12px;font-weight:800;letter-spacing:-.01em}
+  h3{font-size:16px;margin:18px 0 8px;font-weight:800}
+  p{margin:0 0 12px}.muted{color:var(--muted)}
+  .why{background:var(--card);border-left:4px solid var(--blue);border-radius:12px;padding:13px 15px;font-size:14.5px;margin:14px 0}
+  .note{font-size:13.5px;color:#7a5b16;background:#fdf6e3;border:1px solid #f3e3b3;border-radius:12px;padding:12px 14px;margin-top:14px}
+  .note.green{color:#157a41;background:#eef8f1;border-color:#cdebd8}.note.red{color:#a3201a;background:#fdf0ef;border-color:#f3c7c3}
+  .btn{appearance:none;border:none;cursor:pointer;font-weight:700;border-radius:var(--rs);padding:11px 17px;font-size:14px;background:var(--blue);color:#fff;transition:.15s}
+  .btn:hover{filter:brightness(.95)}.btn.dark{background:var(--ink)}.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}.btn.ghost:hover{border-color:var(--ink)}
+  .btn.sm{padding:8px 13px;font-size:13px}
+  .checks{list-style:none;padding:0;margin:8px 0 0}
+  .checks li{padding:7px 0 7px 26px;position:relative;font-size:14.5px;border-bottom:1px solid var(--line)}
+  .checks li:last-child{border-bottom:none}.checks li:before{content:"✓";position:absolute;left:2px;color:var(--green);font-weight:800}
+  .checks.num{counter-reset:c}.checks.num li:before{counter-increment:c;content:counter(c);background:var(--ink);color:#fff;width:18px;height:18px;border-radius:50%;font-size:11px;display:grid;place-items:center;top:8px}
+  .illu{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;margin:14px 0;text-align:center}
+  .illu .cap{font-size:12.5px;color:var(--muted);margin-top:8px}
+  .chat{border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-top:8px}
+  .chat .ch{display:flex;align-items:center;gap:9px;background:var(--card);border-bottom:1px solid var(--line);padding:9px 13px;font-size:13px;font-weight:700}
+  .chat .ch .gi{width:24px;height:24px;border-radius:7px;background:linear-gradient(135deg,#1f9d57,#2bb56a);color:#fff;display:grid;place-items:center;font-size:12px}
+  .chat .body{padding:13px;background:#fff;min-height:70px}
+  .sys{font-size:11.5px;color:var(--muted);background:var(--card2);border-radius:7px;padding:5px 9px;margin-bottom:9px;display:inline-block}
+  .bub{font-size:13.5px;border-radius:11px;padding:9px 12px;margin:7px 0;max-width:94%;white-space:pre-wrap}
+  .bub.u{background:var(--blue);color:#fff;margin-left:auto}.bub.a{background:var(--card);border:1px solid var(--line)}
+  .att{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.22);border:1px solid rgba(255,255,255,.4);border-radius:7px;padding:3px 9px;font-size:12px;margin-top:6px;cursor:pointer;color:#fff}
+  .att:hover{background:rgba(255,255,255,.32)}
+  .ctrls{display:flex;gap:10px;flex-wrap:wrap;align-items:center;padding:11px 13px;border-top:1px solid var(--line);background:var(--card)}
+  .seg,.fmtseg{display:inline-flex;border:1px solid var(--line);border-radius:9px;overflow:hidden}
+  .seg button,.fmtseg button{border:none;background:#fff;padding:8px 12px;font-size:12.5px;font-weight:700;cursor:pointer;color:var(--muted)}
+  .seg button.on,.fmtseg button.on{background:var(--ink);color:#fff}
+  .typing span{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--muted);margin:0 1px;animation:bl 1s infinite}
+  .typing span:nth-child(2){animation-delay:.2s}.typing span:nth-child(3){animation-delay:.4s}
+  @keyframes bl{0%,80%,100%{opacity:.2}40%{opacity:1}}
+  .err{background:#fde4e2;color:#8f1410;border-radius:4px;padding:0 3px;font-weight:700}
+  .tw{overflow-x:auto;margin-top:6px}
+  table.cmp{border-collapse:collapse;width:100%;font-size:12.5px;min-width:520px}
+  table.cmp th,table.cmp td{border:1px solid var(--line);padding:6px 9px;text-align:left;vertical-align:top}
+  table.cmp th{background:var(--card);font-weight:800;font-size:11.5px;text-transform:uppercase;color:var(--muted)}
+  td.bad{background:#fde4e2;color:#8f1410;font-weight:700}td.good{background:#eef8f1}
+  .dl{display:flex;gap:9px;flex-wrap:wrap;margin-top:10px}
+  .dl button,.prevbtn{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);background:var(--card);border-radius:9px;padding:8px 12px;font-size:12.5px;font-weight:700;cursor:pointer;color:var(--ink)}
+  .dl button:hover,.prevbtn:hover{border-color:var(--ink)}
+  .mtabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+  .mtab{cursor:pointer;border:1px solid var(--line);border-radius:10px;padding:9px 14px;font-weight:700;font-size:13.5px;color:var(--muted);background:#fff}
+  .mtab.on{border-color:var(--ink);color:var(--ink);background:var(--card)}
+  .mcard{border:1px solid var(--line);border-radius:12px;padding:16px;background:var(--card)}
+  .mcard .can{font-size:14px;margin:6px 0 10px}
+  .mrow{display:flex;justify-content:space-between;gap:12px;padding:6px 0;border-bottom:1px dashed var(--line);font-size:13px}
+  .mrow:last-child{border-bottom:none}.mrow .k{color:var(--muted)}
+  .g{color:var(--green);font-weight:800}.y{color:#b9890b;font-weight:800}.r{color:var(--brand);font-weight:800}
+  .md{background:#0f1115;color:#d7e3fb;border-radius:10px;padding:13px;font-family:'Consolas','Courier New',monospace;font-size:12.5px;white-space:pre;overflow-x:auto}
+  /* preview overlay */
+  .pv{position:fixed;inset:0;background:rgba(20,18,15,.55);display:none;z-index:60;padding:24px}
+  .pv.open{display:flex}
+  .pvbox{background:#eef0f3;border-radius:14px;width:min(880px,100%);max-height:100%;margin:auto;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 24px 70px rgba(0,0,0,.4)}
+  .pvh{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;border-bottom:1px solid var(--line);font-weight:800;font-size:14px;background:#fff;flex-wrap:wrap}
+  .pvh .acts{display:flex;gap:8px;flex-wrap:wrap}
+  .pvh button{cursor:pointer;border:1px solid var(--line);background:#fff;border-radius:8px;padding:7px 12px;font-weight:700;font-size:12.5px}
+  .pvh button.pri{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .pvbody{padding:18px;overflow:auto}
+  .pvbody pre{margin:0;white-space:pre-wrap;font-family:'Consolas','Courier New',monospace;font-size:12.5px;color:#2a2722;line-height:1.55;background:#fff;border:1px solid var(--line);border-radius:8px;padding:14px}
+  /* ДОКУМЕНТ-БЛАНК */
+  .doc{font-family:'Times New Roman',Georgia,serif;color:#111;background:#fff;font-size:13px;line-height:1.45;padding:30px 32px;box-shadow:0 2px 10px rgba(0,0,0,.12);margin:0 auto;width:100%}
+  .doc .dhead{display:flex;justify-content:space-between;gap:16px;align-items:flex-start}
+  .doc .dco{font-weight:700;font-size:16px}
+  .doc .dreq{font-size:10.5px;color:#333;text-align:right;max-width:55%;line-height:1.35}
+  .doc hr{border:none;border-top:2px solid #111;margin:8px 0 14px}
+  .doc .dtitle{text-align:center;font-weight:700;font-size:15px;margin:6px 0}
+  .doc .dsub{text-align:center;font-size:11px;color:#444;margin-bottom:10px}
+  .doc .dto{font-size:12px;margin:6px 0 12px}
+  .doc table.dt{border-collapse:collapse;width:100%;font-size:11px;margin:8px 0}
+  .doc table.dt th,.doc table.dt td{border:1px solid #111;padding:4px 6px;vertical-align:top}
+  .doc table.dt th{background:#e9e9e9;text-align:center;font-weight:700}
+  .doc table.dt td.r{text-align:right;white-space:nowrap}.doc table.dt td.c{text-align:center}
+  .doc .dterms{font-size:12px;margin:10px 0}
+  .doc .dsign{display:flex;justify-content:space-between;align-items:flex-end;margin-top:30px;position:relative;min-height:90px}
+  .doc .sig{font-size:11.5px}.doc .sig .ln{display:inline-block;border-bottom:1px solid #111;width:150px;margin:0 6px}
+  .doc .stamp{width:104px;height:104px;border:2px solid #2b59b5;color:#2b59b5;border-radius:50%;display:grid;place-items:center;font-size:7.5px;text-align:center;transform:rotate(-11deg);opacity:.55;position:absolute;right:60px;bottom:-12px;padding:8px;line-height:1.25}
+  .doc .dnote{font-size:10.5px;color:#a30000;margin-top:8px}
+  .review label{display:block;font-size:13px;color:var(--muted);margin:12px 0 4px}
+  .review textarea,.review input{width:100%;background:#fff;border:1px solid var(--line);color:var(--ink);border-radius:9px;padding:10px 12px;font-size:14px;font-family:inherit;resize:vertical}
+  .review textarea:focus,.review input:focus{outline:none;border-color:var(--blue)}
+  .copy{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px;font-size:13px;white-space:pre-wrap;font-family:'Consolas','Courier New',monospace;color:#3a3631}
+  .asst{position:sticky;top:14px;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px}
+  .asst .hd{display:flex;align-items:center;gap:11px;margin-bottom:4px}
+  .asst .ico{width:36px;height:36px;border-radius:10px;background:#fff;border:1px solid var(--line);display:grid;place-items:center;font-size:18px}
+  .asst .hd b{font-size:14.5px}.asst .hd span{font-size:11px;color:var(--green);font-weight:700}
+  .caps{list-style:none;margin:12px 0 0;padding:0}.caps li{display:flex;gap:9px;padding:8px 0;border-bottom:1px solid var(--line);font-size:12.5px}.caps li:last-child{border-bottom:none}.caps li.lock{color:var(--muted)}
+  .newb{font-size:9px;font-weight:800;color:#fff;background:var(--green);border-radius:4px;padding:1px 5px;margin-left:5px}
+  .toc{list-style:none;padding:0;margin:10px 0 0;font-size:13px}.toc li{padding:5px 0}.toc a{color:var(--ink)}
+  #renderHolder{position:fixed;left:-10000px;top:0;width:760px;background:#fff}
+  @media(max-width:860px){.grid{grid-template-columns:1fr}.asst{position:static}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="topbar">
+    <span class="logo"><span class="red">АКТИОН</span> <span class="sep">Строительство</span></span>
+    <span class="school">· Высшая инженерная школа</span>
+    <span class="sp"></span><span class="navlink"><a href="index.html">← Все шаги</a></span>
+  </div>
+
+  <div class="author">
+    <div class="ava"><span>ФОТО</span></div>
+    <div class="who"><b>Евгений Эрман, к.т.н.</b>
+      <div class="role">руководитель Лаборатории ИИ-решений девелоперской компании «РАЗУМ»</div></div>
+    <span class="tag">Автор урока</span>
+  </div>
+
+  <div class="kicker">Неделя 3 · Шаг 16 · Сметчик / снабжение / тендеры <span class="rule" style="background:var(--yellow)"></span></div>
+  <h1>Сравнение смет и КП в таблицу</h1>
+  <p class="lead">ИИ сводит десятки разнородных предложений в одну таблицу за минуту и подсвечивает ловушки. Но результат зависит от двух вещей: <b>как вы описали нужный формат</b> и <b>в каком виде передали данные</b>. Разберём на примере GigaChat и других моделей — на настоящих бланках ТЗ и КП.</p>
+  <div class="lvl"><span class="dotx"></span> Ассистент · Уровень 3 · документы и таблицы</div>
+
+  <div class="grid">
+    <div>
+
+      <section class="sec">
+        <p class="stp">Что внутри урока</p>
+        <ul class="toc">
+          <li>1 · <a href="#theory">Зачем сводить КП в таблицу и 5 ошибок ручного сравнения</a></li>
+          <li>2 · <a href="#format">Формат результата решает: какую таблицу просить</a></li>
+          <li>3 · <a href="#small">Маленькое: один товар, 3 КП (чат-симулятор)</a></li>
+          <li>4 · <a href="#big">Большое: 48 позиций — где PDF начинает врать</a></li>
+          <li>5 · <a href="#models">Три модели: кто как разбирает данные</a></li>
+          <li>6 · <a href="#feed">Как «скормить» документ правильно: текст и Markdown</a></li>
+          <li>7 · <a href="#practice">Практика и проверка</a></li>
+        </ul>
+        <div class="note">📄 ТЗ и КП оформлены как настоящие документы поставщиков. Кнопка 👁 — посмотреть бланк, рядом — скачать <b>PDF</b> (для КП/ТЗ) и <b>XLSX</b> (для спецификации).</div>
+      </section>
+
+      <section class="sec" id="theory">
+        <p class="stp">1 · Теория</p>
+        <h2>Зачем сводить предложения в таблицу</h2>
+        <p>Поставщики присылают КП в разном виде: у кого-то цена с НДС, у кого-то «упрощёнка» без НДС; разные сроки, доставка, условия оплаты, иногда — другая марка «в качестве аналога». Сравнивать «в лоб» по итоговой строке — путь к ошибке. <b>Сопоставительная таблица</b> приводит всё к единому виду: параметры в строках, поставщики в столбцах — отклонения видны.</p>
+        <p class="muted" style="font-size:13.5px">Тот же приём работает и со сметами: строки — позиции/параметры, столбцы — варианты (поставщики или редакции сметы). В этом уроке разбираем на КП и спецификации материалов.</p>
+        <h3>5 типовых ошибок ручного сравнения</h3>
+        <ul class="checks num">
+          <li>Сравнивают цену <b>без НДС</b> и <b>с НДС</b> в одной колонке — «дешёвый» оказывается дороже.</li>
+          <li>Не учитывают доставку, когда у одного «включена», у другого — отдельной строкой.</li>
+          <li>Принимают КП без указания марки/ГОСТ — нечем проверить соответствие ТЗ.</li>
+          <li>Берут самое дешёвое у поставщика на УСН, забывая, что НДС к вычету не взять.</li>
+          <li>Не замечают разные единицы измерения (рулон против м², упаковка против штуки).</li>
+        </ul>
+      </section>
+
+      <section class="sec" id="format">
+        <p class="stp">2 · Формат результата решает</p>
+        <h2>Опишите, какую таблицу вы хотите — и какие в ней поля</h2>
+        <p>Если просто написать «сравни эти КП», модель ответит свободным текстом — без структуры, в нём легко пропустить отклонение. Если <b>заранее описать формат вывода</b> — какие столбцы и строки, что в ячейках — результат становится стабильным, полным и проверяемым.</p>
+        <ul class="checks">
+          <li><b>Сравнительная таблица</b> — для выбора между вариантами. Строки = параметры, столбцы = поставщики.</li>
+          <li><b>Сводная таблица</b> — для общей картины. Строки = разделы, в ячейках — итоги (сумма, среднее).</li>
+        </ul>
+        <p>В нашем случае нужна <b>сравнительная</b>, и важно описать поля: «цена за единицу с пометкой с НДС/без НДС», «доставка: включена/нет», «соответствие ТЗ: ✓/✗».</p>
+        <h3>Сравните: размытый запрос против точного формата</h3>
+        <div class="chat">
+          <div class="ch"><span class="gi">G</span> GigaChat · веб-чат</div>
+          <div class="body" id="chatFmt"><span class="sys">⚙️ Роль: инженер-сметчик · те же 3 КП на кирпич</span></div>
+          <div class="ctrls"><div class="fmtseg" id="fmtSeg">
+            <button data-f="bad" class="on">Размытый: «сравни КП»</button>
+            <button data-f="good">Точный: с описанием формата</button></div>
+            <button class="btn sm" id="runFmt">▶ Отправить</button></div>
+        </div>
+        <div class="note green">Один и тот же набор данных — разный результат. Разница только в описании формата. <b>Описание формата — половина успеха.</b></div>
+      </section>
+
+      <section class="sec" id="small">
+        <p class="stp">3 · Маленькое</p>
+        <h2>Один товар, три предложения</h2>
+        <p class="muted">Закупаем кирпич М125 (50 000 шт). Три КП от поставщиков. Откройте бланки (👁) — это настоящие коммерческие предложения с реквизитами и подписью.</p>
+        <div class="chat">
+          <div class="ch"><span class="gi">G</span> GigaChat · веб-чат <span style="flex:1"></span><span class="muted" style="font-size:11px;font-weight:600">режим «Инкогнито»</span></div>
+          <div class="body" id="chatSmall">
+            <span class="sys">⚙️ Роль: инженер-сметчик · формат: сравнительная таблица</span>
+            <div class="bub u">Сравни 3 КП на кирпич по ТЗ. Сведи в сравнительную таблицу: марка, цена (с НДС/без), доставка, реальная цена, срок, оплата, гарантия, соответствие ТЗ.
+              <span class="att" onclick="previewDoc('kp1')">📎 КП №1</span>
+              <span class="att" onclick="previewDoc('kp2')">📎 КП №2</span>
+              <span class="att" onclick="previewDoc('kp3')">📎 КП №3</span></div>
+          </div>
+          <div class="ctrls"><button class="btn sm" id="runSmall">▶ Отправить в GigaChat</button>
+            <span class="muted" style="font-size:12px">Ответ смоделирован для урока</span></div>
+        </div>
+        <div class="dl">
+          <button class="prevbtn" onclick="previewDoc('tz')">👁 ТЗ (бланк)</button>
+          <button class="prevbtn" onclick="previewDoc('kp1')">👁 КП №1</button>
+          <button class="prevbtn" onclick="previewDoc('kp2')">👁 КП №2</button>
+          <button class="prevbtn" onclick="previewDoc('kp3')">👁 КП №3</button>
+        </div>
+        <div class="note green" id="smallVerdict" style="display:none">💡 <b>Дешевле ≠ лучше — а здесь и не дешевле.</b> Ценник 12 ₽ выглядит выгодным, но: марка М100 вместо М125, срок 21 дн (ТЗ ≤14), доставка сверху (+2,80), 100% предоплата, гарантия 6 мес., цена без НДС (вычета нет). С учётом доставки реальная цена 14,80 ₽ без НДС — выше базовой цены КП №1 (13,52 ₽ без НДС). Обоснованный выбор — <b>КП №1</b>.</div>
+      </section>
+
+      <section class="sec" id="big">
+        <p class="stp">4 · Большое</p>
+        <h2>48 позиций, 3 поставщика — где PDF начинает врать</h2>
+        <p>Реальная закупка — спецификация на десятки позиций. Способ передачи данных резко влияет на результат. Сначала — что ломается в PDF.</p>
+        <div class="why"><b>На входе:</b> спецификация-ТЗ (48 позиций, без цен) и <b>три отдельных КП</b> от поставщиков со своими ценами. <b>На выходе:</b> одна сравнительная таблица 48×3 с подсветкой отклонений и разных единиц. <b>Зачем:</b> свести три многостраничных КП вручную — полдня и риск пропустить ловушку; ИИ делает это за минуту, но на PDF — с ошибками.</div>
+        <h3>Как ИИ «видит» таблицу из PDF</h3>
+        <div class="illu">
+          <svg width="360" height="208" viewBox="0 0 360 208" xmlns="http://www.w3.org/2000/svg" aria-label="PDF теряет границы строк">
+            <text x="180" y="13" text-anchor="middle" font-size="11" fill="#6f7280">В файле напечатана таблица:</text>
+            <g font-size="9.5" fill="#1a1814">
+              <rect x="67" y="18" width="130" height="16" fill="#f3efe9" stroke="#1a1814"/><text x="72" y="29">Наименование</text>
+              <rect x="197" y="18" width="44" height="16" fill="#f3efe9" stroke="#1a1814"/><text x="201" y="29">Кол-во</text>
+              <rect x="241" y="18" width="52" height="16" fill="#f3efe9" stroke="#1a1814"/><text x="245" y="29">Цена, ₽</text>
+              <rect x="67" y="34" width="130" height="15" fill="#fff" stroke="#e9e4dc"/><text x="72" y="45">Подвес</text>
+              <rect x="197" y="34" width="44" height="15" fill="#fff" stroke="#e9e4dc"/><text x="201" y="45">800</text>
+              <rect x="241" y="34" width="52" height="15" fill="#fff" stroke="#e9e4dc"/><text x="245" y="45">28</text>
+              <rect x="67" y="49" width="130" height="15" fill="#fff" stroke="#e9e4dc"/><text x="72" y="60">Штукатурка</text>
+              <rect x="197" y="49" width="44" height="15" fill="#fff" stroke="#e9e4dc"/><text x="201" y="60">380</text>
+              <rect x="241" y="49" width="52" height="15" fill="#fff" stroke="#e9e4dc"/><text x="245" y="60">793</text>
+              <rect x="67" y="64" width="130" height="15" fill="#fff" stroke="#e9e4dc"/><text x="72" y="75">Кабель</text>
+              <rect x="197" y="64" width="44" height="15" fill="#fff" stroke="#e9e4dc"/><text x="201" y="75">1800</text>
+              <rect x="241" y="64" width="52" height="15" fill="#fff" stroke="#e9e4dc"/><text x="245" y="75">146</text>
+            </g>
+            <text x="180" y="98" text-anchor="middle" font-size="11" fill="#6f7280">↓ ИИ распознаёт из PDF — границы строк теряются</text>
+            <text x="180" y="116" text-anchor="middle" font-size="10" fill="#a3201a" font-weight="700">как ИИ собрал: цена «съехала» на строку</text>
+            <g font-size="9.5" fill="#1a1814">
+              <rect x="67" y="124" width="130" height="16" fill="#f3efe9" stroke="#1a1814"/><text x="72" y="135">Наименование</text>
+              <rect x="197" y="124" width="44" height="16" fill="#f3efe9" stroke="#1a1814"/><text x="201" y="135">Кол-во</text>
+              <rect x="241" y="124" width="52" height="16" fill="#f3efe9" stroke="#1a1814"/><text x="245" y="135">Цена, ₽</text>
+              <rect x="67" y="140" width="130" height="15" fill="#fff" stroke="#e9e4dc"/><text x="72" y="151">Подвес</text>
+              <rect x="197" y="140" width="44" height="15" fill="#fff" stroke="#e9e4dc"/><text x="201" y="151">800</text>
+              <rect x="241" y="140" width="52" height="15" fill="#fde4e2" stroke="#e2231a"/><text x="245" y="151" fill="#8f1410" font-weight="700">793</text>
+              <rect x="67" y="155" width="130" height="15" fill="#fff" stroke="#e9e4dc"/><text x="72" y="166">Штукатурка</text>
+              <rect x="197" y="155" width="44" height="15" fill="#fff" stroke="#e9e4dc"/><text x="201" y="166">380</text>
+              <rect x="241" y="155" width="52" height="15" fill="#fde4e2" stroke="#e2231a"/><text x="245" y="166" fill="#8f1410" font-weight="700">146</text>
+              <rect x="67" y="170" width="130" height="15" fill="#fff" stroke="#e9e4dc"/><text x="72" y="181">Кабель</text>
+              <rect x="197" y="170" width="44" height="15" fill="#fff" stroke="#e9e4dc"/><text x="201" y="181">1800</text>
+              <rect x="241" y="170" width="52" height="15" fill="#fde4e2" stroke="#e2231a"/><text x="245" y="181" fill="#8f1410" font-weight="700">—</text>
+            </g>
+          </svg>
+          <div class="cap">PDF — это «снимок» страницы: при распознавании теряются границы строк и столбцов, и цена прилипает не к своему наименованию. Поэтому таблицу лучше давать ИИ текстом или Markdown, где структура задана явно. Цифры в примере условные.</div>
+        </div>
+        <h3>Чат-симулятор: PDF против текста</h3>
+        <p class="muted">Один набор из 48 позиций. Выберите способ передачи и сравните результат. 👁 — посмотреть спецификацию.</p>
+        <div class="chat">
+          <div class="ch"><span class="gi">G</span> GigaChat · веб-чат</div>
+          <div class="body" id="chatBig">
+            <span class="sys">⚙️ Роль: инженер-сметчик · 48 позиций · 3 поставщика</span>
+            <div class="bub u">Сведи спецификацию и 3 КП в сравнительную таблицу, подсветь отклонения от ТЗ и разные единицы. Итоги я проверю сам.
+              <span class="att" onclick="previewDoc('spectz')">📎 ТЗ-спецификация · 👁</span> <span class="att" onclick="previewDoc('kpA')">📎 КП А</span> <span class="att" onclick="previewDoc('kpB')">📎 КП Б</span> <span class="att" onclick="previewDoc('kpV')">📎 КП В</span></div>
+          </div>
+          <div class="ctrls"><div class="seg" id="modeSeg">
+            <button data-m="text" class="on">📋 Текст / CSV</button>
+            <button data-m="pdf">📄 Скан PDF</button></div>
+            <button class="btn sm" id="runBig">▶ Отправить</button>
+            <button class="btn ghost sm" id="showTraps" style="display:none">⚠ Показать ловушки</button></div>
+        </div>
+        <p class="muted" style="font-size:13px;margin:10px 0 4px"><b>Входные документы</b> (то, что отправляем ИИ):</p>
+        <div class="dl">
+          <button class="prevbtn" onclick="previewDoc('spectz')">👁 ТЗ-спецификация</button>
+          <button class="prevbtn" onclick="previewDoc('kpA')">👁 КП А</button>
+          <button class="prevbtn" onclick="previewDoc('kpB')">👁 КП Б</button>
+          <button class="prevbtn" onclick="previewDoc('kpV')">👁 КП В</button>
+        </div>
+        <p class="muted" style="font-size:13px;margin:12px 0 4px"><b>Результат</b>, который должен собрать ИИ (эталон):</p>
+        <div class="dl">
+          <button class="prevbtn" onclick="previewDoc('spec')">👁 Эталон — сравнительная таблица (XLSX)</button>
+        </div>
+        <div class="note red" id="trapsBox" style="display:none"></div>
+      </section>
+
+      <section class="sec" id="models">
+        <p class="stp">5 · Три модели</p>
+        <h2>Одна задача — кто как разбирает данные</h2>
+        <p class="muted">Главное отличие — не «бренд», а способность модели разложить задачу на шаги. При правильной постановке («рассуждай по шагам», «посчитай») некоторые модели разбирают данные многошагово и точнее.</p>
+        <div class="mtabs" id="mtabs"><div class="mtab on" data-k="giga">GigaChat</div><div class="mtab" data-k="ds">DeepSeek</div><div class="mtab" data-k="gpt">ChatGPT</div></div>
+        <div class="mcard" id="mcard"></div>
+        <div class="note">Вывод: дело не в бренде, а в том, <b>умеет ли модель (и просите ли вы её) разбирать данные пошагово</b>. Для рабочих данных РФ-компании при этом безопаснее GigaChat — данные остаются в России.</div>
+      </section>
+
+      <section class="sec" id="feed">
+        <p class="stp">6 · Как «скормить» документ правильно</p>
+        <h2>Дайте данные так, чтобы ИИ не потерял структуру</h2>
+        <p>Из PDF столбцы «рассыпаются». Вывод: <b>давайте таблицу не картинкой, а текстом с явной структурой</b>. Лучший формат — <b>Markdown</b>.</p>
+        <h3>Что такое Markdown — за минуту</h3>
+        <p>Markdown (MD) — простой текст с лёгкой разметкой. Таблица в нём — строки, где столбцы разделены чертой <code>|</code>. ИИ читает её <b>идеально</b>: видно, где столбец, где строка, какое число к чему относится.</p>
+        <div class="illu" style="text-align:left">
+          <div class="md">| Параметр | КП №1 | КП №2 | КП №3 |
+|---|---|---|---|
+| Марка | М125 | М100 | М125 |
+| Цена/шт | 16,50 с НДС | 12,00 без НДС | 17,90 с НДС |
+| Доставка | включена | +2,80 | включена |</div>
+          <div class="cap">Так выглядит таблица в Markdown. Каждое число — в своём столбце.</div>
+        </div>
+        <h3>Бесплатные конвертеры (работают в браузере)</h3>
+        <ul class="checks">
+          <li><b>Excel/CSV → Markdown:</b> <a href="https://tableconvert.com/excel-to-markdown" target="_blank" rel="noopener">TableConvert</a> или <a href="https://dewiar.com/markdown/table" target="_blank" rel="noopener">Dewiar</a>.</li>
+          <li><b>PDF → Markdown:</b> <a href="https://pdf2md.morethan.io/" target="_blank" rel="noopener">pdf2md.morethan.io</a> или <a href="https://products.groupdocs.app/conversion/pdf-to-md" target="_blank" rel="noopener">GroupDocs</a>. <span class="muted">Для сканов сначала OCR.</span></li>
+        </ul>
+        <h3>«Документ внутри промпта»</h3>
+        <p>Если в веб-чате нет загрузки Excel — вставьте Markdown-таблицу <b>прямо в текст запроса</b>. Готовый шаблон:</p>
+        <div class="dl">
+          <button class="prevbtn" onclick="previewText('Промпт с таблицей внутри (Markdown)', DATA.promptWithMd)">👁 Предпросмотр</button>
+          <button onclick="dl('Промпт_с_таблицей_Markdown.txt', DATA.promptWithMd)">📋 Скачать</button>
+        </div>
+        <h3>Ещё три приёма для точного результата</h3>
+        <ul class="checks">
+          <li><b>Эхо-проверка.</b> Сначала: «перечисли, что увидел, ничего не считай». Сверьте с оригиналом.</li>
+          <li><b>Итоги считайте сами.</b> ИИ хорош в структуре, но не калькулятор — суммы перепроверяйте в Excel.</li>
+          <li><b>Большой документ — частями.</b> Разбейте на 2–3 запроса: к короткому тексту модель внимательнее.</li>
+        </ul>
+        <div class="dl"><button class="prevbtn" onclick="previewText('Эхо-промпт', DATA.promptEcho)">👁 Эхо-промпт</button>
+          <button onclick="dl('Промпт_эхо_проверка.txt', DATA.promptEcho)">📋 Скачать</button></div>
+      </section>
+
+      <section class="sec" id="practice">
+        <p class="stp">7 · Практика и проверка</p>
+        <h2>Сделайте на своей задаче</h2>
+        <p class="muted">Возьмите свои КП (обезличенные — без реальных цен и реквизитов: это коммерческая тайна), сведите в сравнительную таблицу по нашему промпту и отправьте результат куратору.</p>
+        <div class="copy" id="promptBox"></div>
+        <div class="dl"><button class="btn sm dark" onclick="copyPrompt()">📋 Скопировать промпт</button>
+          <button class="prevbtn" onclick="previewText('Промпт сравнения', DATA.promptCompare)">👁 Предпросмотр</button>
+          <button onclick="dl('Промпт_сравнение_КП.txt', DATA.promptCompare)">📥 Скачать</button>
+          <span class="muted" id="copyMsg" style="font-size:12px;align-self:center"></span></div>
+        <div class="review" style="margin-top:18px">
+          <label>Что получилось — вставьте таблицу от ИИ</label>
+          <textarea id="sRes" rows="4" placeholder="Результат, который выдал ИИ"></textarea>
+          <label>Ваш e-mail для ответа куратора</label>
+          <input id="sEmail" type="email" placeholder="you@example.ru">
+          <div style="margin-top:12px"><button class="btn" id="sendRev">📨 Отправить на проверку</button>
+            <span class="muted" id="revMsg" style="margin-left:10px;font-size:12.5px"></span></div>
+        </div>
+        <div class="note green" style="margin-top:18px">⬆️ <b>Ассистент закрепил навык «Документы и таблицы».</b> Что забрать: опишите формат результата; давайте данные текстом/Markdown, не картинкой; на объёме проверяйте позиции и итоги сами.</div>
+      </section>
+    </div>
+
+    <aside>
+      <div class="asst">
+        <div class="hd"><div class="ico">🤖</div><div><b>Ваш ИИ-ассистент</b><br><span>Уровень 3 · документы</span></div></div>
+        <ul class="caps"><li>✅ Чат</li><li>✅ Роль и контекст</li><li>✅ Библиотека промптов</li>
+          <li>✅ <b>Документы и таблицы</b><span class="newb">этот урок</span></li>
+          <li class="lock">🔒 Инструменты и агент · Неделя 4</li></ul>
+        <div class="note" style="margin-top:12px;font-size:12px">📄 Бланки ТЗ и КП можно посмотреть и скачать (PDF/XLSX), как настоящие документы поставщика.</div>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<div class="pv" id="pv"><div class="pvbox">
+  <div class="pvh"><span id="pvTitle">Документ</span><span class="acts" id="pvActs"></span></div>
+  <div class="pvbody" id="pvBody"></div>
+</div></div>
+<div id="renderHolder"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script>
+/* ===== ТЕКСТОВЫЕ ДАННЫЕ (промпты, CSV) ===== */
+const DATA={
+  bigCsv:`№;Наименование (по ТЗ);Ед.;Кол-во;А с НДС;Б УСН без НДС;В с НДС;Флаг
+1;Бетон товарный В25 (М350) W4, ГОСТ 26633;м³;120;10004,00;7626,00;10804,32;
+2;Раствор кладочный М100, ГОСТ 28013;м³;30;7076,00;5394,00;7642,08;
+3;Щебень гранитный фр.5-20, ГОСТ 8267;т;45;3050,00;2325,00;3294,00;
+4;Песок строительный, ГОСТ 8736;м³;60;1830,00;1395,00;1976,40;
+5;Арматура А500С Ø12, ГОСТ 52544;т;8.5;67100,00;51150,00;72468,00;
+6;Арматура А500С Ø16, ГОСТ 52544;т;4.2;65880,00;50220,00;71150,40;
+7;Сетка кладочная 50х50х3, ГОСТ Р 57997;м²;350;97,60;74,40;105,41;
+8;Проволока вязальная Ø1,2, ГОСТ 3282;кг;40;128,10;97,65;138,35;
+9;Кирпич керам. рядовой М150, ГОСТ 530;тыс.шт;18;14640,00;11160,00;15811,20;
+10;Газоблок D500 200х300х600, ГОСТ 31360;м³;85;7564,00;5766,00;8169,12;
+11;Перемычка ж/б 2ПБ 17-3, ГОСТ 948;шт;48;1220,00;930,00;1317,60;
+12;Цемент ПЦ М500 Д0 меш.50кг, ГОСТ 31108;мешок;240;634,40;483,60;685,15;
+13;Клей для газобетона меш.25кг;мешок;120;549,00;418,50;592,92;
+14;Пена монтажная 750мл;шт;180;427,00;325,50;461,16;
+15;Герметик силиконовый 310мл;шт;96;280,60;213,90;303,05;
+16;Рубероид РКП-350 рулон 10м², ГОСТ 10923;рулон;55;878,40;669,60;948,67;
+17;Мастика битумная вед.21,5кг;ведро;28;2562,00;1953,00;2766,96;
+18;Плёнка ПЭ 200мкм рулон 150м²;рулон;20;2074,00;1581,00;2239,92;
+19;Геотекстиль 200г/м² рул.100м²;рулон;8;5124,00;3906,00;5533,92;
+20;Минплита ROCKWOOL 100мм уп.2,4м²;упак;145;2013,00;1534,50;2174,04;
+21;ПСБ-С-25Ф 50мм уп.5м², ГОСТ 15588;упак;90;1098,00;837,00;1185,84;
+22;Минплита KNAUF 150мм уп.2,4м²;упак;60;2318,00;1767,00;2503,44;
+23;Профнастил С20 0,5мм ПЭ, ГОСТ 24045;м²;280;683,20;520,80;737,86;
+24;Конёк кровельный 150х150 ПЭ 0,5мм;шт;36;488,00;372,00;429,44;В: марка ниже ТЗ (Эм 0,4 вместо ПЭ 0,5)
+25;Подкладочный ковёр рул.70м²;рулон;12;6344,00;4836,00;6851,52;
+26;Саморез кровельный упак.250;упак;48;512,40;390,60;553,39;
+27;ГКЛ КНАУФ 2500х1200х12,5, ГОСТ Р 6266;лист;320;549,00;418,50;592,92;
+28;ГКЛВ влагостойкий 12,5мм, ГОСТ Р 6266;лист;80;683,20;448,00;737,86;Б: обычный ГКЛ вместо влагостойкого ГКЛВ
+29;Профиль CD 60х27 L=3000, ГОСТ Р 56185;шт;480;225,70;172,05;243,76;
+30;Профиль UD 27х28 L=3000;шт;240;164,70;125,55;177,88;
+31;Подвес прямой для ГКЛ;шт;800;28,06;21,39;1403,00;В: цена за упак.50 шт при ед. шт (x50!)
+32;Штукатурка Ротбанд меш.30кг;мешок;380;793,00;604,50;856,44;
+33;Шпаклёвка Vetonit LR+ меш.25кг;мешок;180;951,60;нет позиции;1027,73;Б: позиция отсутствует
+34;Клей плиточный CM-11 меш.25кг;мешок;120;683,20;нет позиции;737,86;Б: позиция отсутствует
+35;Наливной пол Bergauf меш.25кг;мешок;95;756,40;нет позиции;816,91;Б: позиция отсутствует
+36;Грунтовка глубокая канистра 20л;канистра;28;2074,00;1581,00;2239,92;
+37;Бетоноконтакт CT-16 вед.15кг;ведро;18;3416,00;2604,00;3689,28;
+38;Краска фасадная вед.25кг;ведро;22;5124,00;3906,00;5533,92;
+39;Краска интерьерная вед.15кг;ведро;35;4270,00;3255,00;4611,60;
+40;Плитка для пола 400х400, ГОСТ 6787;м²;250;1098,00;837,00;1185,84;
+41;Линолеум коммерч. 43 класс;м²;552;671,00;511,50;33335,28 (за рулон 46 м²);В: цена за рулон 46 м² при ед. м²
+42;Затирка CE-33 2кг;упак;80;329,40;251,10;355,75;
+43;Дверь метал. входная 2050х960;шт;4;43920,00;33480,00;47433,60;
+44;Дверь межкомн. ДПГ 21-9;шт;28;12200,00;9300,00;13176,00;
+45;Окно ПВХ 1200х1400;шт;32;20740,00;15810,00;22399,20;
+46;Труба PP-R PN20 Ø25 арм., ГОСТ Р 52134;м;350;134,20;102,30;144,94;
+47;Труба ПВХ Ø110 L=3000, ГОСТ Р 51613;шт;48;732,00;558,00;790,56;
+48;Кабель ВВГнг(А)-LS 3х2,5, ГОСТ 16442;м;1800;146,40;111,60;158,11;`,
+  promptCompare:`Ты — опытный инженер-сметчик. Ниже требование ТЗ и несколько коммерческих предложений на один предмет закупки.
+
+Сведи предложения в СРАВНИТЕЛЬНУЮ таблицу. Столбцы: параметр | требование ТЗ | Поставщик 1 | Поставщик 2 | Поставщик 3.
+Строки: марка/характеристики, цена за единицу (укажи «с НДС» или «без НДС»), доставка, реальная цена с учётом доставки, итоговая сумма, срок поставки, условия оплаты, гарантия, соответствие ТЗ.
+
+Правила:
+- подсвети словами «не соответствует ТЗ» все отклонения (марка, ГОСТ, единица измерения, объём);
+- отметь, где цена БЕЗ НДС (УСН) — её нельзя сравнивать напрямую с ценой с НДС;
+- если значения нет — пиши «не указано», ничего не придумывай;
+- итоговые суммы я проверю сам, ты их не «угадывай».
+
+В конце — 2–3 предложения: какой поставщик предпочтительнее и почему.
+
+[ВСТАВЬТЕ ТЗ]
+[ВСТАВЬТЕ КП №1, №2, №3]`,
+  promptWithMd:`Ты — инженер-сметчик. Ниже ТЗ и сравнительные данные по 3 КП в виде Markdown-таблицы (это и есть документ — других файлов нет).
+
+ТЗ: кирпич М125, F50, ГОСТ 530-2012; доставка включена; постоплата; гарантия ≥ 12 мес.
+
+| Параметр | КП №1 | КП №2 | КП №3 |
+|---|---|---|---|
+| Марка | М125 | М100 | М125 |
+| Цена за шт | 16,50 с НДС | 12,00 без НДС (УСН) | 17,90 с НДС |
+| Доставка | включена | +2,80 ₽/шт | включена |
+| Оплата | 30% аванс | 100% предоплата | постоплата 30 дн |
+| Гарантия | 12 мес | 6 мес | 24 мес |
+
+Задача: проверь каждое КП на соответствие ТЗ; подсвети отклонения словами «не соответствует ТЗ»;
+отметь, где цена без НДС (УСН). Если данных нет — «не указано».
+В конце — какой поставщик предпочтительнее и почему. Итоги я проверю сам.`,
+  promptEcho:`Прежде чем что-либо считать или сравнивать — перечисли все позиции из таблицы: номер, наименование, единицу измерения и цену, ровно как в документе.
+Если строка не читается или единица непонятна — отметь «проверить вручную».
+Ничего не додумывай и пока не делай выводов. Я сверю список с оригиналом, потом попрошу анализ.`
+};
+
+/* ===== ДОКУМЕНТЫ-БЛАНКИ ===== */
+function stamp(t){return `<div class="stamp">${t}</div>`;}
+const DOCS={
+  tz:{title:'Техническое задание (бланк)', file:'ТЗ_Кирпич', kind:'pdf', html:`
+    <div class="doc"><div class="dhead"><div class="dco">МКУ «Управление капитального строительства г. Серпухова»</div>
+      <div class="dreq">ИНН 5077001234 · КПП 507701001<br>142200, Московская обл., г. Серпухов, ул. Советская, 88<br>тел. (4967) 35-00-00 · uks-serpuhov@mail.ru</div></div><hr>
+    <div class="dtitle">ТЕХНИЧЕСКОЕ ЗАДАНИЕ</div>
+    <div class="dsub">на поставку кирпича керамического рядового · ОКПД2 23.32.11.110 · НДС 22%</div>
+    <div class="dto">Количество: 50 000 шт. Место поставки: г. Серпухов, ул. Заводская, 5. Срок: не более 14 календарных дней.</div>
+    <table class="dt"><tr><th>№</th><th>Характеристика</th><th>Требование</th><th>Норматив</th></tr>
+    <tr><td class="c">1</td><td>Вид</td><td>рядовой, полнотелый, 250×120×65 (1НФ)</td><td>ГОСТ 530-2012</td></tr>
+    <tr><td class="c">2</td><td>Марка по прочности</td><td>не ниже М125</td><td>табл. 7</td></tr>
+    <tr><td class="c">3</td><td>Морозостойкость</td><td>не ниже F50</td><td>п. 4.1.4</td></tr>
+    <tr><td class="c">4</td><td>Водопоглощение</td><td>не более 14 %</td><td>п. 5.2.5</td></tr>
+    <tr><td class="c">5</td><td>Документы качества</td><td>паспорт партии + декларация соответствия</td><td>разд. 6</td></tr>
+    <tr><td class="c">6</td><td>Упаковка</td><td>поддоны, стрейч-плёнка</td><td>п. 8.2</td></tr>
+    <tr><td class="c">7</td><td>Доставка / оплата</td><td>включена в цену / постоплата</td><td>проект контракта</td></tr>
+    <tr><td class="c">8</td><td>Гарантия</td><td>не менее 12 месяцев</td><td>ст. 469–470 ГК РФ</td></tr></table>
+    <div class="dsign"><div class="sig">Составил: инженер ПТО <span class="ln"></span> / Петров И.С. /</div></div></div>`},
+  kp1:{title:'Коммерческое предложение №1', file:'КП_СтройКомплект', kind:'pdf', html:`
+    <div class="doc"><div class="dhead"><div class="dco">ООО «СтройКомплект»</div>
+      <div class="dreq">ИНН 5077039824 · КПП 507701001 · ОГРН 1135077000123<br>142200, г. Серпухов, ул. Промышленная, 12<br>тел. (4967) 72-18-34 · info@stroykomplekt.ru</div></div><hr>
+    <div class="dtitle">КОММЕРЧЕСКОЕ ПРЕДЛОЖЕНИЕ № 47 от 12.06.2026</div>
+    <div class="dto">Кому: МКУ «УКС г. Серпухова». На запрос № ЗП-2026/38 от 10.06.2026.</div>
+    <table class="dt"><tr><th>№</th><th>Наименование</th><th>Ед.</th><th>Кол-во</th><th>Цена б/НДС</th><th>НДС 22%</th><th>Цена с НДС</th><th>Сумма, ₽</th></tr>
+    <tr><td class="c">1</td><td>Кирпич КР-р М125 F50, 250×120×65, ГОСТ 530-2012</td><td class="c">шт</td><td class="r">50 000</td><td class="r">13,52</td><td class="r">2,98</td><td class="r">16,50</td><td class="r">825 000,00</td></tr></table>
+    <div class="dterms"><b>Условия:</b> доставка включена в цену; оплата — 30 % аванс + остаток после поставки; срок поставки — 7 дней; гарантия — 12 мес.; документы: паспорт партии + декларация соответствия. Срок действия КП — 30 дней.</div>
+    <div class="dsign"><div class="sig">Генеральный директор <span class="ln"></span> / Иванов А.В. /</div>${stamp('ООО «СтройКомплект» • ИНН 5077039824 • г. Серпухов')}</div></div>`},
+  kp2:{title:'Коммерческое предложение №2', file:'КП_Смирнов', kind:'pdf', html:`
+    <div class="doc"><div class="dhead"><div class="dco">ИП Смирнов Д. О.</div>
+      <div class="dreq">ИНН 712909376014 · ОГРНИП 320710000045123<br>300041, г. Тула, ул. Кирова, 88 · УСН (НДС не облагается)<br>тел. +7 953 108-77-29 · smirnov-opt@yandex.ru</div></div><hr>
+    <div class="dtitle">КОММЕРЧЕСКОЕ ПРЕДЛОЖЕНИЕ от 10.06.2026</div>
+    <div class="dto">Кому: МКУ «УКС г. Серпухова».</div>
+    <table class="dt"><tr><th>№</th><th>Наименование</th><th>Ед.</th><th>Кол-во</th><th>Цена (без НДС, УСН)</th><th>Сумма, ₽</th></tr>
+    <tr><td class="c">1</td><td>Кирпич керамический рядовой <b>М100</b>, 250×120×65, ГОСТ 530-2012</td><td class="c">шт</td><td class="r">50 000</td><td class="r">12,00</td><td class="r">600 000,00</td></tr></table>
+    <div class="dterms"><b>Условия:</b> доставка <b>не включена</b> (+2,80 ₽/шт, согласуется отдельно); оплата — <b>100 % предоплата</b>; срок поставки — 21 день; гарантия — 6 мес.; документы: паспорт партии. Срок действия КП — 14 дней.</div>
+    <div class="dnote">Морозостойкость в предложении не указана.</div>
+    <div class="dsign"><div class="sig">ИП <span class="ln"></span> / Смирнов Д.О. /</div>${stamp('ИП Смирнов Д.О. • ИНН 712909376014 • г. Тула')}</div></div>`},
+  kp3:{title:'Коммерческое предложение №3', file:'КП_РегионСтройТорг', kind:'pdf', html:`
+    <div class="doc"><div class="dhead"><div class="dco">ООО «РегионСтройТорг»</div>
+      <div class="dreq">ИНН 7708996532 · КПП 770801001 · ОГРН 1187746000456<br>115201, г. Москва, Каширское ш., д. 3, корп. 1<br>тел. (499) 503-27-11 · sales@rst-torg.ru</div></div><hr>
+    <div class="dtitle">КОММЕРЧЕСКОЕ ПРЕДЛОЖЕНИЕ № 2026/06/183 от 11.06.2026</div>
+    <div class="dto">Кому: МКУ «УКС г. Серпухова». На запрос № ЗП-2026/38 от 10.06.2026.</div>
+    <table class="dt"><tr><th>№</th><th>Наименование</th><th>Ед.</th><th>Кол-во</th><th>Цена б/НДС</th><th>НДС 22%</th><th>Цена с НДС</th><th>Сумма, ₽</th></tr>
+    <tr><td class="c">1</td><td>Кирпич КР-р М125 F50, 250×120×65, ГОСТ 530-2012</td><td class="c">шт</td><td class="r">50 000</td><td class="r">14,67</td><td class="r">3,23</td><td class="r">17,90</td><td class="r">895 000,00</td></tr></table>
+    <div class="dterms"><b>Условия:</b> доставка включена (с разгрузкой); оплата — <b>100 % постоплата 30 банковских дней</b>; срок поставки — 10 дней; гарантия — 24 мес.; документы: паспорт + декларация + протоколы испытаний. Срок действия КП — 30 дней.</div>
+    <div class="dsign"><div class="sig">Менеджер <span class="ln"></span> / Петрова Е.С. /</div>${stamp('ООО «РегионСтройТорг» • ИНН 7708996532 • г. Москва')}</div></div>`},
+  spectz:{title:'Техническое задание — спецификация (48 позиций, без цен)', file:'Спецификация_ТЗ_48поз', kind:'xlsx', html:null},
+  kpA:{title:'КП — Поставщик А (СтройМаркет)', file:'КП_А_СтройМаркет', kind:'pdf', html:null},
+  kpB:{title:'КП — Поставщик Б (ОптРесурс, УСН)', file:'КП_Б_ОптРесурс', kind:'pdf', html:null},
+  kpV:{title:'КП — Поставщик В (РегионСнаб)', file:'КП_В_РегионСнаб', kind:'pdf', html:null},
+  spec:{title:'Эталон: сравнительная таблица (что должен собрать ИИ)', file:'Эталон_сравнение', kind:'xlsx', html:null}
+};
+function buildSpecHtml(){
+  const rows=DATA.bigCsv.split('\n').map(r=>r.split(';'));
+  let body=rows.slice(1).map(c=>{
+    const fl=(c[7]||'').trim();
+    const tdf=fl?`<td style="color:#a30000;font-size:8.5px">${fl}</td>`:'<td></td>';
+    const hl=fl?' style="background:#fdecea"':'';
+    return `<tr${hl}><td class="c">${c[0]}</td><td>${c[1]}</td><td class="c">${c[2]}</td><td class="r">${c[3]}</td><td class="r">${c[4]}</td><td class="r">${c[5]}</td><td class="r">${c[6]}</td>${tdf}</tr>`;
+  }).join('');
+  return `<div class="doc"><div class="dhead"><div class="dco">🤖 Сравнительная таблица — собрал ИИ-ассистент</div>
+    <div class="dreq">по спецификации-ТЗ и 3 КП<br>НДС 22% · отклонения подсвечены</div></div><hr>
+    <div class="dtitle">СРАВНИТЕЛЬНАЯ ТАБЛИЦА КП — ЧТО ДОЛЖЕН СОБРАТЬ ИИ</div>
+    <div class="dsub">48 позиций × 3 поставщика · цена за единицу, ₽ · красным — отклонения от ТЗ и разные единицы</div>
+    <table class="dt"><tr><th>№</th><th>Наименование (по ТЗ)</th><th>Ед.</th><th>Кол-во</th><th>А (СтройМаркет)</th><th>Б (ОптРесурс)</th><th>В (РегионСнаб)</th><th>Отклонение</th></tr>${body}</table>
+    <div class="dnote">Поставщик Б — УСН (цены без НДС, напрямую с ценами с НДС не сравнивать). Итоги обязательно перепроверяются вручную.</div></div>`;
+}
+
+/* ===== СКАЧИВАНИЕ ===== */
+function dl(name,text,mime){mime=mime||'text/plain';const bom=mime.indexOf('csv')>=0?'﻿':'';
+  const b=new Blob([bom+text],{type:mime+';charset=utf-8'});const a=document.createElement('a');
+  a.href=URL.createObjectURL(b);a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},100);}
+
+/* ===== ПРЕДПРОСМОТР ===== */
+let pvCur=null;
+function previewText(title,text){
+  pvCur={kind:'text',file:title,text:text};
+  document.getElementById('pvTitle').textContent=title;
+  document.getElementById('pvBody').innerHTML='<pre></pre>';
+  document.querySelector('#pvBody pre').textContent=text;
+  document.getElementById('pvActs').innerHTML='<button class="pri" onclick="dl(\''+title.replace(/\W+/g,'_')+'.txt\', pvCur.text)">📥 Скачать .txt</button><button onclick="closePv()">✕ Закрыть</button>';
+  openPv();
+}
+function previewDoc(key){
+  const d=DOCS[key]; const html = getDocHtml(key);
+  pvCur={kind:d.kind,file:d.file,key:key};
+  document.getElementById('pvTitle').textContent=d.title;
+  document.getElementById('pvBody').innerHTML=html;
+  const act = d.kind==='xlsx'
+    ? '<button class="pri" onclick="' + (key==='spectz'?'xlsxSpecTz()':'xlsxSpec()') + '">📊 Скачать XLSX</button>'
+    : '<button class="pri" onclick="pdfDoc(\''+key+'\')">📄 Скачать PDF</button>';
+  document.getElementById('pvActs').innerHTML=act+'<button onclick="closePv()">✕ Закрыть</button>';
+  openPv();
+}
+function openPv(){document.getElementById('pv').classList.add('open');document.body.style.overflow='hidden';}
+function closePv(){document.getElementById('pv').classList.remove('open');document.body.style.overflow='';}
+document.getElementById('pv').addEventListener('click',e=>{if(e.target.id==='pv')closePv();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closePv();});
+
+/* ===== PDF из бланка ===== */
+async function pdfDoc(key){
+  const d=DOCS[key]; const html=getDocHtml(key);
+  if(!window.jspdf || !window.html2canvas){
+    // фолбэк: скачать как самостоятельный HTML-документ
+    const full='<!doctype html><meta charset="utf-8"><style>'+docCss()+'</style>'+html;
+    dl(d.file+'.html', full, 'text/html'); return;
+  }
+  const holder=document.getElementById('renderHolder');
+  holder.innerHTML='<div style="width:760px;background:#fff">'+html+'</div>';
+  const node=holder.firstChild;
+  try{
+    const canvas=await html2canvas(node,{scale:2,backgroundColor:'#ffffff',windowWidth:760});
+    const {jsPDF}=window.jspdf; const pdf=new jsPDF('p','mm','a4');
+    const pw=210, ph=297, m=8, iw=pw-2*m;
+    const ratio=iw/canvas.width; const ihFull=canvas.height*ratio;
+    if(ihFull<=ph-2*m){
+      pdf.addImage(canvas.toDataURL('image/jpeg',0.95),'JPEG',m,m,iw,ihFull);
+    } else {
+      const pagePxH=Math.floor((ph-2*m)/ratio); let y=0;
+      while(y<canvas.height){
+        const slice=document.createElement('canvas'); slice.width=canvas.width;
+        slice.height=Math.min(pagePxH,canvas.height-y);
+        slice.getContext('2d').drawImage(canvas,0,y,canvas.width,slice.height,0,0,canvas.width,slice.height);
+        const ih=slice.height*ratio;
+        pdf.addImage(slice.toDataURL('image/jpeg',0.95),'JPEG',m,m,iw,ih);
+        y+=slice.height; if(y<canvas.height) pdf.addPage();
+      }
+    }
+    pdf.save(d.file+'.pdf');
+  }catch(e){ const full='<!doctype html><meta charset="utf-8"><style>'+docCss()+'</style>'+html; dl(d.file+'.html', full,'text/html'); }
+  finally{ holder.innerHTML=''; }
+}
+function docCss(){return ".doc{font-family:'Times New Roman',Georgia,serif;color:#111;background:#fff;font-size:13px;line-height:1.45;padding:30px 32px;width:760px;margin:0 auto}.doc .dhead{display:flex;justify-content:space-between;gap:16px}.doc .dco{font-weight:700;font-size:16px}.doc .dreq{font-size:10.5px;color:#333;text-align:right;max-width:55%}.doc hr{border:none;border-top:2px solid #111;margin:8px 0 14px}.doc .dtitle{text-align:center;font-weight:700;font-size:15px;margin:6px 0}.doc .dsub{text-align:center;font-size:11px;color:#444;margin-bottom:10px}.doc .dto{font-size:12px;margin:6px 0 12px}.doc table.dt{border-collapse:collapse;width:100%;font-size:11px;margin:8px 0}.doc table.dt th,.doc table.dt td{border:1px solid #111;padding:4px 6px}.doc table.dt th{background:#e9e9e9;text-align:center}.doc table.dt td.r{text-align:right}.doc table.dt td.c{text-align:center}.doc .dterms{font-size:12px;margin:10px 0}.doc .dsign{margin-top:30px}.doc .sig .ln{display:inline-block;border-bottom:1px solid #111;width:150px;margin:0 6px}.doc .dnote{font-size:10.5px;color:#a30000}";}
+
+/* ===== XLSX спецификации ===== */
+function xlsxSpec(){
+  if(!window.XLSX){ dl('Спецификация_48поз.csv', DATA.bigCsv,'text/csv'); return; }
+  const aoa=DATA.bigCsv.split('\n').map(r=>r.split(';'));
+  const ws=XLSX.utils.aoa_to_sheet(aoa);
+  ws['!cols']=[{wch:4},{wch:42},{wch:7},{wch:8},{wch:13},{wch:16},{wch:18},{wch:30}];
+  const wb=XLSX.utils.book_new(); XLSX.utils.book_append_sheet(wb,ws,'Спецификация');
+  XLSX.writeFile(wb,'Спецификация_48поз.xlsx');
+}
+
+/* ===== ФОРМАТ ===== */
+let fmtMode='bad';
+document.querySelectorAll('#fmtSeg button').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('#fmtSeg button').forEach(x=>x.classList.remove('on'));b.classList.add('on');fmtMode=b.dataset.f;}));
+document.getElementById('runFmt').addEventListener('click',()=>{
+  const body=document.getElementById('chatFmt'); body.querySelectorAll('.bub,.typing').forEach(e=>e.remove());
+  const u=document.createElement('div'); u.className='bub u';
+  u.textContent=fmtMode==='bad'?'Сравни эти КП.':'Сведи КП в сравнительную таблицу: строки — марка, цена (с НДС/без), доставка, оплата, гарантия, соответствие ТЗ; столбцы — поставщики. Отклонения помечай «не соответствует ТЗ», пустое — «не указано».';
+  body.appendChild(u);
+  const t=document.createElement('div'); t.className='bub a typing'; t.innerHTML='<span></span><span></span><span></span>'; body.appendChild(t);
+  setTimeout(()=>{t.remove();const a=document.createElement('div');a.className='bub a';
+    if(fmtMode==='bad'){a.innerHTML=`Первое предложение выглядит неплохо, второе самое дешёвое, третье подороже, но с хорошей гарантией. В целом все три рабочие — советую посмотреть детали и выбрать по бюджету.
+<div class="note red" style="margin-top:8px">Свободный текст без структуры: марка и НДС не сравниваются, отклонение КП №2 (М100, без НДС) <b>пропущено</b>.</div>`;}
+    else{a.innerHTML=`<div class="tw"><table class="cmp">
+<tr><th>Параметр</th><th>КП №1</th><th>КП №2</th><th>КП №3</th></tr>
+<tr><td>Марка</td><td class="good">М125 ✓</td><td class="bad">М100 — не соответствует ТЗ</td><td class="good">М125 ✓</td></tr>
+<tr><td>Цена/шт</td><td>16,50 с НДС</td><td>12,00 без НДС (УСН)</td><td>17,90 с НДС</td></tr>
+<tr><td>Доставка</td><td class="good">включена</td><td class="bad">+2,80</td><td class="good">включена</td></tr>
+<tr><td>Гарантия</td><td class="good">12 ✓</td><td class="bad">6</td><td class="good">24 ✓</td></tr>
+<tr><td>Соответствие ТЗ</td><td class="good">✓</td><td class="bad">✗</td><td class="good">✓</td></tr></table></div>Структурно, с подсветкой. КП №2 сразу видно как несоответствующее. <span class="muted">Итоги проверьте сами.</span>`;}
+    body.appendChild(a);
+  },800);
+});
+
+/* ===== ЧАТ маленький ===== */
+document.getElementById('runSmall').addEventListener('click',function(){this.disabled=true;this.textContent='…';
+  const body=document.getElementById('chatSmall');const t=document.createElement('div');t.className='bub a typing';t.innerHTML='<span></span><span></span><span></span>';body.appendChild(t);
+  setTimeout(()=>{t.remove();const a=document.createElement('div');a.className='bub a';
+    a.innerHTML=`Свёл 3 КП по ТЗ:
+<div class="tw"><table class="cmp">
+<tr><th>Параметр</th><th>ТЗ</th><th>КП №1</th><th>КП №2</th><th>КП №3</th></tr>
+<tr><td>Марка</td><td>≥М125</td><td class="good">М125 ✓</td><td class="bad">М100 ✗</td><td class="good">М125 ✓</td></tr>
+<tr><td>Цена/шт</td><td>—</td><td>16,50 (с НДС)</td><td>12,00 (без НДС)</td><td>17,90 (с НДС)</td></tr>
+<tr><td>Реальная цена/шт</td><td>—</td><td>16,50</td><td class="bad">14,80 (без НДС)</td><td>17,90</td></tr>
+<tr><td>Доставка</td><td>включена</td><td class="good">включена</td><td class="bad">+2,80 ✗</td><td class="good">включена</td></tr>
+<tr><td>Срок</td><td>≤14 дн</td><td class="good">7 ✓</td><td class="bad">21 ✗</td><td class="good">10 ✓</td></tr>
+<tr><td>Оплата</td><td>постоплата</td><td>30% аванс</td><td class="bad">100% аванс ✗</td><td class="good">постоплата</td></tr>
+<tr><td>Гарантия</td><td>≥12</td><td class="good">12 ✓</td><td class="bad">6 ✗</td><td class="good">24 ✓</td></tr>
+<tr><td>Соответствие ТЗ</td><td>—</td><td class="good">✓</td><td class="bad">✗</td><td class="good">✓</td></tr></table></div>Вывод: КП №2 не проходит по ТЗ (марка М100, срок 21 дн &gt; 14) и при честном пересчёте даже не дешевле: 14,80 без НДС &gt; базы КП №1 (13,52 без НДС). Предпочтителен <b>КП №1</b>. <span class="muted">Итоги проверьте сами.</span>`;
+    body.appendChild(a);document.getElementById('smallVerdict').style.display='block';
+  },900);
+});
+
+/* ===== ЧАТ большой ===== */
+let bigMode='text';
+document.querySelectorAll('#modeSeg button').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('#modeSeg button').forEach(x=>x.classList.remove('on'));b.classList.add('on');bigMode=b.dataset.m;}));
+document.getElementById('runBig').addEventListener('click',()=>{
+  const body=document.getElementById('chatBig');body.querySelectorAll('.bub.a,.typing').forEach(e=>e.remove());
+  document.getElementById('showTraps').style.display='none';
+  const t=document.createElement('div');t.className='bub a typing';t.innerHTML='<span></span><span></span><span></span>';body.appendChild(t);
+  setTimeout(()=>{t.remove();const a=document.createElement('div');a.className='bub a';
+    if(bigMode==='pdf'){a.innerHTML=`Свёл данные из PDF, но при распознавании структура «поехала»:
+Фрагмент:
+…29 Профиль CD 480 — цена не распозналась —
+30 Профиль UD 240 <span class="err">793,00</span> ← цена прилипла из чужой строки (поз. 32)
+33 <span class="err">— строка не распозналась —</span>
+34 <span class="err">— строка не распозналась —</span> …
+<div class="note red" style="margin-top:8px">Типичный сбой PDF: границы строк потерялись — значения съехали к чужим позициям, строки 33–35 «потерялись», итог не сходится. Такому разбору доверять нельзя — дайте таблицу текстом или Markdown.</div>`;}
+    else{a.innerHTML=`Свёл 48 позиций. Предварительно:
+• <b>А</b> (доставка включена): ≈ <b>8,48 млн ₽</b> — полный, соответствует ТЗ
+• <b>Б</b> (УСН, без НДС): ≈ 6,21 млн ₽ — выглядит дешевле всех
+• <b>В</b> + доставка 85 000 ₽: ≈ <b>10,34 млн ₽</b> — но это «грязный» итог (внутри неисправленная ловушка подвеса, см. ниже)
+<div class="note" style="margin-top:8px">⚠ Проверьте вручную: у <b>Б</b> нет позиций 33–35 и в поз. 28 обычный ГКЛ; у <b>В</b> позиции 31 и 41 — в разных единицах. Итоги пересчитайте сами.</div>`;
+      document.getElementById('showTraps').style.display='inline-block';}
+    body.appendChild(a);
+  },1000);
+});
+document.getElementById('showTraps').addEventListener('click',()=>{const box=document.getElementById('trapsBox');box.style.display='block';
+  box.innerHTML=`<b>5 ловушек (спрятаны в середине списка):</b>
+<ol style="margin:8px 0 0;padding-left:18px">
+<li><b>Поз. 31, подвес (В):</b> цена 1 403 ₽ — за упаковку 50 шт при единице «шт». Умножение на 800 раздувает строку до 1,12 млн вместо ~24 тыс.</li>
+<li><b>Поз. 28, ГКЛВ (Б):</b> вместо влагостойкого — обычный ГКЛ.</li>
+<li><b>Поз. 33–35 (Б):</b> сухих смесей нет — недопоставка.</li>
+<li><b>Поз. 24, конёк (В):</b> эмаль 0,4 мм вместо полиэстер 0,5 мм.</li>
+<li><b>Поз. 41, линолеум (В):</b> цена за рулон 46 м² при единице «м²».</li></ol>
+<div style="margin-top:8px">Если исправить подвес (единица «шт»), итог В падает примерно на 1,1 млн → ≈ <b>9,2 млн ₽</b>, а не 10,34. «Дешёвый по нижней строке» Б отпадает (без НДС, нет 3 позиций, ГКЛ вместо ГКЛВ). Полон и соответствует ТЗ только <b>А</b>. <b>На объёме проверяй позиции, не итоговую строку.</b></div>`;});
+
+/* ===== МОДЕЛИ ===== */
+const MODELS={
+  giga:{t:'GigaChat (Сбер)',can:'Отвечает за один проход. Сложную таблицу разбирает лучше, если <b>сами разложите задачу на шаги</b> в промпте: «1) перечисли позиции, 2) сравни, 3) пометь отклонения». Понимает НДС и российскую специфику.',rows:[['Многошаговый разбор','<span class="y">по вашему промпту-цепочке</span>'],['Доступ в РФ','<span class="g">без VPN, по Сбер ID, бесплатно</span>'],['Данные','<span class="g">серверы в России</span>']]},
+  ds:{t:'DeepSeek',can:'Есть режим рассуждений (R1): по просьбе «<b>рассуждай по шагам и проверь итоги</b>» сам раскладывает разбор на этапы и перепроверяет себя — на многошаговых таблицах заметно точнее. Большой объём за раз.',rows:[['Многошаговый разбор','<span class="g">да, режим рассуждений (R1)</span>'],['Доступ в РФ','<span class="y">чаще да, бывают перебои; бесплатно</span>'],['Данные','<span class="r">серверы в Китае — не для реальных цен/ПДн</span>']]},
+  gpt:{t:'ChatGPT',can:'Может не «угадывать», а <b>реально посчитать</b>: по просьбе «проанализируй данные / посчитай» выполняет код (Python) над таблицей по шагам — суммы и НДС считаются точно. Сильнее всех на числах.',rows:[['Многошаговый разбор','<span class="g">да, выполняет код по шагам (платно)</span>'],['Доступ в РФ','<span class="r">нужен VPN и иностранный номер/карта</span>'],['Данные','<span class="r">серверы в США</span>']]}
+};
+function renderModel(k){const m=MODELS[k];document.getElementById('mcard').innerHTML=`<div style="font-weight:800;font-size:15px">${m.t}</div><div class="can">${m.can}</div>`+m.rows.map(r=>`<div class="mrow"><span class="k">${r[0]}</span><span>${r[1]}</span></div>`).join('');}
+document.querySelectorAll('#mtabs .mtab').forEach(t=>t.addEventListener('click',()=>{document.querySelectorAll('#mtabs .mtab').forEach(x=>x.classList.remove('on'));t.classList.add('on');renderModel(t.dataset.k);}));
+renderModel('giga');
+
+/* ===== ПРАКТИКА ===== */
+document.getElementById('promptBox').textContent=DATA.promptCompare;
+function copyPrompt(){navigator.clipboard.writeText(DATA.promptCompare).then(()=>{document.getElementById('copyMsg').textContent='Скопировано ✓';setTimeout(()=>document.getElementById('copyMsg').textContent='',2500);}).catch(()=>{document.getElementById('copyMsg').textContent='Выделите и скопируйте вручную';});}
+document.getElementById('sendRev').addEventListener('click',()=>{const res=document.getElementById('sRes').value.trim(),email=document.getElementById('sEmail').value.trim();const m=document.getElementById('revMsg');if(!res){m.textContent='Вставьте результат';return;}const raw=`Шаг 16 (Сравнение КП) — задание на проверку\n\nРезультат:\n${res}\n\nОтвет на e-mail: ${email}`;window.location.href=`mailto:kurator@action.group?subject=${encodeURIComponent('Проверка задания · Шаг 16')}&body=${encodeURIComponent(raw)}`;m.textContent='Открываю почту…';});
+
+/* ===== ГЕНЕРАТОРЫ ВХОДНЫХ ДОКУМЕНТОВ ===== */
+function bigRows(){return DATA.bigCsv.split('\n').slice(1).map(r=>r.split(';'));}
+function getDocHtml(key){
+  if(key==='spec') return buildSpecHtml();
+  if(key==='spectz') return buildSpecTzHtml();
+  if(key==='kpA') return buildKpHtml('A');
+  if(key==='kpB') return buildKpHtml('B');
+  if(key==='kpV') return buildKpHtml('V');
+  return DOCS[key].html;
+}
+function buildSpecTzHtml(){
+  const body=bigRows().map(c=>`<tr><td class="c">${c[0]}</td><td>${c[1]}</td><td class="c">${c[2]}</td><td class="r">${c[3]}</td></tr>`).join('');
+  return `<div class="doc"><div class="dhead"><div class="dco">МКУ «УКС г. Серпухова» · Отдел закупок</div><div class="dreq">Приложение к ТЗ · запрос цен № ЗП-2026/41<br>от 10.06.2026 · НДС 22%</div></div><hr>
+  <div class="dtitle">СПЕЦИФИКАЦИЯ (приложение к техническому заданию)</div>
+  <div class="dsub">Поставка строительных материалов · 48 позиций · цены поставщики указывают в своих КП</div>
+  <table class="dt"><tr><th>№</th><th>Наименование (по ТЗ)</th><th>Ед.</th><th>Кол-во</th></tr>${body}</table>
+  <div class="dsign"><div class="sig">Начальник отдела закупок <span class="ln"></span> / Кузнецова Т.А. /</div></div></div>`;
+}
+const KPMETA={
+  A:{ci:4,co:'ООО «СтройМаркет»',req:'ИНН 7701234567 · КПП 770101001 · ОСН (НДС 22%)<br>г. Москва, ул. Складочная, 6 · тел. (495) 120-30-40',num:'№ А-318 от 11.06.2026',unit:'цена за ед., ₽ с НДС',flag:'А',terms:'Доставка включена в цену. Оплата — постоплата. Все позиции в наличии.',total:'8 481 672 ₽ с НДС',dir:'Генеральный директор',name:'Сидоров П.А.'},
+  B:{ci:5,co:'ИП «ОптРесурс»',req:'ИНН 503612345678 · ОГРНИП 318500700012345 · УСН, без НДС<br>г. Подольск, ул. Рабочая, 14 · тел. +7 906 700-10-20',num:'№ 204 от 10.06.2026',unit:'цена за ед., ₽ без НДС (УСН)',flag:'Б',terms:'Цены без НДС (УСН). Позиции 33–35 не поставляем. Оплата — 100% предоплата.',total:'6 211 868 ₽ (без НДС)',dir:'Индивидуальный предприниматель',name:'Орлов В.Н.'},
+  V:{ci:6,co:'ООО «РегионСнаб»',req:'ИНН 7709876543 · КПП 770901001 · ОСН (НДС 22%)<br>г. Москва, Варшавское ш., 42 · тел. (495) 988-77-66',num:'№ 2026/512 от 11.06.2026',unit:'цена за ед., ₽ с НДС',flag:'В',terms:'Доставка отдельной строкой +85 000 ₽. Оплата — постоплата 30 дней.',total:'10 254 851 ₽ + доставка 85 000 ₽',dir:'Менеджер по продажам',name:'Зайцева О.И.'}
+};
+function buildKpHtml(sup){
+  const m=KPMETA[sup]; const rows=bigRows();
+  const body=rows.map(c=>{
+    let price=c[m.ci]; if(!price||price==='нет позиции') price='— не поставляется';
+    const fl=(c[7]&&c[7].indexOf(m.flag+':')===0)?' <span style="color:#a30000">⚠</span>':'';
+    return `<tr><td class="c">${c[0]}</td><td>${c[1]}${fl}</td><td class="c">${c[2]}</td><td class="r">${c[3]}</td><td class="r">${price}</td></tr>`;
+  }).join('');
+  return `<div class="doc"><div class="dhead"><div class="dco">${m.co}</div><div class="dreq">${m.req}</div></div><hr>
+  <div class="dtitle">КОММЕРЧЕСКОЕ ПРЕДЛОЖЕНИЕ ${m.num}</div>
+  <div class="dsub">Кому: МКУ «УКС г. Серпухова». На запрос № ЗП-2026/41 · ${m.unit}</div>
+  <table class="dt"><tr><th>№</th><th>Наименование</th><th>Ед.</th><th>Кол-во</th><th>Цена за ед.</th></tr>${body}</table>
+  <div class="dterms"><b>ИТОГО по предложению:</b> ${m.total}. ${m.terms}</div>
+  <div class="dsign"><div class="sig">${m.dir} <span class="ln"></span> / ${m.name} /</div>${stamp(m.co+' • '+m.req.split('·')[0])}</div></div>`;
+}
+function xlsxSpecTz(){
+  if(!window.XLSX){ dl('Спецификация_ТЗ_48поз.csv', DATA.bigCsv.split('\n').map(r=>r.split(';').slice(0,4).join(';')).join('\n'),'text/csv'); return; }
+  const aoa=[['№','Наименование (по ТЗ)','Ед.','Кол-во']].concat(bigRows().map(c=>[c[0],c[1],c[2],c[3]]));
+  const ws=XLSX.utils.aoa_to_sheet(aoa); ws['!cols']=[{wch:4},{wch:46},{wch:8},{wch:9}];
+  const wb=XLSX.utils.book_new(); XLSX.utils.book_append_sheet(wb,ws,'Спецификация ТЗ');
+  XLSX.writeFile(wb,'Спецификация_ТЗ_48поз.xlsx');
+}
+</script>
+</body>
+</html>
