@@ -164,6 +164,7 @@
   .sampletag{display:inline-block;font-size:11px;font-weight:800;color:#157a41;background:#eef8f1;border:1px solid #cdebd8;border-radius:999px;padding:3px 10px;margin-bottom:8px}
   @media(max-width:860px){.grid{grid-template-columns:1fr}.asst{position:static}}
   @media(max-width:420px){h1{font-size:25px}.sec{padding:18px 16px}}
+.matrow{margin:10px 0 4px}.matbtn{display:inline-block;background:#111;color:#fff;padding:9px 16px;border-radius:10px;font-weight:700;font-size:14px;text-decoration:none}.matbtn:hover{opacity:.9}
 </style>
 </head>
 <body>
@@ -184,6 +185,7 @@
 
   <div class="kicker">Курс «30 шагов: рабочий ИИ-инструмент для строителя» · Неделя 2 · Шаг 9 · Роль: сметчик / ГИП <span class="rule" style="background:var(--yellow)"></span></div>
   <h1>Шаг 9. Примеры сильнее слов (few-shot)</h1>
+  <div class="matrow"><a class="matbtn" href="materials/shag-09.zip" download>⬇ Материалы урока (архив): тексты, файлы кейса, интерактив</a></div>
   <p class="lead">Описать словами «нужен вот такой стиль служебки» словами почти невозможно — а приложить один готовый образец и попросить «сделай так же» занимает 10 секунд. <b>Один точный образец экономит абзацы объяснений.</b></p>
   <div class="meta">
     <span class="lvl"><span class="dotx"></span> Ассистент · Уровень 1 · роль и контекст</span>
@@ -208,9 +210,8 @@
           <li>4 · <a href="#demo2">Демо 2: ответ на замечание ГГЭ по готовому образцу</a></li>
           <li>5 · <a href="#rules">Правила хорошего образца</a></li>
           <li>6 · <a href="#quiz">Проверь себя: мини-тренажёр</a></li>
-          <li>7 · <a href="#materials">Материалы урока</a></li>
-          <li>8 · <a href="#livechat">Сделай в живом чате</a></li>
-          <li>9 · <a href="#practice">Практика и проверка</a></li>
+          <li>7 · <a href="#livechat">Сделай в живом чате</a></li>
+          <li>8 · <a href="#practice">Практика и проверка</a></li>
         </ul>
         <div class="note">📄 К уроку приложены: сравнение 5 КП на монолитные работы (документ 03) и таблица замечаний ГГЭ с образцом ответа (документ 18).</div>
       </section>
@@ -447,28 +448,9 @@ B25 W6 F150. Изменение оформлено листом изменени
         </div>
       </section>
 
-      <!-- ═══ MATERIALS ═══ -->
-      <section class="sec" id="materials">
-        <p class="stp">7 · Материалы урока</p>
-        <h2>Материалы урока</h2>
-        <p class="muted">Всё содержимое этого шага — текстовые материалы, документы кейса, промпты и HTML-интерактив — собрано в один архив.</p>
-        <div class="materials">
-          <ul class="mlist">
-            <li><span class="mico">📝</span><span>Конспект урока (few-shot: правила образца, что копируется, .md)</span></li>
-            <li><span class="mico">📁</span><span>Документы кейса «Уютный дом на Матвеева»: 03 (сравнение 5 КП), 18 (замечания ГГЭ и образец ответа № 4)</span></li>
-            <li><span class="mico">🧩</span><span>Промпты few-shot: приведение КП к формату по образцу, ответ на замечание по образцу</span></li>
-            <li><span class="mico">🌐</span><span>HTML-интерактив урока (этот файл)</span></li>
-          </ul>
-          <div class="dl">
-            <a class="btn dark" href="materials/shag-09.zip">⬇ Скачать архив материалов</a>
-          </div>
-          <p class="mcap">Для команды переноса: архив содержит всё содержимое шага.</p>
-        </div>
-      </section>
-
       <!-- ═══ LIVE-CHAT ═══ -->
       <section class="sec" id="livechat">
-        <p class="stp">8 · Сделай в живом чате</p>
+        <p class="stp">7 · Сделай в живом чате</p>
         <h2>Сделай в живом чате</h2>
         <p class="lcinstruction">Возьмите свой типовой документ (служебную записку, ответ на замечание, сведение КП — что угодно, что вы реально писали) как образец, обезличьте его (уберите ФИО, телефоны, коммерческую тайну) и попросите ИИ написать новый документ в том же стиле для другой ситуации. Выполните в одном из чат-ботов ниже, затем вставьте результат в поле под кнопками.</p>
         <div class="lcbtns">
@@ -494,7 +476,7 @@ B25 W6 F150. Изменение оформлено листом изменени
       <div class="lockwrap" id="selfcheckWrap">
         <section class="sec locked" id="selfcheck">
           <span class="lockbadge">🔒 Сначала блок «Сделай в живом чате»</span>
-          <p class="stp">9 · Самопроверка</p>
+          <p class="stp">8 · Самопроверка</p>
           <h2>Перед сдачей отметьте</h2>
           <ul class="selfcheck" id="scList">
             <li><label><input type="checkbox"> Я приложил(а) ИИ реальный образец документа, а не пытался(-лась) описать стиль словами.</label></li>
@@ -511,7 +493,7 @@ B25 W6 F150. Изменение оформлено листом изменени
       <div class="lockwrap" id="practiceWrap">
         <section class="sec locked" id="practice">
           <span class="lockbadge">🔒 Сначала блок «Сделай в живом чате»</span>
-          <p class="stp">10 · Практика и проверка</p>
+          <p class="stp">9 · Практика и проверка</p>
           <h2>Сделайте на своей задаче</h2>
           <p class="muted">Возьмите один реальный (или учебный) документ со своего объекта как образец формы и составьте по нему новый документ для другой ситуации. Обезличьте данные: без реальных ФИО, телефонов и коммерческой тайны — только структура и суть.</p>
           <div class="review">

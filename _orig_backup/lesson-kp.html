@@ -121,7 +121,6 @@
   .toc{list-style:none;padding:0;margin:10px 0 0;font-size:13px}.toc li{padding:5px 0}.toc a{color:var(--ink)}
   #renderHolder{position:fixed;left:-10000px;top:0;width:760px;background:#fff}
   @media(max-width:860px){.grid{grid-template-columns:1fr}.asst{position:static}}
-.matrow{margin:10px 0 4px}.matbtn{display:inline-block;background:#111;color:#fff;padding:9px 16px;border-radius:10px;font-weight:700;font-size:14px;text-decoration:none}.matbtn:hover{opacity:.9}
 </style>
 </head>
 <body>
@@ -142,7 +141,6 @@
 
   <div class="kicker">Неделя 3 · Шаг 16 · Сметчик / снабжение / тендеры <span class="rule" style="background:var(--yellow)"></span></div>
   <h1>Сравнение смет и КП в таблицу</h1>
-  <div class="matrow"><a class="matbtn" href="materials/shag-16.zip" download>⬇ Материалы урока (архив): тексты, файлы кейса, интерактив</a></div>
   <p class="lead">ИИ сводит разнородные предложения в одну таблицу за минуту и подсвечивает ловушки. Но результат зависит от двух вещей: <b>как вы описали нужный формат</b> и <b>в каком виде передали данные</b>. Разберём на закупке монолитных работ ЖК «Уютный дом на Матвеева»: 5 КП подрядчиков против ТЗ и ведомости объёмов (ВОР) — на примере GigaChat и других моделей.</p>
   <div class="lvl"><span class="dotx"></span> Ассистент · Уровень 3 · документы и таблицы</div>
 
@@ -419,6 +417,17 @@
         </div>
         <div class="transfer-note">⚙ Для переноса в платформу Актион: здесь подключается отправка куратору — проверка №3.</div>
         <div class="note green" id="finalNote" style="margin-top:18px;display:none">⬆️ <b>Ассистент закрепил навык «Документы и таблицы».</b> Что забрать: опишите формат результата; давайте данные текстом/Markdown, не картинкой; на объёме проверяйте позиции и итоги сами.</div>
+
+        <h3 style="margin-top:22px">Материалы урока</h3>
+        <p class="muted">Все документы кейса «Уютный дом на Матвеева» одним архивом — открой и работай в живом чате.</p>
+        <div class="dl"><a class="btn sm dark" href="materials/shag-16.zip" download>⬇ Скачать архив материалов</a></div>
+        <ul class="checks" style="margin-top:10px">
+          <li>Файл 03 — 5 коммерческих предложений подрядчиков на монолитные работы (КП-1 … КП-5).</li>
+          <li>ВОР № 02-01-01 — ведомость объёмов монолитных работ.</li>
+          <li>ТЗ — описание объекта закупки (требования к монолиту B25).</li>
+          <li>Промпты C1 и C2 из промпт-пака ПТО (извлечение объёмов, сверка).</li>
+          <li>Бланки: пустой шаблон сравнительной таблицы КП.</li>
+        </ul>
       </section>
     </div>
 

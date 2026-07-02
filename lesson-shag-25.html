@@ -159,6 +159,7 @@
   .promptbadge{display:inline-block;font-size:11px;font-weight:800;color:var(--purple);background:#faf6ff;border:1px solid #e6d5fa;border-radius:999px;padding:3px 10px;margin-bottom:8px}
   @media(max-width:860px){.grid{grid-template-columns:1fr}.asst{position:static}}
   @media(max-width:420px){h1{font-size:25px}.sec{padding:18px 16px}}
+.matrow{margin:10px 0 4px}.matbtn{display:inline-block;background:#111;color:#fff;padding:9px 16px;border-radius:10px;font-weight:700;font-size:14px;text-decoration:none}.matbtn:hover{opacity:.9}
 </style>
 </head>
 <body>
@@ -179,6 +180,7 @@
 
   <div class="kicker">Курс «30 шагов: рабочий ИИ-инструмент для строителя» · Неделя 4 · Шаг 25 · Роль: инженер ПТО <span class="rule" style="background:var(--green)"></span></div>
   <h1>Шаг 25. Встраиваю ИИ в рутину</h1>
+  <div class="matrow"><a class="matbtn" href="materials/shag-25.zip" download>⬇ Материалы урока (архив): тексты, файлы кейса, интерактив</a></div>
   <p class="lead">Курс закончится — а через месяц в голове останется только то, что попало в календарь. Сегодня не учим новый приём, а <b>прибиваем ИИ гвоздями к конкретным точкам вашей рабочей недели</b>: понедельник, вторник, среда — там, где рутина повторяется каждую неделю.</p>
   <div class="meta">
     <span class="lvl"><span class="dotx"></span> Ассистент · Уровень 3 · документы и знания</span>
@@ -202,9 +204,8 @@
           <li>3 · <a href="#checkpoints">Правило контрольных точек</a></li>
           <li>4 · <a href="#builder">Интерактив: соберите свою неделю</a></li>
           <li>5 · <a href="#habit">Минимальная привычка на 2 недели</a></li>
-          <li>6 · <a href="#materials">Материалы урока</a></li>
-          <li>7 · <a href="#livechat">Сделай в живом чате</a></li>
-          <li>8 · <a href="#practice">Практика и проверка</a></li>
+          <li>6 · <a href="#livechat">Сделай в живом чате</a></li>
+          <li>7 · <a href="#practice">Практика и проверка</a></li>
         </ul>
         <div class="note">📄 К уроку приложены: недельный трекер ПТО и чек-лист дня прораба (документ 22), промпты A1–A3, C1–C3, D1, E1–E2 из промпт-пака ПТО.</div>
       </section>
@@ -426,28 +427,9 @@
         <div class="note green">✅ Формула: <b>рутина, которая уже есть в календаре + один промпт из пака + один пункт «человек проверяет» = привычка, которая переживёт курс.</b></div>
       </section>
 
-      <!-- ═══ MATERIALS ═══ -->
-      <section class="sec" id="materials">
-        <p class="stp">6 · Материалы урока</p>
-        <h2>Материалы урока</h2>
-        <p class="muted">Всё содержимое этого шага — текстовые материалы, документы кейса, промпты и HTML-интерактив — собрано в один архив.</p>
-        <div class="materials">
-          <ul class="mlist">
-            <li><span class="mico">📝</span><span>Конспект урока (карта недели, правило контрольных точек, минимальная привычка, .md)</span></li>
-            <li><span class="mico">📁</span><span>Документ кейса «Уютный дом на Матвеева»: 22 (недельный трекер ПТО и чек-лист дня прораба)</span></li>
-            <li><span class="mico">🧩</span><span>Промпты A1–A3, C1–C3, D1, E1–E2 из промпт-пака ПТО</span></li>
-            <li><span class="mico">🌐</span><span>HTML-интерактив урока (этот файл)</span></li>
-          </ul>
-          <div class="dl">
-            <a class="btn dark" href="materials/shag-25.zip">⬇ Скачать архив материалов</a>
-          </div>
-          <p class="mcap">Для команды переноса: архив содержит всё содержимое шага.</p>
-        </div>
-      </section>
-
-      <!-- ═══ LIVE-CHAT ═══ -->
+<!-- ═══ LIVE-CHAT ═══ -->
       <section class="sec" id="livechat">
-        <p class="stp">7 · Сделай в живом чате</p>
+        <p class="stp">6 · Сделай в живом чате</p>
         <h2>Сделай в живом чате</h2>
         <p class="lcinstruction">Возьмите сегодняшнюю задачу из своего плана недели (раздел 4) и соответствующий промпт из пака. Выполните его в реальном чат-боте — например, в одном из ниже. Затем вставьте результат в поле под кнопками.</p>
         <div class="lcbtns">
@@ -473,7 +455,7 @@
       <div class="lockwrap" id="selfcheckWrap">
         <section class="sec locked" id="selfcheck">
           <span class="lockbadge">🔒 Сначала блок «Сделай в живом чате»</span>
-          <p class="stp">8 · Самопроверка</p>
+          <p class="stp">7 · Самопроверка</p>
           <h2>Перед сдачей отметьте</h2>
           <ul class="selfcheck" id="scList">
             <li><label><input type="checkbox"> В моём плане недели есть хотя бы одна задача, привязанная к существующей рутине (планёрка, отчёт, обход).</label></li>
@@ -490,7 +472,7 @@
       <div class="lockwrap" id="practiceWrap">
         <section class="sec locked" id="practice">
           <span class="lockbadge">🔒 Сначала блок «Сделай в живом чате»</span>
-          <p class="stp">9 · Практика и проверка</p>
+          <p class="stp">8 · Практика и проверка</p>
           <h2>Сделайте на своей задаче</h2>
           <p class="muted">Соберите план своей рабочей недели по образцу из раздела 4: 5 дней, 5 задач, 5 промптов. Обезличьте данные: без реальных ФИО, телефонов и коммерческой тайны — только структура плана.</p>
           <div class="review">

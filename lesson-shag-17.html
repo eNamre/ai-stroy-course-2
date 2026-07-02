@@ -155,6 +155,7 @@
   .transfer-note.compact{margin-top:8px;padding:10px 12px}
   @media(max-width:860px){.grid{grid-template-columns:1fr}.asst{position:static}}
   @media(max-width:420px){h1{font-size:25px}.sec{padding:18px 16px}}
+.matrow{margin:10px 0 4px}.matbtn{display:inline-block;background:#111;color:#fff;padding:9px 16px;border-radius:10px;font-weight:700;font-size:14px;text-decoration:none}.matbtn:hover{opacity:.9}
 </style>
 </head>
 <body>
@@ -175,6 +176,7 @@
 
   <div class="kicker">Курс «30 шагов: рабочий ИИ-инструмент для строителя» · Неделя 3 · Шаг 17 · Роль: инженер ПТО <span class="rule" style="background:var(--green)"></span></div>
   <h1>Шаг 17. PDF и сканы: распознать и извлечь</h1>
+  <div class="matrow"><a class="matbtn" href="materials/shag-17.zip" download>⬇ Материалы урока (архив): тексты, файлы кейса, интерактив</a></div>
   <p class="lead">Папка «сканы актов» на объекте растёт быстрее, чем кто-либо успевает вбить объёмы в таблицу вручную. ИИ распознаёт скан за секунды — но <b>верить цифрам без сверки с оригиналом нельзя</b>: OCR путает похожие символы.</p>
   <div class="meta">
     <span class="lvl"><span class="dotx"></span> Ассистент · Уровень 2 · библиотека промптов</span>
@@ -193,14 +195,12 @@
       <section class="sec">
         <p class="stp">Что внутри урока</p>
         <ul class="toc">
-          <li>1 · <a href="#motivation">Зачем это нужно: папка «сканы актов»</a></li>
-          <li>2 · <a href="#howto">Скан-пример и как отдать скан ИИ</a></li>
-          <li>3 · <a href="#demo">Демо: распознаём акт АОСР № 142</a></li>
-          <li>4 · <a href="#traps">Ловушки OCR и двойная сверка</a></li>
-          <li>5 · <a href="#vor">Второй пример: ведомость объёмов работ</a></li>
-          <li>6 · <a href="#materials">Материалы урока</a></li>
-          <li>7 · <a href="#livechat">Сделай в живом чате</a></li>
-          <li>8 · <a href="#practice">Практика и проверка</a></li>
+          <li>1 · <a href="#motivation">Зачем это нужно: папка «сканы актов»</a>
+          <li>2 · <a href="#howto">Скан-пример и как отдать скан ИИ</a>
+          <li>3 · <a href="#demo">Демо: распознаём акт АОСР № 142</a>
+          <li>4 · <a href="#traps">Ловушки OCR и двойная сверка</a>
+          <li>5 · <a href="#vor">Второй пример: ведомость объёмов работ</a>          <li>6 · <a href="#livechat">Сделай в живом чате</a>
+          <li>7 · <a href="#practice">Практика и проверка</a>
         </ul>
         <div class="note">📄 К уроку приложены: сканы АОСР № 142 и ВОР (JPG/PDF), текст акта для сверки и промпт C1 из вашего промпт-пака ПТО.</div>
       </section>
@@ -349,28 +349,10 @@
       </section>
 
       <!-- ═══ MATERIALS ═══ -->
-      <section class="sec" id="materials">
-        <p class="stp">6 · Материалы урока</p>
-        <h2>Материалы урока</h2>
-        <p class="muted">Всё содержимое этого шага — текстовые материалы, сканы кейса, промпт и HTML-интерактив — собрано в один архив.</p>
-        <div class="materials">
-          <ul class="mlist">
-            <li><span class="mico">📝</span><span>Конспект урока (ловушки OCR, правило двойной сверки, .md)</span></li>
-            <li><span class="mico">📁</span><span>Документы кейса «Уютный дом на Матвеева»: 04 (АОСР № 142), 12 (ВОР)</span></li>
-            <li><span class="mico">🖼️</span><span>Сканы JPG/PDF: АОСР № 142 и ВОР — те же изображения, что в уроке</span></li>
-            <li><span class="mico">🧩</span><span>Промпт C1 (извлечение объёмов из акта/ВОР) из промпт-пака ПТО</span></li>
-            <li><span class="mico">🌐</span><span>HTML-интерактив урока (этот файл)</span></li>
-          </ul>
-          <div class="dl">
-            <a class="btn dark" href="materials/shag-17.zip">⬇ Скачать архив материалов</a>
-          </div>
-          <p class="mcap">Для команды переноса: архив содержит всё содержимое шага.</p>
-        </div>
-      </section>
-
+      
       <!-- ═══ LIVE-CHAT ═══ -->
       <section class="sec" id="livechat">
-        <p class="stp">7 · Сделай в живом чате</p>
+        <p class="stp">6 · Сделай в живом чате</p>
         <h2>Сделай в живом чате</h2>
         <p class="lcinstruction">Сфотографируйте свой документ (акт, ведомость, накладную — без персональных данных!) или скачайте скан АОСР № 142 / ВОР из материалов урока. Распознайте его в реальном чат-боте по промпту C1 — например, в одном из ниже. Затем вставьте результат в поле под кнопками.</p>
         <div class="lcbtns">
@@ -396,7 +378,7 @@
       <div class="lockwrap" id="selfcheckWrap">
         <section class="sec locked" id="selfcheck">
           <span class="lockbadge">🔒 Сначала блок «Сделай в живом чате»</span>
-          <p class="stp">8 · Самопроверка</p>
+          <p class="stp">7 · Самопроверка</p>
           <h2>Перед сдачей отметьте</h2>
           <ul class="selfcheck" id="scList">
             <li><label><input type="checkbox"> В промпте явно указан формат результата — таблица с нужными столбцами.</label></li>
@@ -413,7 +395,7 @@
       <div class="lockwrap" id="practiceWrap">
         <section class="sec locked" id="practice">
           <span class="lockbadge">🔒 Сначала блок «Сделай в живом чате»</span>
-          <p class="stp">9 · Практика и проверка</p>
+          <p class="stp">8 · Практика и проверка</p>
           <h2>Сделайте на своей задаче</h2>
           <p class="muted">Возьмите реальный (или учебный) скан со своего объекта — акт, накладную, ведомость — и распознайте его по промпту C1. Обезличьте данные: без реальных ФИО, реквизитов и коммерческой тайны — только объёмы и структура документа.</p>
           <div class="review">

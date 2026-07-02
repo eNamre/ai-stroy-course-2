@@ -13,7 +13,7 @@
   }
   *{box-sizing:border-box}
   body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1.55;-webkit-font-smoothing:antialiased}
-  .wrap{max-width:1080px;margin:0 auto;padding:0 18px 70px}
+  .wrap{max-width:1560px;margin:0 auto;padding:0 18px 70px}
   a{color:var(--blue);text-decoration:none}
   .topbar{display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid var(--line);margin-bottom:22px;flex-wrap:wrap}
   .logo{font-weight:800;font-size:15px}.logo .red{color:var(--brand)}.logo .sep{color:var(--muted);font-weight:600}
@@ -92,6 +92,9 @@
   .mh-close:hover{border-color:var(--ink)}
   #modalFrame{border:0;width:100%;flex:1;background:#fff}
   .modal-mobile{}
+.inl-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:22px 0 10px}
+.inl-close{cursor:pointer;color:#c62828;font-weight:700;white-space:nowrap}
+.inl-frame{width:100%;height:82vh;border:1px solid #e2e5ea;border-radius:12px;background:#fff}
 </style>
 </head>
 <body>
@@ -113,18 +116,6 @@
   <div class="foot">Курс «ИИ в строительстве» · Высшая инженерная школа (Актион Строительство)</div>
 </div>
 
-<div class="modal" id="modal">
-  <div class="modal-box">
-    <div class="modal-head">
-      <div class="mh-title" id="modalTitle">Урок</div>
-      <div class="mh-actions">
-        
-        <button class="mh-close" id="modalClose">✕ Закрыть</button>
-      </div>
-    </div>
-    <iframe id="modalFrame" title="Интерактивный урок" loading="lazy"></iframe>
-  </div>
-</div>
 
 <script>
 const SECTIONS=[
@@ -331,14 +322,14 @@ function renderLesson(){
 window.goStep=(sid,n)=>{expanded=sid;curStep={sid,n};render();};
 window.goSection=(sid)=>{expanded=sid;curStep=null;render();};
 
-// modal
-const modal=document.getElementById('modal'), frame=document.getElementById('modalFrame'), mTitle=document.getElementById('modalTitle');
-window.openLesson=(url,title)=>{ mTitle.textContent=title||'Урок'; frame.src=url;
-  modal.classList.add('open'); document.body.style.overflow='hidden'; };
-function closeModal(){ modal.classList.remove('open'); frame.src='about:blank'; document.body.style.overflow=''; }
-document.getElementById('modalClose').addEventListener('click',closeModal);
-modal.addEventListener('click',e=>{if(e.target===modal)closeModal();});
-document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('open'))closeModal();});
+// инлайн-урок в основном экране
+window.openLesson=(url,title)=>{
+  let h=document.getElementById('lessonHost');
+  if(!h){h=document.createElement('div');h.id='lessonHost';content.appendChild(h);}
+  h.innerHTML=`<div class="inl-head"><b>${title||'Урок'}</b><a class="inl-close" onclick="closeLesson()">✕ Закрыть урок</a></div><iframe class="inl-frame" src="${url}" title="Интерактивный урок" loading="lazy"></iframe>`;
+  h.scrollIntoView({behavior:'smooth',block:'start'});
+};
+window.closeLesson=()=>{const h=document.getElementById('lessonHost');if(h)h.remove();};
 
 expanded='about';render();
 </script>

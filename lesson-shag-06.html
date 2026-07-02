@@ -155,6 +155,7 @@
   .promptbadge{display:inline-block;font-size:11px;font-weight:800;color:var(--purple);background:#faf6ff;border:1px solid #e6d5fa;border-radius:999px;padding:3px 10px;margin-bottom:8px}
   @media(max-width:860px){.grid{grid-template-columns:1fr}.asst{position:static}}
   @media(max-width:420px){h1{font-size:25px}.sec{padding:18px 16px}}
+.matrow{margin:10px 0 4px}.matbtn{display:inline-block;background:#111;color:#fff;padding:9px 16px;border-radius:10px;font-weight:700;font-size:14px;text-decoration:none}.matbtn:hover{opacity:.9}
 </style>
 </head>
 <body>
@@ -175,6 +176,7 @@
 
   <div class="kicker">Курс «30 шагов: рабочий ИИ-инструмент для строителя» · Неделя 1 · Шаг 6 · Роль: сметчик / ПТО / снабжение <span class="rule" style="background:var(--yellow)"></span></div>
   <h1>Шаг 6. Когда ИИ отказывает или ошибается</h1>
+  <div class="matrow"><a class="matbtn" href="materials/shag-06.zip" download>⬇ Материалы урока (архив): тексты, файлы кейса, интерактив</a></div>
   <p class="lead">Большинство людей бросают ИИ после первого же «не могу помочь» или явной ошибки — и зря: почти всегда дело не в инструменте, а в запросе. Разберём три типовых тупика на кейсе «Уютный дом на Матвеева» и научимся выводить диалог из них за одну фразу. <b>Отказ ИИ — сигнал переформулировать, а не повод спорить или всё бросать.</b></p>
   <div class="meta">
     <span class="lvl"><span class="dotx"></span> Ассистент · Уровень 1 · роль и контекст</span>
@@ -197,9 +199,8 @@
           <li>2 · <a href="#scenarios">Что делать: три сценария</a></li>
           <li>3 · <a href="#cheatsheet">Шпаргалка: 5 приёмов реанимации диалога</a></li>
           <li>4 · <a href="#redlines">Красная строка</a></li>
-          <li>5 · <a href="#materials">Материалы урока</a></li>
-          <li>6 · <a href="#livechat">Сделай в живом чате</a></li>
-          <li>7 · <a href="#practice">Практика и проверка</a></li>
+          <li>5 · <a href="#livechat">Сделай в живом чате</a></li>
+          <li>6 · <a href="#practice">Практика и проверка</a></li>
         </ul>
         <div class="note">📄 К уроку приложены: предписание № 57 (документ 05), выдержка проектной спецификации КЖ с маркой бетона B25 (документ 02) и шпаргалка «5 приёмов реанимации диалога».</div>
       </section>
@@ -302,27 +303,9 @@
         </ul>
       </section>
 
-      <!-- ═══ MATERIALS ═══ -->
-      <section class="sec" id="materials">
-        <p class="stp">5 · Материалы урока</p>
-        <h2>Материалы урока</h2>
-        <p class="muted">Всё содержимое этого шага — текстовые материалы, документы кейса и HTML-интерактив — собрано в один архив.</p>
-        <div class="materials">
-          <ul class="mlist">
-            <li><span class="mico">📝</span><span>Конспект урока (шпаргалка «5 приёмов реанимации диалога», красная строка, .md)</span></li>
-            <li><span class="mico">📁</span><span>Документы кейса «Уютный дом на Матвеева»: 05 (предписание № 57), 02 (фрагмент РД и спецификации, марка бетона B25)</span></li>
-            <li><span class="mico">🌐</span><span>HTML-интерактив урока (этот файл)</span></li>
-          </ul>
-          <div class="dl">
-            <a class="btn dark" href="materials/shag-06.zip">⬇ Скачать архив материалов</a>
-          </div>
-          <p class="mcap">Для команды переноса: архив содержит всё содержимое шага.</p>
-        </div>
-      </section>
-
       <!-- ═══ LIVE-CHAT ═══ -->
       <section class="sec" id="livechat">
-        <p class="stp">6 · Сделай в живом чате</p>
+        <p class="stp">5 · Сделай в живом чате</p>
         <h2>Сделай в живом чате</h2>
         <p class="lcinstruction">Задача: добейтесь от ИИ полезного ответа на запрос, где он сначала ответил плохо. Возьмите любую из ситуаций урока (например, «оцени нарушения подрядчика» — запрос, на который стоит ждать отказ или уклончивый ответ) в одном из чат-ботов ниже. Затем примените приём переформулировки и получите рабочий ответ. Вставьте <b>оба</b> ответа — «до» и «после» — в поле результата.</p>
         <div class="lcbtns">
@@ -348,7 +331,7 @@
       <div class="lockwrap" id="selfcheckWrap">
         <section class="sec locked" id="selfcheck">
           <span class="lockbadge">🔒 Сначала блок «Сделай в живом чате»</span>
-          <p class="stp">7 · Самопроверка</p>
+          <p class="stp">6 · Самопроверка</p>
           <h2>Перед сдачей отметьте</h2>
           <ul class="selfcheck" id="scList">
             <li><label><input type="checkbox"> Я не пытался(лась) обойти отказ ИИ — переформулировал(а) запрос в факты, а не «продавливал(а)» оценочный вывод.</label></li>
@@ -365,7 +348,7 @@
       <div class="lockwrap" id="practiceWrap">
         <section class="sec locked" id="practice">
           <span class="lockbadge">🔒 Сначала блок «Сделай в живом чате»</span>
-          <p class="stp">8 · Практика и проверка</p>
+          <p class="stp">7 · Практика и проверка</p>
           <h2>Сделайте на своей задаче</h2>
           <p class="muted">Вспомните свою недавнюю ситуацию, когда ИИ отказал, ошибся или упёрся в лимит. Примените один из пяти приёмов и вставьте результат. Обезличьте данные: без реальных ФИО, телефонов и коммерческой тайны.</p>
           <div class="review">

@@ -150,6 +150,7 @@
   .promptbadge{display:inline-block;font-size:11px;font-weight:800;color:var(--purple);background:#faf6ff;border:1px solid #e6d5fa;border-radius:999px;padding:3px 10px;margin-bottom:8px}
   @media(max-width:860px){.grid{grid-template-columns:1fr}.asst{position:static}}
   @media(max-width:420px){h1{font-size:25px}.sec{padding:18px 16px}}
+.matrow{margin:10px 0 4px}.matbtn{display:inline-block;background:#111;color:#fff;padding:9px 16px;border-radius:10px;font-weight:700;font-size:14px;text-decoration:none}.matbtn:hover{opacity:.9}
 </style>
 </head>
 <body>
@@ -170,6 +171,7 @@
 
   <div class="kicker">Курс «30 шагов: рабочий ИИ-инструмент для строителя» · Неделя 1 · Шаг 2 · Роль: любая <span class="rule" style="background:var(--yellow)"></span></div>
   <h1>Шаг 2. Где ИИ врёт и как проверять</h1>
+  <div class="matrow"><a class="matbtn" href="materials/shag-02.zip" download>⬇ Материалы урока (архив): тексты, файлы кейса, интерактив</a></div>
   <p class="lead">ИИ выдал ответ уверенно и гладко — не значит, что он правильный. На стройке цена такой уверенности — переделка, отклонённый ответ стройконтролю или спор с проверяющим. <b>Разберёмся, где именно ИИ выдумывает и как за 4 шага проверить любой его ответ.</b></p>
   <div class="meta">
     <span class="lvl"><span class="dotx"></span> Ассистент · Уровень 0 · голый чат</span>
@@ -193,9 +195,8 @@
           <li>3 · <a href="#trainer">Найди выдумку: тренажёр</a></li>
           <li>4 · <a href="#verify">Навык верификации: чек-лист из 4 шагов</a></li>
           <li>5 · <a href="#aicheck">Врезка: AI Check</a></li>
-          <li>6 · <a href="#materials">Материалы урока</a></li>
-          <li>7 · <a href="#livechat">Сделай в живом чате</a></li>
-          <li>8 · <a href="#practice">Практика и проверка</a></li>
+          <li>6 · <a href="#livechat">Сделай в живом чате</a></li>
+          <li>7 · <a href="#practice">Практика и проверка</a></li>
         </ul>
         <div class="note">📄 К уроку приложены: текст предписания № 57, фрагмент нормативной подложки со ссылками на СП/ГОСТ и разбор тренажёра «найди выдумку».</div>
       </section>
@@ -305,28 +306,9 @@
         <p>Верификация нужна не только для того, что ИИ пишет вам, но и для документов, которые приходят <b>к вам</b> — например, если письмо от подрядчика или обоснование от смежника выглядит подозрительно гладким. Сервис <b>AI Check от GigaChat</b> оценивает вероятность того, что текст сгенерирован ИИ, и может быть полезен как быстрая проверка входящих документов перед тем, как доверять их содержанию без дополнительной сверки — особенно если в тексте встречаются те же «точные» ссылки на нормативы, которые стоит перепроверить по чек-листу из блока 4.</p>
       </section>
 
-      <!-- ═══ MATERIALS ═══ -->
-      <section class="sec" id="materials">
-        <p class="stp">6 · Материалы урока</p>
-        <h2>Материалы урока</h2>
-        <p class="muted">Всё содержимое этого шага — текстовые материалы, документы кейса и HTML-интерактив — собрано в один архив.</p>
-        <div class="materials">
-          <ul class="mlist">
-            <li><span class="mico">📝</span><span>Конспект урока (теория галлюцинаций, чек-лист верификации, .md)</span></li>
-            <li><span class="mico">📁</span><span>Документы кейса «Уютный дом на Матвеева»: 05 (предписание № 57), 10 (нормативная подложка — ссылки на СП/ГОСТ)</span></li>
-            <li><span class="mico">🧩</span><span>Разбор тренажёра «найди выдумку»: правильные и вымышленные ссылки, построчно</span></li>
-            <li><span class="mico">🌐</span><span>HTML-интерактив урока (этот файл)</span></li>
-          </ul>
-          <div class="dl">
-            <a class="btn dark" href="materials/shag-02.zip">⬇ Скачать архив материалов</a>
-          </div>
-          <p class="mcap">Для команды переноса: архив содержит всё содержимое шага.</p>
-        </div>
-      </section>
-
       <!-- ═══ LIVE-CHAT ═══ -->
       <section class="sec" id="livechat">
-        <p class="stp">7 · Сделай в живом чате</p>
+        <p class="stp">6 · Сделай в живом чате</p>
         <h2>Сделай в живом чате</h2>
         <p class="lcinstruction">Спросите у реального чат-бота — например, в одном из ниже — требования к защитному слою бетона для плиты перекрытия. Затем отдельным сообщением попросите указать <b>точный пункт СП</b>, на который он ссылается. Откройте первоисточник (СП на сайте ФАУ «ФЦС» или в «Техэксперте») и сверьте дословно. Вставьте в поле результат сверки: что ИИ ответил и что сказал первоисточник.</p>
         <div class="lcbtns">
@@ -352,7 +334,7 @@
       <div class="lockwrap" id="selfcheckWrap">
         <section class="sec locked" id="selfcheck">
           <span class="lockbadge">🔒 Сначала блок «Сделай в живом чате»</span>
-          <p class="stp">8 · Самопроверка</p>
+          <p class="stp">7 · Самопроверка</p>
           <h2>Перед сдачей отметьте</h2>
           <ul class="selfcheck" id="scList">
             <li><label><input type="checkbox"> Я попросил(а) ИИ явно указать источник (норматив, пункт, редакцию).</label></li>
@@ -369,7 +351,7 @@
       <div class="lockwrap" id="practiceWrap">
         <section class="sec locked" id="practice">
           <span class="lockbadge">🔒 Сначала блок «Сделай в живом чате»</span>
-          <p class="stp">9 · Практика и проверка</p>
+          <p class="stp">8 · Практика и проверка</p>
           <h2>Сделайте на своей задаче</h2>
           <p class="muted">Возьмите реальную (или учебную) ссылку ИИ на норматив со своего объекта и пройдите чек-лист из 4 шагов: источник → первоисточник → сверка → только тогда в документ. Обезличьте данные: без реальных ФИО, телефонов и коммерческой тайны.</p>
           <div class="review">
