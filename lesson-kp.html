@@ -81,15 +81,15 @@
   .g{color:var(--green);font-weight:800}.y{color:#b9890b;font-weight:800}.r{color:var(--brand);font-weight:800}
   .md{background:#0f1115;color:#d7e3fb;border-radius:10px;padding:13px;font-family:'Consolas','Courier New',monospace;font-size:12.5px;white-space:pre;overflow-x:auto}
   /* preview overlay */
-  .pv{position:fixed;inset:0;background:rgba(20,18,15,.55);display:none;z-index:60;padding:24px}
-  .pv.open{display:flex}
-  .pvbox{background:#eef0f3;border-radius:14px;width:min(880px,100%);max-height:100%;margin:auto;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 24px 70px rgba(0,0,0,.4)}
-  .pvh{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;border-bottom:1px solid var(--line);font-weight:800;font-size:14px;background:#fff;flex-wrap:wrap}
-  .pvh .acts{display:flex;gap:8px;flex-wrap:wrap}
-  .pvh button{cursor:pointer;border:1px solid var(--line);background:#fff;border-radius:8px;padding:7px 12px;font-weight:700;font-size:12.5px}
-  .pvh button.pri{background:var(--ink);color:#fff;border-color:var(--ink)}
-  .pvbody{padding:18px;overflow:auto}
-  .pvbody pre{margin:0;white-space:pre-wrap;font-family:'Consolas','Courier New',monospace;font-size:12.5px;color:#2a2722;line-height:1.55;background:#fff;border:1px solid var(--line);border-radius:8px;padding:14px}
+  .docinline{display:none;margin-top:12px;background:#eef0f3;border:1px solid var(--line);border-radius:14px;max-width:100%;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.08)}
+  .docinline.open{display:block}
+  .docinline .dih{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;border-bottom:1px solid var(--line);font-weight:800;font-size:14px;background:#fff;flex-wrap:wrap}
+  .docinline .dih .acts{display:flex;gap:8px;flex-wrap:wrap}
+  .docinline .dih button{cursor:pointer;border:1px solid var(--line);background:#fff;border-radius:8px;padding:7px 12px;font-weight:700;font-size:12.5px}
+  .docinline .dih button.pri{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .docinline .dibody{padding:18px;overflow-x:auto;max-width:100%}
+  .docinline .dibody pre{margin:0;white-space:pre-wrap;font-family:'Consolas','Courier New',monospace;font-size:12.5px;color:#2a2722;line-height:1.55;background:#fff;border:1px solid var(--line);border-radius:8px;padding:14px}
+  .docinline .dibody .doc{overflow-x:auto}
   /* ДОКУМЕНТ-БЛАНК */
   .doc{font-family:'Times New Roman',Georgia,serif;color:#111;background:#fff;font-size:13px;line-height:1.45;padding:30px 32px;box-shadow:0 2px 10px rgba(0,0,0,.12);margin:0 auto;width:100%}
   .doc .dhead{display:flex;justify-content:space-between;gap:16px;align-items:flex-start}
@@ -208,23 +208,24 @@
           <div class="body" id="chatSmall">
             <span class="sys">⚙️ Роль: инженер-сметчик · формат: сравнительная таблица</span>
             <div class="bub u">Сравни 5 КП на монолитные работы по ТЗ. Сведи в сравнительную таблицу: цена за м³ (с НДС/без), опалубка, армирование, реальная цена «в деле», срок, аванс, гарантия, соответствие ТЗ.
-              <span class="att" onclick="previewDoc('kp1')">📎 КП-1</span>
-              <span class="att" onclick="previewDoc('kp2')">📎 КП-2</span>
-              <span class="att" onclick="previewDoc('kp3')">📎 КП-3</span>
-              <span class="att" onclick="previewDoc('kp4')">📎 КП-4</span>
-              <span class="att" onclick="previewDoc('kp5')">📎 КП-5</span></div>
+              <span class="att" onclick="previewDoc('kp1','docinline-1')">📎 КП-1</span>
+              <span class="att" onclick="previewDoc('kp2','docinline-1')">📎 КП-2</span>
+              <span class="att" onclick="previewDoc('kp3','docinline-1')">📎 КП-3</span>
+              <span class="att" onclick="previewDoc('kp4','docinline-1')">📎 КП-4</span>
+              <span class="att" onclick="previewDoc('kp5','docinline-1')">📎 КП-5</span></div>
           </div>
           <div class="ctrls"><button class="btn sm" id="runSmall">▶ Отправить в GigaChat</button>
             <span class="muted" style="font-size:12px">Ответ смоделирован для урока</span></div>
         </div>
         <div class="dl">
-          <button class="prevbtn" onclick="previewDoc('tz')">👁 ТЗ (бланк)</button>
-          <button class="prevbtn" onclick="previewDoc('kp1')">👁 КП-1</button>
-          <button class="prevbtn" onclick="previewDoc('kp2')">👁 КП-2</button>
-          <button class="prevbtn" onclick="previewDoc('kp3')">👁 КП-3</button>
-          <button class="prevbtn" onclick="previewDoc('kp4')">👁 КП-4</button>
-          <button class="prevbtn" onclick="previewDoc('kp5')">👁 КП-5</button>
+          <button class="prevbtn" onclick="previewDoc('tz','docinline-1')">👁 ТЗ (бланк)</button>
+          <button class="prevbtn" onclick="previewDoc('kp1','docinline-1')">👁 КП-1</button>
+          <button class="prevbtn" onclick="previewDoc('kp2','docinline-1')">👁 КП-2</button>
+          <button class="prevbtn" onclick="previewDoc('kp3','docinline-1')">👁 КП-3</button>
+          <button class="prevbtn" onclick="previewDoc('kp4','docinline-1')">👁 КП-4</button>
+          <button class="prevbtn" onclick="previewDoc('kp5','docinline-1')">👁 КП-5</button>
         </div>
+        <div class="docinline" id="docinline-1"></div>
         <div class="note green" id="smallVerdict" style="display:none">💡 <b>Дешевле ≠ лучше — а здесь и не дешевле.</b> Ценник 12 300 ₽/м³ у КП-3 выглядит выгодным, но: <b>опалубка вынесена за смету</b>, аванс 50%, гарантия 2 года, опыт 1 объект. КП-5 прячет <b>стоимость армирования отдельной строкой</b> — итог нельзя сравнивать «в лоб». При сведении к единой базе (все работы «в деле») дешевизна КП-3 исчезает. Обоснованный выбор — <b>КП-2</b> (17 500 ₽/м³, всё в цене, опыт 9 объектов) или <b>КП-1</b>.</div>
       </section>
 
@@ -277,7 +278,7 @@
           <div class="body" id="chatBig">
             <span class="sys">⚙️ Роль: инженер-сметчик · ВОР № 02-01-01 · 3 подрядчика</span>
             <div class="bub u">Сведи ВОР и 3 КП в сравнительную таблицу, подсвети вынесенные за смету позиции и разные единицы. Итоги я проверю сам.
-              <span class="att" onclick="previewDoc('spectz')">📎 ВОР № 02-01-01 · 👁</span> <span class="att" onclick="previewDoc('kpA')">📎 КП-1</span> <span class="att" onclick="previewDoc('kpB')">📎 КП-3</span> <span class="att" onclick="previewDoc('kpV')">📎 КП-5</span></div>
+              <span class="att" onclick="previewDoc('spectz','docinline-2')">📎 ВОР № 02-01-01 · 👁</span> <span class="att" onclick="previewDoc('kpA','docinline-2')">📎 КП-1</span> <span class="att" onclick="previewDoc('kpB','docinline-2')">📎 КП-3</span> <span class="att" onclick="previewDoc('kpV','docinline-2')">📎 КП-5</span></div>
           </div>
           <div class="ctrls"><div class="seg" id="modeSeg">
             <button data-m="text" class="on">📋 Текст / CSV</button>
@@ -287,15 +288,17 @@
         </div>
         <p class="muted" style="font-size:13px;margin:10px 0 4px"><b>Входные документы</b> (то, что отправляем ИИ):</p>
         <div class="dl">
-          <button class="prevbtn" onclick="previewDoc('spectz')">👁 ВОР № 02-01-01</button>
-          <button class="prevbtn" onclick="previewDoc('kpA')">👁 КП-1</button>
-          <button class="prevbtn" onclick="previewDoc('kpB')">👁 КП-3</button>
-          <button class="prevbtn" onclick="previewDoc('kpV')">👁 КП-5</button>
+          <button class="prevbtn" onclick="previewDoc('spectz','docinline-2')">👁 ВОР № 02-01-01</button>
+          <button class="prevbtn" onclick="previewDoc('kpA','docinline-2')">👁 КП-1</button>
+          <button class="prevbtn" onclick="previewDoc('kpB','docinline-2')">👁 КП-3</button>
+          <button class="prevbtn" onclick="previewDoc('kpV','docinline-2')">👁 КП-5</button>
         </div>
+        <div class="docinline" id="docinline-2"></div>
         <p class="muted" style="font-size:13px;margin:12px 0 4px"><b>Результат</b>, который должен собрать ИИ (эталон):</p>
         <div class="dl">
-          <button class="prevbtn" onclick="previewDoc('spec')">👁 Эталон — сравнительная таблица (XLSX)</button>
+          <button class="prevbtn" onclick="previewDoc('spec','docinline-3')">👁 Эталон — сравнительная таблица (XLSX)</button>
         </div>
+        <div class="docinline" id="docinline-3"></div>
         <div class="note red" id="trapsBox" style="display:none"></div>
       </section>
 
@@ -330,17 +333,19 @@
         <h3>«Документ внутри промпта»</h3>
         <p>Если в веб-чате нет загрузки Excel — вставьте Markdown-таблицу <b>прямо в текст запроса</b>. Готовый шаблон:</p>
         <div class="dl">
-          <button class="prevbtn" onclick="previewText('Промпт с таблицей внутри (Markdown)', DATA.promptWithMd)">👁 Предпросмотр</button>
+          <button class="prevbtn" onclick="previewText('Промпт с таблицей внутри (Markdown)', DATA.promptWithMd,'docinline-4')">👁 Предпросмотр</button>
           <button onclick="dl('Промпт_с_таблицей_Markdown.txt', DATA.promptWithMd)">📋 Скачать</button>
         </div>
+        <div class="docinline" id="docinline-4"></div>
         <h3>Ещё три приёма для точного результата</h3>
         <ul class="checks">
           <li><b>Эхо-проверка.</b> Сначала: «перечисли, что увидел, ничего не считай». Сверьте с оригиналом.</li>
           <li><b>Итоги считайте сами.</b> ИИ хорош в структуре, но не калькулятор — суммы перепроверяйте в Excel.</li>
           <li><b>Большой документ — частями.</b> Разбейте на 2–3 запроса: к короткому тексту модель внимательнее.</li>
         </ul>
-        <div class="dl"><button class="prevbtn" onclick="previewText('Эхо-промпт', DATA.promptEcho)">👁 Эхо-промпт</button>
+        <div class="dl"><button class="prevbtn" onclick="previewText('Эхо-промпт', DATA.promptEcho,'docinline-5')">👁 Эхо-промпт</button>
           <button onclick="dl('Промпт_эхо_проверка.txt', DATA.promptEcho)">📋 Скачать</button></div>
+        <div class="docinline" id="docinline-5"></div>
         <p class="muted" style="font-size:12.5px;margin-top:8px">💡 Эхо-приём — это шаг из промпта <b>C1 «Извлечение объёмов из акта/ВОР в таблицу»</b> из твоего промпт-пака ПТО.</p>
       </section>
 
@@ -350,9 +355,10 @@
         <p class="muted">Возьмите свои КП (обезличенные — без реальных цен и реквизитов: это коммерческая тайна) или наши 5 КП из материалов урока, сведите в сравнительную таблицу по нашему промпту.</p>
         <div class="copy" id="promptBox"></div>
         <div class="dl"><button class="btn sm dark" onclick="copyPrompt()">📋 Скопировать промпт</button>
-          <button class="prevbtn" onclick="previewText('Промпт сравнения', DATA.promptCompare)">👁 Предпросмотр</button>
+          <button class="prevbtn" onclick="previewText('Промпт сравнения', DATA.promptCompare,'docinline-6')">👁 Предпросмотр</button>
           <button onclick="dl('Промпт_сравнение_КП.txt', DATA.promptCompare)">📥 Скачать</button>
           <span class="muted" id="copyMsg" style="font-size:12px;align-self:center"></span></div>
+        <div class="docinline" id="docinline-6"></div>
         <p class="muted" style="font-size:12.5px;margin-top:8px">💡 Это промпт <b>C2 «Сверка КС-2 с ВОР и актом (поиск расхождений)»</b> из твоего промпт-пака ПТО — тот же приём приведения документов к единой базе сравнения.</p>
 
         <h3 style="margin-top:18px">Сделай в живом чате</h3>
@@ -398,10 +404,6 @@
   </div>
 </div>
 
-<div class="pv" id="pv"><div class="pvbox">
-  <div class="pvh"><span id="pvTitle">Документ</span><span class="acts" id="pvActs"></span></div>
-  <div class="pvbody" id="pvBody"></div>
-</div></div>
 <div id="renderHolder"></div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -548,31 +550,45 @@ function dl(name,text,mime){mime=mime||'text/plain';const bom=mime.indexOf('csv'
   const b=new Blob([bom+text],{type:mime+';charset=utf-8'});const a=document.createElement('a');
   a.href=URL.createObjectURL(b);a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},100);}
 
-/* ===== ПРЕДПРОСМОТР ===== */
-let pvCur=null;
-function previewText(title,text){
-  pvCur={kind:'text',file:title,text:text};
-  document.getElementById('pvTitle').textContent=title;
-  document.getElementById('pvBody').innerHTML='<pre></pre>';
-  document.querySelector('#pvBody pre').textContent=text;
-  document.getElementById('pvActs').innerHTML='<button class="pri" onclick="dl(\''+title.replace(/\W+/g,'_')+'.txt\', pvCur.text)">📥 Скачать .txt</button><button onclick="closePv()">✕ Закрыть</button>';
-  openPv();
+/* ===== ПРЕДПРОСМОТР ВСТРОЕННЫЙ (инлайн-контент вместо модалки) ===== */
+let inlineOpenKey={};
+function renderInline(containerId,titleHtml,bodyHtml,actsHtml,toggleKey){
+  const box=document.getElementById(containerId);
+  if(!box) return;
+  if(inlineOpenKey[containerId]===toggleKey){
+    box.classList.remove('open');
+    box.innerHTML='';
+    inlineOpenKey[containerId]=null;
+    return;
+  }
+  box.innerHTML='<div class="dih"><span>'+titleHtml+'</span><span class="acts">'+actsHtml+'<button onclick="collapseInline(\''+containerId+'\')">Свернуть ▲</button></span></div><div class="dibody">'+bodyHtml+'</div>';
+  box.classList.add('open');
+  inlineOpenKey[containerId]=toggleKey;
+  box.scrollIntoView({block:'nearest',behavior:'smooth'});
 }
-function previewDoc(key){
+function collapseInline(containerId){
+  const box=document.getElementById(containerId);
+  if(!box) return;
+  box.classList.remove('open');
+  box.innerHTML='';
+  inlineOpenKey[containerId]=null;
+}
+let textPreviewCur=null;
+function previewText(title,text,containerId){
+  containerId=containerId||'docinline-4';
+  textPreviewCur=text;
+  const bodyHtml='<pre>'+text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')+'</pre>';
+  const acts='<button class="pri" onclick="dl(\''+title.replace(/\W+/g,'_')+'.txt\', textPreviewCur)">📥 Скачать .txt</button>';
+  renderInline(containerId, title, bodyHtml, acts, 'text:'+title);
+}
+function previewDoc(key,containerId){
+  containerId=containerId||'docinline-1';
   const d=DOCS[key]; const html = getDocHtml(key);
-  pvCur={kind:d.kind,file:d.file,key:key};
-  document.getElementById('pvTitle').textContent=d.title;
-  document.getElementById('pvBody').innerHTML=html;
   const act = d.kind==='xlsx'
     ? '<button class="pri" onclick="' + (key==='spectz'?'xlsxSpecTz()':'xlsxSpec()') + '">📊 Скачать XLSX</button>'
     : '<button class="pri" onclick="pdfDoc(\''+key+'\')">📄 Скачать PDF</button>';
-  document.getElementById('pvActs').innerHTML=act+'<button onclick="closePv()">✕ Закрыть</button>';
-  openPv();
+  renderInline(containerId, d.title, html, act, 'doc:'+key);
 }
-function openPv(){document.getElementById('pv').classList.add('open');document.body.style.overflow='hidden';}
-function closePv(){document.getElementById('pv').classList.remove('open');document.body.style.overflow='';}
-document.getElementById('pv').addEventListener('click',e=>{if(e.target.id==='pv')closePv();});
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closePv();});
 
 /* ===== PDF из бланка ===== */
 async function pdfDoc(key){

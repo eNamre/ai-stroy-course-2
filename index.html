@@ -118,7 +118,7 @@
     <div class="modal-head">
       <div class="mh-title" id="modalTitle">Урок</div>
       <div class="mh-actions">
-        <a class="mh-link" id="modalNewTab" target="_blank" rel="noopener">В новой вкладке ↗</a>
+        
         <button class="mh-close" id="modalClose">✕ Закрыть</button>
       </div>
     </div>
@@ -329,7 +329,6 @@ window.goSection=(sid)=>{expanded=sid;curStep=null;render();};
 
 // modal
 const modal=document.getElementById('modal'), frame=document.getElementById('modalFrame'),
-      mTitle=document.getElementById('modalTitle'), mNewTab=document.getElementById('modalNewTab');
 window.openLesson=(url,title)=>{ mTitle.textContent=title||'Урок'; mNewTab.href=url; frame.src=url;
   modal.classList.add('open'); document.body.style.overflow='hidden'; };
 function closeModal(){ modal.classList.remove('open'); frame.src='about:blank'; document.body.style.overflow=''; }
