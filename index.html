@@ -238,7 +238,7 @@ const SECTIONS=[
    result:'Подтверждённый навык в портфолио и документ, повышающий вашу ценность на рынке.',
    hook:'На выходе — не сертификат «о прослушивании», а доказанное умение применять ИИ в работе.',
    steps:[
-     {n:29,t:'Итоговый сквозной кейс по роли',url:'lesson-final-pto.html',
+     {n:29,t:'Итоговый сквозной кейс по роли',url:'lesson-final-pto.html',roles:[['ПТО','lesson-final-pto.html'],['Стройконтроль','lesson-final-sk.html'],['Сметчик','lesson-final-smetchik.html'],['Прораб','lesson-final-prorab.html'],['ГИП / проектировщик','lesson-final-gip.html'],['Инженер ОТ','lesson-final-ot.html']],
       desc:'Решаете реальную задачу своей роли с ИИ от и до: ПТО — пакет документов по этапу; стройконтроль — неделя предписаний и фотоотчёт; сметчик — сравнение КП и письмо.'},
      {n:30,t:'Защита и «Паспорт навыков»',url:'lesson-shag-30.html',
       desc:'Отправляете итоговый кейс куратору, получаете обратную связь, отметку в «Паспорте навыков» и сертификат прохождения курса установленного образца.'}]}
@@ -326,7 +326,8 @@ function renderLesson(){
   h+=`<h2>Шаг ${st.n}. ${st.t}</h2>`;
   if(st.url)h+=`<span class="badge ready"><span class="d"></span> Прототип готов</span>`;
   h+=`<p class="ldesc">${st.desc}</p>`;
-  if(st.url){h+=`<div class="btnrow"><a class="openbtn" onclick="openLesson('${st.url}','Шаг ${st.n}. ${st.t}')">▶ Открыть интерактивный урок</a>`;const mz=matZip(st.url);if(mz)h+=`<a class="matbtn2" href="${mz}" download>⬇ Материалы урока</a>`;h+=`</div>`;}
+  if(st.roles){h+=`<div class="lbl2">Финал — по вашей роли</div>`;st.roles.forEach(r=>{h+=`<div class="btnrow" style="margin-bottom:8px"><a class="openbtn" onclick="openLesson('${r[1]}','Шаг 29. Финал: ${r[0]}')">▶ ${r[0]}</a>`;const mz=matZip(r[1]);if(mz)h+=`<a class="matbtn2" href="${mz}" download>⬇ Материалы</a>`;h+=`</div>`;});}
+  else if(st.url){h+=`<div class="btnrow"><a class="openbtn" onclick="openLesson('${st.url}','Шаг ${st.n}. ${st.t}')">▶ Открыть интерактивный урок</a>`;const mz=matZip(st.url);if(mz)h+=`<a class="matbtn2" href="${mz}" download>⬇ Материалы урока</a>`;h+=`</div>`;}
   // prev/next within section
   const prev=idx>0?s.steps[idx-1]:null, next=idx<s.steps.length-1?s.steps[idx+1]:null;
   h+=`<div class="navbtns"><a ${prev?`onclick="goStep('${s.id}',${prev.n})"`:'style="visibility:hidden"'}>← Шаг ${prev?prev.n:''}</a>`+
@@ -347,7 +348,8 @@ document.getElementById('modalClose').addEventListener('click',closeModal);
 modal.addEventListener('click',e=>{if(e.target===modal)closeModal();});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('open'))closeModal();});
 window.matZip=(u)=>{const m=u.match(/lesson-shag-(\d+)/); if(m)return 'materials/shag-'+m[1]+'.zip';
-  return {'lesson-1.html':'materials/shag-05.zip','lesson-kp.html':'materials/shag-16.zip','lesson-ozhr.html':'materials/shag-18.zip','lesson-final-pto.html':'materials/shag-final-pto.zip'}[u]||null;};
+  const f=u.match(/lesson-final-([a-z]+)\.html/); if(f)return 'materials/shag-final-'+f[1]+'.zip';
+  return {'lesson-1.html':'materials/shag-05.zip','lesson-kp.html':'materials/shag-16.zip','lesson-ozhr.html':'materials/shag-18.zip'}[u]||null;};
 
 expanded='about';render();
 </script>
