@@ -159,7 +159,6 @@
   .promptbadge{display:inline-block;font-size:11px;font-weight:800;color:var(--purple);background:#faf6ff;border:1px solid #e6d5fa;border-radius:999px;padding:3px 10px;margin-bottom:8px}
   @media(max-width:860px){.grid{grid-template-columns:1fr}.asst{position:static}}
   @media(max-width:420px){h1{font-size:25px}.sec{padding:18px 16px}}
-.matrow{margin:10px 0 4px}.matbtn{display:inline-block;background:#111;color:#fff;padding:9px 16px;border-radius:10px;font-weight:700;font-size:14px;text-decoration:none}.matbtn:hover{opacity:.9}
 </style>
 </head>
 <body>
@@ -180,7 +179,6 @@
 
   <div class="kicker">Курс «30 шагов: рабочий ИИ-инструмент для строителя» · Неделя 2 · Шаг 14 · Роль: инженер ПТО <span class="rule" style="background:var(--yellow)"></span></div>
   <h1>Шаг 14. Практикум недели: документ от и до</h1>
-  <div class="matrow"><a class="matbtn" href="materials/shag-14.zip" download>⬇ Материалы урока (архив): тексты, файлы кейса, интерактив</a></div>
   <p class="lead">Итог Недели 2: письмо техзаказчика № 311 с тремя требованиями — и вы проходите весь путь от промпта из библиотеки до готового официального ответа. <b>Это не новый навык, а сборка всех навыков недели в один рабочий цикл.</b></p>
   <div class="meta">
     <span class="lvl"><span class="dotx"></span> Ассистент · Уровень 2 · библиотека промптов</span>
@@ -199,11 +197,13 @@
       <section class="sec">
         <p class="stp">Что внутри урока</p>
         <ul class="toc">
-          <li>1 · <a href="#task">Задача: письмо № 311</a>
-          <li>2 · <a href="#cycle">Цикл из 5 шагов</a>
-          <li>3 · <a href="#demo">Демо полного цикла</a>          <li>4 · <a href="#livechat">Сделай в живом чате</a>
-          <li>5 · <a href="#selfcheck">Чек-лист самопроверки недели</a>
-          <li>6 · <a href="#practice">Практика и проверка</a>
+          <li>1 · <a href="#task">Задача: письмо № 311</a></li>
+          <li>2 · <a href="#cycle">Цикл из 5 шагов</a></li>
+          <li>3 · <a href="#demo">Демо полного цикла</a></li>
+          <li>4 · <a href="#materials">Материалы урока</a></li>
+          <li>5 · <a href="#livechat">Сделай в живом чате</a></li>
+          <li>6 · <a href="#selfcheck">Чек-лист самопроверки недели</a></li>
+          <li>7 · <a href="#practice">Практика и проверка</a></li>
         </ul>
         <div class="note">📄 К уроку приложены: письмо техзаказчика № 311, график производства работ (документ 01), промпт A3 из промпт-пака ПТО.</div>
       </section>
@@ -217,7 +217,7 @@
         <details class="doc">
           <summary>✉️ Письмо техзаказчика № 311 от 24.06.2026 <span class="dtag">документ 09 · открыть</span></summary>
           <div class="docbody">
-<pre>Кому: ООО СЗ «Уютный дом» (вымышл.), генеральному подрядчику
+<pre>От: ООО СЗ «Уютный дом» (застройщик-заказчик). Кому: генеральному подрядчику ООО «СтройМонолит»
 От: технического заказчика АО «ЕкатеринбургТехзаказчик» (вымышл.)
 Исх. № 311 от 24.06.2026
 
@@ -384,12 +384,29 @@ ___________ /Сидоров С.С. (вымышл.)/</pre>
       </section>
 
       <!-- ═══ MATERIALS ═══ -->
-      
+      <section class="sec" id="materials">
+        <p class="stp">5 · Материалы урока</p>
+        <h2>Материалы урока</h2>
+        <p class="muted">Всё содержимое этого шага — текстовые материалы, документы кейса, промпт и HTML-интерактив — собрано в один архив.</p>
+        <div class="materials">
+          <ul class="mlist">
+            <li><span class="mico">📝</span><span>Конспект урока (цикл из 5 шагов, разбор находки со сроком, .md)</span></li>
+            <li><span class="mico">📁</span><span>Документы кейса «Уютный дом на Матвеева»: 09 (письмо № 311), 01 (график производства работ)</span></li>
+            <li><span class="mico">🧩</span><span>Промпт A3 (ответ техзаказчику на несколько замечаний) из промпт-пака ПТО</span></li>
+            <li><span class="mico">🌐</span><span>HTML-интерактив урока (этот файл)</span></li>
+          </ul>
+          <div class="dl">
+            <a class="btn dark" href="materials/shag-14.zip">⬇ Скачать архив материалов</a>
+          </div>
+          <p class="mcap">Для команды переноса: архив содержит всё содержимое шага.</p>
+        </div>
+      </section>
+
       <!-- ═══ SELFCHECK — чек-лист самопроверки недели ═══ -->
       <div class="lockwrap" id="selfcheckWrap">
         <section class="sec locked" id="selfcheck">
           <span class="lockbadge">🔒 Сначала блок «Сделай в живом чате»</span>
-          <p class="stp">5 · Самопроверка недели</p>
+          <p class="stp">6 · Самопроверка недели</p>
           <h2>Перед сдачей недели отметьте</h2>
           <ul class="selfcheck" id="scList">
             <li><label><input type="checkbox"> Промпт взят из библиотеки (Шаг 13), а не написан заново с нуля.</label></li>
@@ -408,7 +425,7 @@ ___________ /Сидоров С.С. (вымышл.)/</pre>
       <div class="lockwrap" id="practiceWrap">
         <section class="sec locked" id="practice">
           <span class="lockbadge">🔒 Сначала блок «Сделай в живом чате»</span>
-          <p class="stp">6 · Практика и проверка</p>
+          <p class="stp">7 · Практика и проверка</p>
           <h2>Итог недели — на проверку куратору</h2>
           <p class="muted">Отправьте финальный текст письма (со своего объекта или учебный, по письму № 311) на проверку куратору недели. Обезличьте данные: без реальных ФИО, телефонов и коммерческой тайны — только суть требований и сроки.</p>
           <div class="review">

@@ -159,7 +159,6 @@
   .transfer-note.compact{margin-top:8px;padding:10px 12px}
   @media(max-width:860px){.grid{grid-template-columns:1fr}.asst{position:static}}
   @media(max-width:420px){h1{font-size:25px}.sec{padding:18px 16px}}
-.matrow{margin:10px 0 4px}.matbtn{display:inline-block;background:#111;color:#fff;padding:9px 16px;border-radius:10px;font-weight:700;font-size:14px;text-decoration:none}.matbtn:hover{opacity:.9}
 </style>
 </head>
 <body>
@@ -180,7 +179,6 @@
 
   <div class="kicker">Курс «30 шагов: рабочий ИИ-инструмент для строителя» · Неделя 4 · Шаг 23 · Роль: инженер ПТО / ГИП <span class="rule" style="background:var(--purple)"></span></div>
   <h1>Шаг 23. Нормативка и её пределы</h1>
-  <div class="matrow"><a class="matbtn" href="materials/shag-23.zip" download>⬇ Материалы урока (архив): тексты, файлы кейса, интерактив</a></div>
   <p class="lead">ИИ отвечает на вопросы про СП и ГОСТ уверенно — настолько уверенно, что легко принять черновик за истину. Но цена ошибки в номере пункта СП — это не опечатка, а <b>официальный документ с ляпом</b>. Разберём, где нормативка от ИИ — навигатор, а где нужен только первоисточник.</p>
   <div class="meta">
     <span class="lvl"><span class="dotx"></span> Ассистент · Уровень 3 · документы и знания</span>
@@ -205,8 +203,9 @@
           <li>4 · <a href="#b2">Приём «проверь комплектность по СП» (промпт B2 ⚠️)</a></li>
           <li>5 · <a href="#fresh">Актуальность: нормативы меняются</a></li>
           <li>6 · <a href="#aicheck">AI Check: проверка ответа подрядчика</a></li>
-          <li>7 · <a href="#livechat">Сделай в живом чате</a></li>
-          <li>8 · <a href="#practice">Практика и проверка</a></li>
+          <li>7 · <a href="#materials">Материалы урока</a></li>
+          <li>8 · <a href="#livechat">Сделай в живом чате</a></li>
+          <li>9 · <a href="#practice">Практика и проверка</a></li>
         </ul>
         <div class="note">📄 К уроку приложены: нормативная подложка кейса (документ 10), замечания ГГЭ и ответ проектировщика (документ 18), промпт B2 из промпт-пака ПТО.</div>
       </section>
@@ -390,9 +389,28 @@
         <div class="note red">⚠️ Если сомневаетесь — попросите подрядчика прислать точную цитату пункта СП со страницей источника (ФАУ ФЦС / Техэксперт), а не пересказ. Это простая проверка, которая отделяет проверенный документ от непроверенного черновика ИИ.</div>
       </section>
 
-<!-- ═══ LIVE-CHAT ═══ -->
+      <!-- ═══ MATERIALS ═══ -->
+      <section class="sec" id="materials">
+        <p class="stp">7 · Материалы урока</p>
+        <h2>Материалы урока</h2>
+        <p class="muted">Всё содержимое этого шага — текстовые материалы, документы кейса, промпты и HTML-интерактив — собрано в один архив.</p>
+        <div class="materials">
+          <ul class="mlist">
+            <li><span class="mico">📝</span><span>Конспект урока (правило «первый черновик», риски промпта B2, .md)</span></li>
+            <li><span class="mico">📁</span><span>Документы кейса «Уютный дом на Матвеева»: 02 (спецификация КЖ), 10 (нормативная подложка), 18 (замечания ГГЭ и ответ)</span></li>
+            <li><span class="mico">🧩</span><span>Промпт B2 (проверка комплектности РД по СП, ⚠️ риск выдумки) из промпт-пака ПТО</span></li>
+            <li><span class="mico">🌐</span><span>HTML-интерактив урока (этот файл)</span></li>
+          </ul>
+          <div class="dl">
+            <a class="btn dark" href="materials/shag-23.zip">⬇ Скачать архив материалов</a>
+          </div>
+          <p class="mcap">Для команды переноса: архив содержит всё содержимое шага.</p>
+        </div>
+      </section>
+
+      <!-- ═══ LIVE-CHAT ═══ -->
       <section class="sec" id="livechat">
-        <p class="stp">7 · Сделай в живом чате</p>
+        <p class="stp">8 · Сделай в живом чате</p>
         <h2>Сделай в живом чате</h2>
         <p class="lcinstruction">Спросите ИИ про норматив по своей реальной задаче (например: «какой СП регулирует ...», «в каком документе искать требования к ...») — в одном из чат-ботов ниже. Затем найдите первоисточник (ФАУ ФЦС, Техэксперт) и отметьте, что совпало, а что нет. Вставьте свою сверку в поле под кнопками.</p>
         <div class="lcbtns">
@@ -418,7 +436,7 @@
       <div class="lockwrap" id="selfcheckWrap">
         <section class="sec locked" id="selfcheck">
           <span class="lockbadge">🔒 Сначала блок «Сделай в живом чате»</span>
-          <p class="stp">8 · Самопроверка</p>
+          <p class="stp">9 · Самопроверка</p>
           <h2>Перед сдачей отметьте</h2>
           <ul class="selfcheck" id="scList">
             <li><label><input type="checkbox"> Я использовал(а) ответ ИИ по нормативке как навигатор, а не как готовую цитату для документа.</label></li>
@@ -435,7 +453,7 @@
       <div class="lockwrap" id="practiceWrap">
         <section class="sec locked" id="practice">
           <span class="lockbadge">🔒 Сначала блок «Сделай в живом чате»</span>
-          <p class="stp">9 · Практика и проверка</p>
+          <p class="stp">10 · Практика и проверка</p>
           <h2>Сделайте на своей задаче</h2>
           <p class="muted">Возьмите реальный (или учебный) вопрос по нормативке со своего объекта, получите черновик-навигатор от ИИ и сверьте итоговую ссылку с первоисточником. Обезличьте данные: без реальных ФИО, реквизитов и коммерческой тайны — только суть вопроса и норматива.</p>
           <div class="review">

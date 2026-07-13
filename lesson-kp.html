@@ -121,7 +121,6 @@
   .toc{list-style:none;padding:0;margin:10px 0 0;font-size:13px}.toc li{padding:5px 0}.toc a{color:var(--ink)}
   #renderHolder{position:fixed;left:-10000px;top:0;width:760px;background:#fff}
   @media(max-width:860px){.grid{grid-template-columns:1fr}.asst{position:static}}
-.matrow{margin:10px 0 4px}.matbtn{display:inline-block;background:#111;color:#fff;padding:9px 16px;border-radius:10px;font-weight:700;font-size:14px;text-decoration:none}.matbtn:hover{opacity:.9}
 </style>
 </head>
 <body>
@@ -142,7 +141,6 @@
 
   <div class="kicker">Неделя 3 · Шаг 16 · Сметчик / снабжение / тендеры <span class="rule" style="background:var(--yellow)"></span></div>
   <h1>Сравнение смет и КП в таблицу</h1>
-  <div class="matrow"><a class="matbtn" href="materials/shag-16.zip" download>⬇ Материалы урока (архив): тексты, файлы кейса, интерактив</a></div>
   <p class="lead">ИИ сводит разнородные предложения в одну таблицу за минуту и подсвечивает ловушки. Но результат зависит от двух вещей: <b>как вы описали нужный формат</b> и <b>в каком виде передали данные</b>. Разберём на закупке монолитных работ ЖК «Уютный дом на Матвеева»: 5 КП подрядчиков против ТЗ и ведомости объёмов (ВОР) — на примере GigaChat и других моделей.</p>
   <div class="lvl"><span class="dotx"></span> Ассистент · Уровень 3 · документы и таблицы</div>
 
@@ -366,10 +364,10 @@
 | Армирование | в цене | в цене | отдельно (₽/т) |</div>
           <div class="cap">Так выглядит таблица в Markdown. Каждое число — в своём столбце.</div>
         </div>
-        <h3>Бесплатные конвертеры (работают в браузере)</h3>
+        <h3>Чем конвертировать в Markdown</h3>
         <ul class="checks">
-          <li><b>Excel/CSV → Markdown:</b> <a href="https://tableconvert.com/excel-to-markdown" target="_blank" rel="noopener">TableConvert</a> или <a href="https://dewiar.com/markdown/table" target="_blank" rel="noopener">Dewiar</a>.</li>
-          <li><b>PDF → Markdown:</b> <a href="https://pdf2md.morethan.io/" target="_blank" rel="noopener">pdf2md.morethan.io</a> или <a href="https://products.groupdocs.app/conversion/pdf-to-md" target="_blank" rel="noopener">GroupDocs</a>. <span class="muted">Для сканов сначала OCR.</span></li>
+          <li><b>Excel/CSV и PDF → Markdown:</b> локальные средства (Word, Excel, «Сохранить как», встроенный экспорт PDF) или сервис, одобренный ИТ-службой компании; публичные онлайн-конвертеры для рабочих документов не используем.</li>
+          <li><span class="muted">Для сканов — сначала OCR, тоже в одобренном контуре.</span></li>
         </ul>
         <h3>«Документ внутри промпта»</h3>
         <p>Если в веб-чате нет загрузки Excel — вставьте Markdown-таблицу <b>прямо в текст запроса</b>. Готовый шаблон:</p>
@@ -393,7 +391,7 @@
       <section class="sec" id="practice">
         <p class="stp">8 · Практика и проверка</p>
         <h2>Сделайте на своей задаче</h2>
-        <p class="muted">Возьмите свои КП (обезличенные — без реальных цен и реквизитов: это коммерческая тайна) или наши 5 КП из материалов урока, сведите в сравнительную таблицу по нашему промпту.</p>
+        <p class="muted">Возьмите свои КП (обезличенные — без ФИО и контактов, реквизитов и ИНН, цен и скидок, объёмов и сроков по незакрытым договорам и любых данных, позволяющих идентифицировать проект или контрагента: это коммерческая тайна) или наши 5 КП из материалов урока, сведите в сравнительную таблицу по нашему промпту.</p>
         <div class="copy" id="promptBox"></div>
         <div class="dl"><button class="btn sm dark" onclick="copyPrompt()">📋 Скопировать промпт</button>
           <button class="prevbtn" onclick="previewText('Промпт сравнения', DATA.promptCompare,'docinline-6')">👁 Предпросмотр</button>
@@ -403,7 +401,7 @@
         <p class="muted" style="font-size:12.5px;margin-top:8px">💡 Это промпт <b>C2 «Сверка КС-2 с ВОР и актом (поиск расхождений)»</b> из твоего промпт-пака ПТО — тот же приём приведения документов к единой базе сравнения.</p>
 
         <h3 style="margin-top:18px">Сделай в живом чате</h3>
-        <p class="muted">Открой любой из чатов, вставь промпт и свои данные (или наши КП), получи таблицу — и вставь результат ниже.</p>
+        <p class="muted">Открой любой из чатов, вставь промпт и свои данные (или наши КП), получи таблицу — и вставь результат ниже. Для практики используйте обезличенный или учебный документ из материалов урока. Реальные рабочие документы — только в контуре, одобренном вашим работодателем.</p>
         <div class="dl">
           <a class="btn sm" href="https://giga.chat" target="_blank" rel="noopener">🟢 Открыть GigaChat</a>
           <a class="btn sm ghost" href="https://alice.yandex.ru" target="_blank" rel="noopener">🔵 Открыть Алису</a>
@@ -419,6 +417,17 @@
         </div>
         <div class="transfer-note">⚙ Для переноса в платформу Актион: здесь подключается отправка куратору — проверка №3.</div>
         <div class="note green" id="finalNote" style="margin-top:18px;display:none">⬆️ <b>Ассистент закрепил навык «Документы и таблицы».</b> Что забрать: опишите формат результата; давайте данные текстом/Markdown, не картинкой; на объёме проверяйте позиции и итоги сами.</div>
+
+        <h3 style="margin-top:22px">Материалы урока</h3>
+        <p class="muted">Все документы кейса «Уютный дом на Матвеева» одним архивом — открой и работай в живом чате.</p>
+        <div class="dl"><a class="btn sm dark" href="materials/shag-16.zip" download>⬇ Скачать архив материалов</a></div>
+        <ul class="checks" style="margin-top:10px">
+          <li>Файл 03 — 5 коммерческих предложений подрядчиков на монолитные работы (КП-1 … КП-5).</li>
+          <li>ВОР № 02-01-01 — ведомость объёмов монолитных работ.</li>
+          <li>ТЗ — описание объекта закупки (требования к монолиту B25).</li>
+          <li>Промпты C1 и C2 из промпт-пака ПТО (извлечение объёмов, сверка).</li>
+          <li>Бланки: пустой шаблон сравнительной таблицы КП.</li>
+        </ul>
       </section>
     </div>
 
@@ -499,7 +508,7 @@ const DOCS={
     <tr><td class="c">1</td><td>Класс бетона</td><td>B25 W6</td><td>ГОСТ 26633</td></tr>
     <tr><td class="c">2</td><td>Опалубка</td><td><b>в составе работ</b> (устройство/демонтаж)</td><td>СП 70.13330</td></tr>
     <tr><td class="c">3</td><td>Армирование</td><td><b>в составе работ</b>, арматура А500С / А240</td><td>СП 63.13330</td></tr>
-    <tr><td class="c">4</td><td>Освидетельствование</td><td>АОСР на скрытые работы</td><td>РД-11-02-2006</td></tr>
+    <tr><td class="c">4</td><td>Освидетельствование</td><td>АОСР на скрытые работы</td><td>приказ Минстроя № 344/пр</td></tr>
     <tr><td class="c">5</td><td>Документы качества</td><td>паспорта бетона, сертификаты арматуры</td><td>входной контроль</td></tr>
     <tr><td class="c">6</td><td>Аванс</td><td>не более 30 %</td><td>проект договора</td></tr>
     <tr><td class="c">7</td><td>Срок выполнения</td><td>не более 90 календарных дней</td><td>график ПР</td></tr>
@@ -539,7 +548,7 @@ const DOCS={
     <div class="dtitle">КОММЕРЧЕСКОЕ ПРЕДЛОЖЕНИЕ № А-318 от 11.06.2026</div>
     <div class="dto">Кому: ООО СЗ «Уютный дом». Предмет: монолитные работы, секция 2.</div>
     <table class="dt"><tr><th>№</th><th>Наименование</th><th>Ед.</th><th>Кол-во</th><th>Цена б/НДС</th><th>НДС 22%</th><th>Цена с НДС</th><th>Сумма, ₽</th></tr>
-    <tr><td class="c">1</td><td>Монолитные работы «в деле» (бетон B25, опалубка, армирование)</td><td class="c">м³</td><td class="r">2 010</td><td class="r">15 902</td><td class="r">3 498</td><td class="r">19 400</td><td class="r">39 894 000</td></tr></table>
+    <tr><td class="c">1</td><td>Монолитные работы «в деле» (бетон B25, опалубка, армирование)</td><td class="c">м³</td><td class="r">2 010</td><td class="r">15 902</td><td class="r">3 498</td><td class="r">19 400</td><td class="r">38 994 000</td></tr></table>
     <div class="dterms"><b>Условия:</b> опалубка и армирование <b>в цене</b>; аванс — 25 %; срок — 85 дней; гарантия — 5 лет; опыт — 7 аналогичных объектов; документы: полный комплект. Срок действия КП — 30 дней.</div>
     <div class="dsign"><div class="sig">Генеральный директор <span class="ln"></span> / Сидоров П.А. /</div>${stamp('ООО «ПрофКаркас» • ИНН 7701234567 • г. Москва')}</div></div>`},
   kp5:{title:'Коммерческое предложение КП-5', file:'КП-5_ГорСтрой', kind:'pdf', html:`
@@ -548,7 +557,7 @@ const DOCS={
     <div class="dtitle">КОММЕРЧЕСКОЕ ПРЕДЛОЖЕНИЕ № 512 от 11.06.2026</div>
     <div class="dto">Кому: ООО СЗ «Уютный дом». Предмет: монолитные работы, секция 2.</div>
     <table class="dt"><tr><th>№</th><th>Наименование</th><th>Ед.</th><th>Кол-во</th><th>Цена б/НДС</th><th>НДС 22%</th><th>Цена с НДС</th><th>Сумма, ₽</th></tr>
-    <tr><td class="c">1</td><td>Бетонирование + опалубка B25 (<b>без армирования</b>)</td><td class="c">м³</td><td class="r">14 918</td><td class="r">14 918</td><td class="r">3 282</td><td class="r">18 200</td><td class="r">36 582 000</td></tr>
+    <tr><td class="c">1</td><td>Бетонирование + опалубка B25 (<b>без армирования</b>)</td><td class="c">м³</td><td class="r">2 010</td><td class="r">14 918</td><td class="r">3 282</td><td class="r">18 200</td><td class="r">36 582 000</td></tr>
     <tr><td class="c">2</td><td>Армирование (арматура А500С/А240, работа) — <b>отдельной строкой</b></td><td class="c">т</td><td class="r">100,6</td><td class="r">—</td><td class="r">—</td><td class="r">по факту</td><td class="r">согл. отдельно</td></tr></table>
     <div class="dterms"><b>Условия:</b> опалубка в цене; <b>армирование — отдельной строкой</b> (не входит в цену за м³, итог нельзя сравнивать «в лоб»); аванс — 30 %; срок — 90 дней; гарантия — 5 лет; опыт — 5 объектов. Срок действия КП — 30 дней.</div>
     <div class="dnote">Стоимость армирования вынесена отдельно — при сравнении привести к единой базе.</div>
@@ -779,7 +788,8 @@ function buildSpecTzHtml(){
   const body=bigRows().map(c=>`<tr><td class="c">${c[0]}</td><td>${c[1]}</td><td class="c">${c[2]}</td><td class="r">${c[3]}</td></tr>`).join('');
   return `<div class="doc"><div class="dhead"><div class="dco">ООО СЗ «Уютный дом» · Отдел закупок</div><div class="dreq">ВОР № 02-01-01 · раздел 02-01-01<br>монолитные работы, секция 2 · НДС 22%</div></div><hr>
   <div class="dtitle">ВЕДОМОСТЬ ОБЪЁМОВ РАБОТ (ВОР № 02-01-01)</div>
-  <div class="dsub">Монолитные работы, каркас эт. 4–9 · цены подрядчики указывают в своих КП</div>
+  <div class="dsub">Монолитные работы по ВОР № 02-01-01 (в т.ч. нулевой цикл) · цены подрядчики указывают в своих КП</div>
+  <div class="dnote">Объём закупки по ТЗ — 2 010 м³: включает запас и работы за пределами данной выписки ВОР — это нормальная ситуация, которую ИИ должен подсветить, а не скрыть.</div>
   <table class="dt"><tr><th>№</th><th>Наименование (по ВОР)</th><th>Ед.</th><th>Кол-во</th></tr>${body}</table>
   <div class="dsign"><div class="sig">Начальник отдела закупок <span class="ln"></span> / Кузнецова Т.А. /</div></div></div>`;
 }

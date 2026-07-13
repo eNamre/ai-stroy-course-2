@@ -144,7 +144,6 @@
   .cand .pp{flex:0 0 42px;text-align:right;font-size:12.5px;color:var(--muted)}
   @media(max-width:860px){.grid{grid-template-columns:1fr}.asst{position:static}}
   @media(max-width:420px){h1{font-size:25px}.sec{padding:18px 16px}.cand .w{flex-basis:100px;font-size:13px}}
-.matrow{margin:10px 0 4px}.matbtn{display:inline-block;background:#111;color:#fff;padding:9px 16px;border-radius:10px;font-weight:700;font-size:14px;text-decoration:none}.matbtn:hover{opacity:.9}
 </style>
 </head>
 <body>
@@ -165,8 +164,7 @@
 
   <div class="kicker">Курс «30 шагов: рабочий ИИ-инструмент для строителя» · Неделя 1 · Шаг 1 · Роль: любая <span class="rule" style="background:var(--brand)"></span></div>
   <h1>Шаг 1. Как ИИ «думает»</h1>
-  <div class="matrow"><a class="matbtn" href="materials/shag-01.zip" download>⬇ Материалы урока (архив): тексты, файлы кейса, интерактив</a></div>
-  <p class="lead">Один и тот же ИИ иногда выдаёт гениальный ответ, а иногда — уверенную чушь. У этого есть <b>одно простое объяснение</b>: ИИ не отвечает из базы знаний, а угадывает следующее слово. Разберёмся, как это работает — и что из этого следует для стройки.</p>
+  <p class="lead">Один и тот же ИИ иногда выдаёт гениальный ответ, а иногда — уверенную чушь. У этого есть <b>одно простое объяснение</b>: ИИ не отвечает из базы знаний, а угадывает следующее слово (это сознательное упрощение — внутри статистическая модель языка, но для практики метафора работает). Разберёмся, как это работает — и что из этого следует для стройки.</p>
   <div class="meta">
     <span class="lvl"><span class="dotx"></span> Ассистент · Уровень 0 · голый чат</span>
     <span class="pill">⏱ 10 минут</span>
@@ -188,8 +186,9 @@
           <li>2 · <a href="#theory">Теория: машина продолжения текста</a></li>
           <li>3 · <a href="#trainer">Тренажёр: соберите ответ ИИ сами</a></li>
           <li>4 · <a href="#quiz">Проверь себя: мини-квиз</a></li>
-          <li>5 · <a href="#livechat">Сделай в живом чате</a></li>
-          <li>6 · <a href="#practice">Итоги и самопроверка</a></li>
+          <li>5 · <a href="#materials">Материалы урока</a></li>
+          <li>6 · <a href="#livechat">Сделай в живом чате</a></li>
+          <li>7 · <a href="#practice">Итоги и самопроверка</a></li>
         </ul>
         <div class="note">📄 К уроку приложены: конспект теории «как работает ИИ», сам тренажёр «следующее слово» и документ 01 кейса «Уютный дом на Матвеева» (график производства работ) — источник примера ниже.</div>
       </section>
@@ -266,9 +265,28 @@
         </div>
       </section>
 
+      <!-- ═══ MATERIALS ═══ -->
+      <section class="sec" id="materials">
+        <p class="stp">5 · Материалы урока</p>
+        <h2>Материалы урока</h2>
+        <p class="muted">Всё содержимое этого шага — текстовые материалы, документ кейса, использованный в тренажёре, и HTML-интерактив — собрано в один архив.</p>
+        <div class="materials">
+          <ul class="mlist">
+            <li><span class="mico">📝</span><span>Конспект урока (теория «машина продолжения текста», три следствия для строителя, .md)</span></li>
+            <li><span class="mico">📁</span><span>Документ кейса «Уютный дом на Матвеева»: 01 (график производства работ) — источник примера в тренажёре</span></li>
+            <li><span class="mico">🧩</span><span>Логика тренажёра «следующее слово» (вероятности, варианты) отдельным JSON для повторного использования</span></li>
+            <li><span class="mico">🌐</span><span>HTML-интерактив урока (этот файл)</span></li>
+          </ul>
+          <div class="dl">
+            <a class="btn dark" href="materials/shag-01.zip">⬇ Скачать архив материалов</a>
+          </div>
+          <p class="mcap">Для команды переноса: архив содержит всё содержимое шага.</p>
+        </div>
+      </section>
+
       <!-- ═══ LIVE-CHAT ═══ -->
       <section class="sec" id="livechat">
-        <p class="stp">5 · Сделай в живом чате</p>
+        <p class="stp">6 · Сделай в живом чате</p>
         <h2>Сделай в живом чате</h2>
         <p class="lcinstruction">Первый запрос прямо сейчас. Откройте один из чат-ботов ниже и задайте ИИ реальный вопрос по своей работе — например, попросите объяснить рабочий термин, набросать структуру письма или подсказать формулировку. Прочитайте ответ с учётом того, что вы только что узнали: он звучит уверенно — но проверка фактов на вас. Затем вставьте результат в поле.</p>
         <div class="lcbtns">
@@ -294,7 +312,7 @@
       <div class="lockwrap" id="selfcheckWrap">
         <section class="sec locked" id="selfcheck">
           <span class="lockbadge">🔒 Сначала блок «Сделай в живом чате»</span>
-          <p class="stp">6 · Самопроверка</p>
+          <p class="stp">7 · Самопроверка</p>
           <h2>Перед сдачей отметьте</h2>
           <ul class="selfcheck" id="scList">
             <li><label><input type="checkbox"> Я понимаю: ИИ предсказывает следующее слово, а не ищет ответ в базе знаний.</label></li>
@@ -311,7 +329,7 @@
       <div class="lockwrap" id="practiceWrap">
         <section class="sec locked" id="practice">
           <span class="lockbadge">🔒 Сначала блок «Сделай в живом чате»</span>
-          <p class="stp">7 · Финал</p>
+          <p class="stp">8 · Финал</p>
           <h2>Что забрать с этого шага</h2>
           <ul class="checks">
             <li>ИИ-чат — это машина продолжения текста, а не база знаний: он предсказывает следующее слово по вероятности.</li>

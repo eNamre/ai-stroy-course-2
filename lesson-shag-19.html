@@ -151,7 +151,6 @@
   .promptbadge{display:inline-block;font-size:11px;font-weight:800;color:var(--purple);background:#faf6ff;border:1px solid #e6d5fa;border-radius:999px;padding:3px 10px;margin-bottom:8px}
   @media(max-width:860px){.grid{grid-template-columns:1fr}.asst{position:static}}
   @media(max-width:420px){h1{font-size:25px}.sec{padding:18px 16px}}
-.matrow{margin:10px 0 4px}.matbtn{display:inline-block;background:#111;color:#fff;padding:9px 16px;border-radius:10px;font-weight:700;font-size:14px;text-decoration:none}.matbtn:hover{opacity:.9}
 </style>
 </head>
 <body>
@@ -172,7 +171,6 @@
 
   <div class="kicker">Курс «30 шагов: рабочий ИИ-инструмент для строителя» · Неделя 3 · Шаг 19 · Роль: инженер ПТО / стройконтроль <span class="rule" style="background:var(--yellow)"></span></div>
   <h1>Шаг 19. Фото и видео с объекта</h1>
-  <div class="matrow"><a class="matbtn" href="materials/shag-19.zip" download>⬇ Материалы урока (архив): тексты, файлы кейса, интерактив</a></div>
   <p class="lead">После обхода — 40 фото в галерее и час на подписи к фотоотчёту: что, где, когда и в каком статусе. ИИ описывает снимок за секунды — <b>но заключение о дефекте всегда делает инженер, а не модель.</b></p>
   <div class="meta">
     <span class="lvl"><span class="dotx"></span> Ассистент · Уровень 2 · библиотека промптов</span>
@@ -191,12 +189,14 @@
       <section class="sec">
         <p class="stp">Что внутри урока</p>
         <ul class="toc">
-          <li>1 · <a href="#theory">Зачем это нужно: 40 фото и час на подписи</a>
-          <li>2 · <a href="#photoA">Часть А: подписи к фото</a>
-          <li>3 · <a href="#honesty">Правило честности: не эксперт-дефектолог</a>
-          <li>4 · <a href="#videoB">Часть Б: выжимка видеообхода</a>
-          <li>5 · <a href="#build">Мини-интерактив: соберите подпись</a>          <li>6 · <a href="#livechat">Сделай в живом чате</a>
-          <li>7 · <a href="#practice">Практика и проверка</a>
+          <li>1 · <a href="#theory">Зачем это нужно: 40 фото и час на подписи</a></li>
+          <li>2 · <a href="#photoA">Часть А: подписи к фото</a></li>
+          <li>3 · <a href="#honesty">Правило честности: не эксперт-дефектолог</a></li>
+          <li>4 · <a href="#videoB">Часть Б: выжимка видеообхода</a></li>
+          <li>5 · <a href="#build">Мини-интерактив: соберите подпись</a></li>
+          <li>6 · <a href="#materials">Материалы урока</a></li>
+          <li>7 · <a href="#livechat">Сделай в живом чате</a></li>
+          <li>8 · <a href="#practice">Практика и проверка</a></li>
         </ul>
         <div class="note">📄 К уроку приложены: описания фото Ф-01/Ф-02 (документ 08), текст предписания № 57 (документ 05) и промпт D2 из промпт-пака ПТО.</div>
       </section>
@@ -221,6 +221,7 @@
         <p class="stp">2 · Часть А · Фото</p>
         <h2>Приложи фото в чат — получи подпись для отчёта</h2>
         <p class="muted">Сценарий простой: прикладываете фото в чат-бот и просите описать его для фотоотчёта по формуле «что / где / когда / статус». Ниже — два демо-фото из документа 08 («Описания фото с объекта»): Ф-01 показывает прогресс, Ф-02 — дефект, который свяжем с предписанием № 57.</p>
+        <div class="note">⚠ В демо фото заменены текстовыми описаниями (Ф-01, Ф-02 из файла 08). Обратите внимание: дату и захватку ИИ берёт из подписи к фото — сам снимок таких данных не содержит.</div>
 
         <details class="doc" open>
           <summary>📸 Ф-01 · Армирование плиты перекрытия <span class="dtag">документ 08 · прогресс</span></summary>
@@ -374,12 +375,29 @@
       </section>
 
       <!-- ═══ MATERIALS ═══ -->
-      
+      <section class="sec" id="materials">
+        <p class="stp">6 · Материалы урока</p>
+        <h2>Материалы урока</h2>
+        <p class="muted">Всё содержимое этого шага — текстовые материалы, документы кейса, описания фото и HTML-интерактив — собрано в один архив.</p>
+        <div class="materials">
+          <ul class="mlist">
+            <li><span class="mico">📝</span><span>Конспект урока (правило честности, красные линии, .md)</span></li>
+            <li><span class="mico">📁</span><span>Документы кейса «Уютный дом на Матвеева»: 08 (описания фото Ф-01…Ф-05), 05 (предписание № 57)</span></li>
+            <li><span class="mico">🧩</span><span>Промпт D2 (формулировка пунктов фотоотчёта) из промпт-пака ПТО</span></li>
+            <li><span class="mico">🌐</span><span>HTML-интерактив урока (этот файл)</span></li>
+          </ul>
+          <div class="dl">
+            <a class="btn dark" href="materials/shag-19.zip">⬇ Скачать архив материалов</a>
+          </div>
+          <p class="mcap">Для команды переноса: архив содержит всё содержимое шага.</p>
+        </div>
+      </section>
+
       <!-- ═══ LIVE-CHAT ═══ -->
       <section class="sec" id="livechat">
-        <p class="stp">6 · Сделай в живом чате</p>
+        <p class="stp">7 · Сделай в живом чате</p>
         <h2>Сделай в живом чате</h2>
-        <p class="lcinstruction">Приложите СВОЁ фото со стройки (обязательно без лиц людей и читаемых номеров машин) в один из чат-ботов ниже и попросите описать его для фотоотчёта по формуле «что / где / когда / статус» — промпт D2 выше. Затем вставьте результат в поле под кнопками.</p>
+        <p class="lcinstruction">Приложите СВОЁ фото со стройки (обязательно без лиц людей и читаемых номеров машин) в один из чат-ботов ниже и попросите описать его для фотоотчёта по формуле «что / где / когда / статус» — промпт D2 выше. Затем вставьте результат в поле под кнопками. Для практики используйте обезличенный или учебный документ из материалов урока. Реальные рабочие документы — только в контуре, одобренном вашим работодателем.</p>
         <div class="lcbtns">
           <a class="lcbtn" href="https://giga.chat" target="_blank" rel="noopener"><span class="dotc" style="background:var(--blue)"></span> GigaChat</a>
           <a class="lcbtn" href="https://alice.yandex.ru" target="_blank" rel="noopener"><span class="dotc" style="background:var(--purple)"></span> Алиса / YandexGPT</a>
@@ -403,7 +421,7 @@
       <div class="lockwrap" id="selfcheckWrap">
         <section class="sec locked" id="selfcheck">
           <span class="lockbadge">🔒 Сначала блок «Сделай в живом чате»</span>
-          <p class="stp">7 · Самопроверка</p>
+          <p class="stp">8 · Самопроверка</p>
           <h2>Перед сдачей отметьте</h2>
           <ul class="selfcheck" id="scList">
             <li><label><input type="checkbox"> В подписи есть все четыре элемента: что / где / когда / статус.</label></li>
@@ -420,7 +438,7 @@
       <div class="lockwrap" id="practiceWrap">
         <section class="sec locked" id="practice">
           <span class="lockbadge">🔒 Сначала блок «Сделай в живом чате»</span>
-          <p class="stp">8 · Практика и проверка</p>
+          <p class="stp">9 · Практика и проверка</p>
           <h2>Сделайте на своей задаче</h2>
           <p class="muted">Возьмите реальное (или учебное) фото со своего объекта, без лиц и читаемых номеров машин, и составьте подпись по формуле «что / где / когда / статус» через промпт D2. Обезличьте всё остальное: без реальных ФИО и коммерческой тайны.</p>
           <div class="review">
