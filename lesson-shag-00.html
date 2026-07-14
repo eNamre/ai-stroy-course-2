@@ -95,6 +95,14 @@
   .nocard{border:1px solid #f3c7c3;background:#fdf0ef;border-radius:12px;padding:14px 16px}
   .nocard .nh{display:flex;align-items:center;gap:8px;font-weight:800;font-size:14px;color:var(--brand);margin-bottom:6px}
   .nocard p{font-size:13px;color:#7a2b26;margin:0}
+  /* ── Светофор данных ── */
+  .lightgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:14px}
+  .lightcard{border-radius:12px;padding:14px 16px;border:1px solid var(--line)}
+  .lightcard .lh{font-weight:800;font-size:14px;margin-bottom:6px}
+  .lightcard p{font-size:13px;margin:0}
+  .lightcard.g{background:#eef8f1;border-color:#cdebd8}.lightcard.g .lh{color:#157a41}
+  .lightcard.y{background:#fdf6e3;border-color:#f3e3b3}.lightcard.y .lh{color:#7a5b16}
+  .lightcard.r{background:#fdf0ef;border-color:#f3c7c3}.lightcard.r .lh{color:#a3201a}
   /* ── Материалы / живой чат / гейт (из шаблона v2) ── */
   .materials{display:flex;flex-direction:column;gap:12px}
   .materials .mlist{list-style:none;padding:0;margin:0}
@@ -272,13 +280,14 @@
             </details>
           </div>
         </div>
+        <p class="muted" style="font-size:12px;margin-top:10px">📌 Карточки сервисов проверены 13.07.2026 (владелец обновления — лаборатория ИИ-решений); при изменении интерфейса сервиса см. официальную справку.</p>
       </section>
 
       <!-- ═══ 3 · THREE NO ═══ -->
       <section class="sec" id="three-no">
         <p class="stp">3 · Правило безопасности</p>
         <h2>Правило «трёх нельзя»</h2>
-        <p>Инструмент готов — но прежде чем писать в него что угодно, запомните три вещи, которые в публичный ИИ-чат не отправляются <b>никогда</b>.</p>
+        <p>Это не запрет, а маршрут: <b>определите класс данных — выберите контур</b> для работы. Три вещи ниже проверяйте всегда, прежде чем писать в публичный ИИ-чат что угодно.</p>
 
         <div class="nogrid">
           <div class="nocard">
@@ -296,6 +305,24 @@
         </div>
 
         <div class="note green" style="margin-top:16px">✅ <b>Как решает этот курс:</b> вся практика идёт на обезличенных данных учебного кейса — ЖК «Уютный дом на Матвеева». Вымышленный объект, вымышленные имена (Иванов И.И., Петров П.П.), никаких реальных ПДн и коммерческой тайны. Берите эту же привычку в свою реальную работу: прежде чем вставить документ в чат — уберите из него ФИО, суммы и реквизиты.</div>
+
+        <h3 style="margin-top:20px">Светофор данных: маршрут, а не запрет</h3>
+        <p class="muted">Рабочий формат курса — использование публичного SaaS по риск-модели: контур зависит от класса данных, а не блокируется целиком. Подробный разбор с примерами документов — в тренажёре Шага 3.</p>
+        <div class="lightgrid">
+          <div class="lightcard g">
+            <div class="lh">🟢 Зелёный — публичный SaaS разрешён</div>
+            <p>Синтетика курса, открытые нормативы, учебные фото, свой текст — но только после очистки без непубличных сведений.</p>
+          </div>
+          <div class="lightcard y">
+            <div class="lh">🟡 Жёлтый — после проверки и очистки</div>
+            <p>Внутренний текст без критичных сведений, рабочие фото, документы после удаления чувствительных фрагментов. Проверьте правила работодателя → очистите → минимальный фрагмент → разрешённый сервис.</p>
+          </div>
+          <div class="lightcard r">
+            <div class="lh">🔴 Красный — не в публичный SaaS</div>
+            <p>Пароли/ключи, платёжные и медицинские данные, полные ПДн, кадровые реестры, коммерческая тайна, закрытые проектные решения, всё, что запретил работодатель. Только учебная копия, локально или в защищённом контуре.</p>
+          </div>
+        </div>
+        <div class="note" style="margin-top:12px">🔍 <b>Мини-чек SaaS-аккаунта, прежде чем начать:</b> проверьте — чей это аккаунт (личный или корпоративный), хранится ли история переписки, есть ли доступ по ссылке, что сервис делает с вашими данными (условия использования, обучение моделей на ваших запросах).</div>
       </section>
 
       <!-- ═══ 4 · PRICING ═══ -->
